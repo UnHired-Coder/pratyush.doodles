@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for
 from flask import Blueprint
 from flask_dance.contrib.google import make_google_blueprint, google
+from ... import app
 
 
 auth_bp = Blueprint('auth', __name__)
@@ -49,3 +50,7 @@ def authorized():
     }
         
     return render_template('cart.html', data=data)
+
+
+app.register_blueprint(auth_bp, url_prefix='/auth')
+app.register_blueprint(google_bp, url_prefix='/google_login')
