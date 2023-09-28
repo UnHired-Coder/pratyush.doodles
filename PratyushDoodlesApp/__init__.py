@@ -19,3 +19,5 @@ from PratyushDoodlesApp.business.shop.shop import *
 from PratyushDoodlesApp.business.payments.payments import *
 from PratyushDoodlesApp.business.others.others import *
 from PratyushDoodlesApp.business.home.home import *
+from PratyushDoodlesApp.models.Shop.ShopModel import *
+from PratyushDoodlesApp.models.User.UserModel import *
