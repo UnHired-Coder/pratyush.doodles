@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title pratyush.doodles</title>
+    <!-- Add your CSS links and styles here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-item">
+            <a href="{{ url_for('auth.login') }}"><button class="signup-button">Sign Up</button></a>
+        </div>
+
+        <a href="{{ url_for('home.home') }}">
+            <div class="header-logo-title">
+                <img class="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                <h1>pratyush.doodles</h1>
+            </div>
+        </a>
+
+        <div class="header-item">
+            <a href="{{ url_for('cart.cart') }}"><img src="{{ url_for('static', filename='images/ic_cart.png') }}"
+                    alt="cart"></a>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('home.home') }}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('shop.shop') }}">Stickers & Comics</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('others.questions') }}">Questions?</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('others.contact') }}">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('others.about') }}">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Body Content -->
+    <main>
+        {% block content %}
+        <section>
+            <h2>Home</h2>
+            <p>Welcome to home</p>
+        </section>
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <!-- <p>&copy; {{ current_year }} Your Flask App. All rights reserved.</p> -->
+    </footer>
+
+    <!-- Add your JavaScript scripts here if needed -->
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+
+</html>
