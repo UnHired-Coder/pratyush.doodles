@@ -10,4 +10,4 @@ shop_bp = Blueprint('shop', __name__)
 def shop():
     return render_template('shop.html')
 
- app.register_blueprint(shop_bp)
+app.register_blueprint(shop_bp)

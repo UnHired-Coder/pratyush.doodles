@@ -9,4 +9,4 @@ home_bp = Blueprint('home', __name__)
 def home():
     return render_template('index.html')
 
- app.register_blueprint(home_bp)
+app.register_blueprint(home_bp)
