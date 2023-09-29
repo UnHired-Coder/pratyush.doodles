@@ -1,5 +1,6 @@
 from flask import Flask
 from ... import db
+from ..Shop.ShopModel import CartItem, ItemPicture
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -11,7 +12,7 @@ class User(db.Model):
     address = db.Column(db.String(255), nullable=True)
 
     # Define a one-to-many relationship between User and CartItem
-    cart_items = db.relationship('CartItem', backref='user', lazy=True)
+    cart_items = db.relationship('CartItem', backref='to_user', lazy=True)
 
     def __init__(self, name, mobile_number, address=None, email=None):
         self.name = name
@@ -29,7 +30,7 @@ class User(db.Model):
         # Associate item pictures with the cart item
         if item_picture_urls:
             for picture_url in item_picture_urls:
-                item_picture = ItemPicture(picture_url=picture_url, item=cart_item)
+                item_picture = ItemPicture(picture_url=picture_url, cart_item=cart_item)
                 db.session.add(item_picture)
 
         db.session.add(cart_item)

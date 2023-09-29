@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Item to Cart</title>
+</head>
+<body>
+    <h1>Add Item to Cart</h1>
+    <form method="POST" action="{{ url_for('shop.add_item') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.item_name.label }}: {{ form.item_name() }}
+        </div>
+        <div>
+            {{ form.quantity.label }}: {{ form.quantity() }}
+        </div>
+        <div>
+            {{ form.item_description.label }}: {{ form.item_description() }}
+        </div>
+        <div>
+            {{ form.item_picture_urls.label }}: {{ form.item_picture_urls() }}
+        </div>
+        <button type="submit">Add Item</button>
+    </form>
+</body>
+</html>

@@ -12,7 +12,7 @@ class CartItem(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
 
     # Define a one-to-many relationship between CartItem and ItemPicture
-    pictures = db.relationship('ItemPicture', backref='cart_item', lazy=True)
+    pictures = db.relationship('ItemPicture', backref='to_cart_item', lazy=True)
 
     def __init__(self, item_name, quantity, item_description=None, user=None):
         self.item_name = item_name
@@ -28,11 +28,11 @@ class ItemPicture(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     picture_url = db.Column(db.String(255), nullable=False)
-    cart_item_id = db.Column(db.Integer, db.ForeignKey('cart_items.id'), nullable=False)  # ForeignKey to CartItem
+    cart_item = db.Column(db.Integer, db.ForeignKey('cart_items.id'), nullable=True)  # ForeignKey to CartItem
 
-    def __init__(self, picture_url, item=None):
+    def __init__(self, picture_url, cart_item=None):
         self.picture_url = picture_url
-        self.cart_item = cart_item  # Associate the picture with a cart item
+        self.cart_item = cart_item.id  # Associate the picture with a cart item
 
     def __repr__(self):
         return f'<ItemPicture {self.picture_url}>'
