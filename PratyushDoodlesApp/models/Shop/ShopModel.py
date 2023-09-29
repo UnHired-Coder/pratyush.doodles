@@ -14,11 +14,11 @@ class CartItem(db.Model):
     # Define a one-to-many relationship between CartItem and ItemPicture
     pictures = db.relationship('ItemPicture', backref='to_cart_item', lazy=True)
 
-    def __init__(self, item_name, quantity, item_description=None, user=None):
+    def __init__(self, item_name, quantity, item_description=None, user_id=None):
         self.item_name = item_name
         self.quantity = quantity
         self.item_description = item_description
-        self.user = user  # Associate the cart item with a user
+        self.user_id = user_id  # Associate the cart item with a user
 
     def __repr__(self):
         return f'<CartItem {self.item_name}>'

@@ -30,11 +30,11 @@ def add_item():
 
     return render_template('add_item.html', form=form)
 
-# @shop_bp.route('/cart_items')
-# def cart_items():
-#     user_id = 1  # Replace with the actual user ID
-#     user = User.query.get(user_id)
-#     cart_items = user.get_cart_items()
-#     return render_template('cart_items.html', cart_items=cart_items)
+@shop_bp.route('/cart_items')
+def cart_items():
+    user_id = 1  # Replace with the actual user ID
+    user = User.query.get(user_id)
+    cart_items = user.get_cart_items()
+    return render_template('cart_items.html', cart_items=cart_items)
 
 app.register_blueprint(shop_bp)

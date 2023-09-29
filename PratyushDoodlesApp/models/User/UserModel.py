@@ -25,7 +25,7 @@ class User(db.Model):
 
     def add_item_to_cart(self, item_name, quantity, item_description=None, item_picture_urls=None):
         # Create a new cart item and associate it with the user
-        cart_item = CartItem(item_name=item_name, quantity=quantity, item_description=item_description, user=self)
+        cart_item = CartItem(item_name=item_name, quantity=quantity, item_description=item_description, user_id=self.id)
 
         # Associate item pictures with the cart item
         if item_picture_urls:

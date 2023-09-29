@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Items</title>
+</head>
+<body>
+    <h1>Cart Items</h1>
+    <ul>
+        {% for cart_item in cart_items %}
+            <li>
+                {{ cart_item.item_name }}
+                (Quantity: {{ cart_item.quantity }})
+                {% if cart_item.item_description %}
+                    <p>Description: {{ cart_item.item_description }}</p>
+                {% endif %}
+                {% if cart_item.pictures %}
+                    <ul>
+                        {% for picture in cart_item.pictures %}
+                            <li><img src="{{ picture.picture_url }}" alt="Item Picture"></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
