@@ -30,9 +30,9 @@ class ItemPicture(db.Model):
     picture_url = db.Column(db.String(255), nullable=False)
     cart_item = db.Column(db.Integer, db.ForeignKey('cart_items.id'), nullable=True)  # ForeignKey to CartItem
 
-    def __init__(self, picture_url, cart_item=None):
+    def __init__(self, picture_url, cart_item_id=None):
         self.picture_url = picture_url
-        self.cart_item = cart_item.id  # Associate the picture with a cart item
+        self.cart_item = cart_item_id  # Associate the picture with a cart item
 
     def __repr__(self):
         return f'<ItemPicture {self.picture_url}>'

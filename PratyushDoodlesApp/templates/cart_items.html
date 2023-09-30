@@ -14,9 +14,11 @@
                 {% if cart_item.item_description %}
                     <p>Description: {{ cart_item.item_description }}</p>
                 {% endif %}
+                <h1>Image: {{ cart_item.pictures }} </h1>
                 {% if cart_item.pictures %}
                     <ul>
                         {% for picture in cart_item.pictures %}
+                        <h1>Image: </h1>
                             <li><img src="{{ picture.picture_url }}" alt="Item Picture"></li>
                         {% endfor %}
                     </ul>
