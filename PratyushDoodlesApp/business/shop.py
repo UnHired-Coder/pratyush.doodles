@@ -2,13 +2,18 @@ from flask import Flask, render_template, redirect, url_for, flash, Blueprint
 from .. import app
 from ..forms.AddItemForm import AddItemForm
 from ..models.UserModel import User
+from .util import *
 
 shop_bp = Blueprint('shop', __name__)
 
 # Define routes and views for the 'auth' Blueprint
 @shop_bp.route('/shop')
 def shop():
-    return render_template('shop.html')
+    data = {
+        'user': get_current_user()
+    }
+    
+    return render_template('shop.html', data = data)
 
 # @shop_bp.route('/add_item', methods=['GET', 'POST'])
 # def add_item():

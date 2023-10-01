@@ -1,8 +1,9 @@
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, session
 from flask import Blueprint
 from flask_dance.contrib.google import make_google_blueprint, google
 from .. import app
 from .. import db
+from ..models.UserModel import User
 
 
 auth_bp = Blueprint('auth', __name__)
@@ -14,43 +15,36 @@ google_bp = make_google_blueprint(client_id='826108091887-4tj9nulbl2jc879kjor41e
 
 @auth_bp.route('/login')
 def login():
+    print("login")
     if not google.authorized:
         return redirect(url_for('google.login'))
     resp = google.get('/oauth2/v2/userinfo')
     assert resp.ok, resp.text
 
+    user = add_user(resp.json())
     data = {
-        'title': "Logged in as " +str(resp.json()['name'])
+        'user': user
     }
 
-    return render_template('cart.html', data=data)
+    return render_template('index.html', data=data)
 
+def add_user(userdata):
+    user_name = userdata['name']  
+    user_email = userdata['email']
 
-@auth_bp.route('/google')
-def googlelogin():
-    if not google.authorized:
-        return redirect(url_for('google.login'))
-    resp = google.get('/plus/v1/people/me')
-    assert resp.ok, resp.text
+    user = User(name = user_name, email = user_email)
+    db.session.add(user)
+    db.session.commit()
+    session['user'] = userdata
 
-    data = {
-        'title': "Logged in as " +str(resp.json()['name'])
-    }
-        
-    return render_template('cart.html', data=data)
+    return user
 
-@auth_bp.route('/google/authorized')
-def authorized():
-    if not google.authorized:
-        return redirect(url_for('google.login'))
-    resp = google.get('/plus/v1/people/me')
-    assert resp.ok, resp.text
-
-    data = {
-        'title': "Logged in as " +str(resp.json()['name'])
-    }
-        
-    return render_template('cart.html', data=data)
+@auth_bp.route('/logout')
+def logout():
+    session.pop('user')
+    
+    return redirect(url_for('home.home'))
+    
 
 
 app.register_blueprint(auth_bp, url_prefix='/auth')

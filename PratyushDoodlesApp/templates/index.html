@@ -13,7 +13,18 @@
     <!-- Header -->
     <header class="header">
         <div class="header-item">
-            <a href="{{ url_for('auth.login') }}"><button class="signup-button">Sign Up</button></a>
+            {% if data.user %}
+            <a href="{{ url_for('auth.logout') }}"><button class="signup-button">Logout</button></a>
+            {% else %}
+            <a href="{{ url_for('auth.login') }}"><button class="signup-button">Log In</button></a>
+            {% endif %}
+            {% block email %}
+
+            {% if data.user %}
+            <p>(Logged in as {{ data.user.name }})</p>
+            {% endif %}
+
+            {% endblock %}
         </div>
 
         <a href="{{ url_for('home.home') }}">
