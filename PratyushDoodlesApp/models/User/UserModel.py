@@ -88,7 +88,7 @@ class CartItem(db.Model):
 
     # Relationships
     # M:1 
-    cart_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    cart_id = db.Column(db.Integer, db.ForeignKey('cart.id'), nullable=False)
     
     # 1:1 
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)  
@@ -185,7 +185,7 @@ class Address(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
     # M:1
-    order_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
 
 
     def __init__(self, recipient_name, addressLine1, street, city, state, pincode, addressLine2=None, user_id=None, order_id=None):
