@@ -7,6 +7,26 @@
     <section>
         <h2>Shop</h2>
         <p>Welcome to Shop</p>
+        {% if data.products %}
+            {% for product in data.products %}
+                Name: {{product.name}}
+                <br>
+                Description: {{product.description}}
+                <br>
+                Price: {{product.price}}
+                <br>
+                Quantity: {{product.stock_quantity}}
+                <br>
+                Description: {{product.description}}
+                <br>
+                {% for image in product.product_images %}
+                    <p>
+                      Url: {{image.picture_url}}
+                    </p>
+                    <img src="{{image.picture_url}}" alt="image.picture_url">
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
     </section>
 {% endblock %}
  

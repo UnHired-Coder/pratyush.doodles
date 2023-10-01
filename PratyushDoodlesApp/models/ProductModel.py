@@ -31,14 +31,14 @@ class ProductImage(db.Model):
     __tablename__ = 'product_image'
 
     id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String(255), nullable=False)
+    picture_url = db.Column(db.String(255), nullable=False)
 
     # Relationships
     # M:1
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
 
-    def __init__(self, url, product_id):
-        self.url = url
+    def __init__(self, picture_url, product_id):
+        self.picture_url = picture_url
         self.product_id = product_id
 
     def __repr__(self):
