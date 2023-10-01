@@ -1,38 +1,46 @@
 from flask import Flask
 from ... import db
 
-class CartItem(db.Model):
-    __tablename__ = 'cart_items'
+class Product(db.Model):
+    __tablename__ = 'product'
 
     id = db.Column(db.Integer, primary_key=True)
-    item_name = db.Column(db.String(255), nullable=False)
-    quantity = db.Column(db.Integer, nullable=False)
-    item_description = db.Column(db.Text, nullable=True)
+    name = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(255), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    stock_quantity = db.Column(db.Integer, nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
+ 
+    # Relationships
+    # 1:M
+    product_images = db.relationship('ProductImages', backref = 'of_product', lazy=True)
 
-    # Define a one-to-many relationship between CartItem and ItemPicture
-    pictures = db.relationship('ItemPicture', backref='to_cart_item', lazy=True)
 
-    def __init__(self, item_name, quantity, item_description=None, user_id=None):
-        self.item_name = item_name
-        self.quantity = quantity
-        self.item_description = item_description
-        self.user_id = user_id  # Associate the cart item with a user
+    def __init__(self, name, description, price, stock_quantity, product_images):
+        self.name = name
+        self.product_id = description
+        self.price = price
+        self.stock_quantity = stock_quantity
+        self.product_images = product_images
+
 
     def __repr__(self):
-        return f'<CartItem {self.item_name}>'
+        return f'<Product {self.name}>'
 
-class ItemPicture(db.Model):
-    __tablename__ = 'item_pictures'
+
+class ProductImages(db.Model):
+    __tablename__ = 'product_images'
 
     id = db.Column(db.Integer, primary_key=True)
     picture_url = db.Column(db.String(255), nullable=False)
-    cart_item = db.Column(db.Integer, db.ForeignKey('cart_items.id'), nullable=True)  # ForeignKey to CartItem
 
-    def __init__(self, picture_url, cart_item_id=None):
+    # Relationships
+    # M:1
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+
+    def __init__(self, picture_url, product_id):
         self.picture_url = picture_url
-        self.cart_item = cart_item_id  # Associate the picture with a cart item
+        self.product_id = product_id
 
     def __repr__(self):
-        return f'<ItemPicture {self.picture_url}>'
+        return f'<ProductImages {self.picture_url}>'
