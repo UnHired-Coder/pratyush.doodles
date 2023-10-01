@@ -1,6 +1,6 @@
 from flask import Flask
-from ... import db
-from ..Shop.ShopModel import Product
+from .. import db
+from ..models.ProductModel import Product
 from datetime import datetime
 
 class User(db.Model):

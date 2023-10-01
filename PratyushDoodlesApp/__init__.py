@@ -13,11 +13,11 @@ def create_app():
 app = create_app()
 db = SQLAlchemy(app)
 
-from PratyushDoodlesApp.business.cart.cart import *
-from PratyushDoodlesApp.business.auth.auth import *
-from PratyushDoodlesApp.business.shop.shop import *
-from PratyushDoodlesApp.business.payments.payments import *
-from PratyushDoodlesApp.business.others.others import *
-from PratyushDoodlesApp.business.home.home import *
-from PratyushDoodlesApp.models.Shop.ShopModel import *
-from PratyushDoodlesApp.models.User.UserModel import *
+from PratyushDoodlesApp.business.cart import *
+from PratyushDoodlesApp.business.auth import *
+from PratyushDoodlesApp.business.shop import *
+from PratyushDoodlesApp.business.payments import *
+from PratyushDoodlesApp.business.others import *
+from PratyushDoodlesApp.business.home import *
+from PratyushDoodlesApp.models.ProductModel import *
+from PratyushDoodlesApp.models.UserModel import *

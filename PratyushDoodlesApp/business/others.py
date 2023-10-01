@@ -1,6 +1,6 @@
 from flask import render_template
 from flask import Blueprint
-from ... import app
+from .. import app
 
 others_bp = Blueprint('others', __name__)
 # Define routes and views for the 'auth' Blueprint

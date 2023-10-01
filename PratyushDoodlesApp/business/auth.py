@@ -1,7 +1,8 @@
 from flask import render_template, redirect, url_for
 from flask import Blueprint
 from flask_dance.contrib.google import make_google_blueprint, google
-from ... import app
+from .. import app
+from .. import db
 
 
 auth_bp = Blueprint('auth', __name__)

@@ -1,6 +1,6 @@
 from flask import render_template
 from flask import Blueprint
-from ... import app
+from .. import app
 
 
 payments_bp = Blueprint('payments', __name__)
