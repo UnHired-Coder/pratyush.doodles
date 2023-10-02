@@ -7,6 +7,7 @@
     <title>Title pratyush.doodles</title>
     <!-- Add your CSS links and styles here -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='js/custom_scripts.js') }}"></script>
 </head>
 
 <body>
@@ -18,13 +19,6 @@
             {% else %}
             <a href="{{ url_for('auth.login') }}"><button class="signup-button">Log In</button></a>
             {% endif %}
-            {% block email %}
-
-            {% if data.user %}
-            <p>(Logged in as {{ data.user.name }})</p>
-            {% endif %}
-
-            {% endblock %}
         </div>
 
         <a href="{{ url_for('home.home') }}">
@@ -39,6 +33,14 @@
                     alt="cart"></a>
         </div>
     </header>
+
+    {% block email %}
+
+    {% if data.user %}
+    <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
+    {% endif %}
+
+    {% endblock %}
 
     <!-- Navigation Menu -->
     <nav class="navbar">

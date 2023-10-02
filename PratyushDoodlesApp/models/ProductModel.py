@@ -42,4 +42,4 @@ class ProductImage(db.Model):
         self.product_id = product_id
 
     def __repr__(self):
-        return f'<ProductImage {self.url}>'
+        return f'<ProductImage {self.picture_url}>'

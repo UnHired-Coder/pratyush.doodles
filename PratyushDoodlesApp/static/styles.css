@@ -81,3 +81,67 @@ header a {
 .nav-link:hover {
     color: #f00; /* Change to your desired hover color */
 }
+
+/* styles.css */
+
+.card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: fit-content; 
+    margin: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    margin-bottom: 10px;
+}
+
+.product-price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.product-stock {
+    color: #28a745;
+}
+
+.product-images .image-list {
+    list-style: none;
+    padding: 0;
+}
+
+.product-images .image-list li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.product-actions {
+    margin-top: 15px;
+}
+
+.product-actions button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+#logged-in-as{
+    padding: 10px 60px;
+}
