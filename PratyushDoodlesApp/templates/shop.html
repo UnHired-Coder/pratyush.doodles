@@ -7,12 +7,14 @@
 <section>
     <h2>Shop</h2>
     <p>Welcome to Shop</p>
-    {% if data.products %}
-        {% for product in data.products %}
-            {% with product=product %}
-                {% include 'ui/card.html' %}
-            {% endwith %}
-        {% endfor %}
-    {% endif %}
+    <div class="products-list">
+        {% if data.products %}
+            {% for product in data.products %}
+                {% with product=product %}
+                    {% include 'ui/card.html' %}
+                {% endwith %}
+            {% endfor %}
+        {% endif %}
+    </div>
 </section>
 {% endblock %}
