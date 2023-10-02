@@ -29,8 +29,13 @@
     <!-- Body Content -->
     <main>
         <section>
-            <h2>{{ data.title }}</h2>
-            <p>Welcome to cart</p>
+            <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
+            <h4>Welcome to cart</h4>
+            {% for cart_item in data.cart_items %}
+                {% with product=cart_item['product'], quantity = cart_item['quantity'] %}
+                    {% include 'ui/card.html' %}
+                {% endwith %}
+            {% endfor %}
         </section>
     </main>
 

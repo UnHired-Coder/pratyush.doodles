@@ -17,6 +17,9 @@
             <img src="{{ product.product_images[0].picture_url }}" class="d-block w-100" alt="Product Image">
         </div>
 
+        {% if quantity %}
+            <p>Items: {{ quantity }}</p>
+        {% endif %}
         <div class="product-actions">
             <button class="btn btn-success add-to-cart-btn" onclick="toggleOptions(this)">Add to Cart</button>
             <div class="cart-options" style="display: none;">
