@@ -86,11 +86,10 @@ header a {
 
 .card {
     border: 1px solid #ddd;
-    padding: 15px;
-    width: fit-content; 
+    width: 200px; 
     margin: 10px;
-    background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
 }
 
 .card-header {
@@ -110,16 +109,6 @@ header a {
 
 .product-stock {
     color: #28a745;
-}
-
-.product-images .image-list {
-    list-style: none;
-    padding: 0;
-}
-
-.product-images .image-list li {
-    display: inline-block;
-    margin-right: 10px;
 }
 
 .product-actions {
@@ -144,4 +133,8 @@ header a {
 
 #logged-in-as{
     padding: 10px 60px;
+}
+
+.product-description{
+    text-align:start;
 }
