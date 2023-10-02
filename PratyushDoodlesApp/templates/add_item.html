@@ -1,26 +1,51 @@
+<!-- add_product.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Add Item to Cart</title>
+    <title>Add Product</title>
 </head>
 <body>
-    <h1>Add Item to Cart</h1>
-    <form method="POST" action="{{ url_for('shop.add_item') }}">
+    <h1>Add Product</h1>
+    <form method="POST" action="{{ url_for('shop.add_product') }}">
         {{ form.hidden_tag() }}
         <div>
-            {{ form.item_name.label }}: {{ form.item_name() }}
+            {{ form.name.label }}<br>
+            {{ form.name() }}
+            {% for error in form.name.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
         </div>
         <div>
-            {{ form.quantity.label }}: {{ form.quantity() }}
+            {{ form.description.label }}<br>
+            {{ form.description() }}
+            {% for error in form.description.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
         </div>
         <div>
-            {{ form.item_description.label }}: {{ form.item_description() }}
+            {{ form.price.label }}<br>
+            {{ form.price() }}
+            {% for error in form.price.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
         </div>
         <div>
-            {{ form.item_picture_urls.label }}: {{ form.item_picture_urls() }}
+            {{ form.stock_quantity.label }}<br>
+            {{ form.stock_quantity() }}
+            {% for error in form.stock_quantity.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
         </div>
-        <button type="submit">Add Item</button>
+        <div>
+            {{ form.images.label }}<br>
+            {{ form.images() }}
+            {% for error in form.images.errors %}
+                    <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            <input type="submit" value="Add Product">
+        </div>
     </form>
 </body>
 </html>
