@@ -3,6 +3,9 @@ function toggleOptions(button) {
     var optionsDiv = button.nextElementSibling;
     optionsDiv.style.display = optionsDiv.style.display === 'block' ? 'none' : 'block';
     button.style.display = optionsDiv.style.display === 'block' ? 'none' : 'block';
+
+    counterSpan = button.parentNode.querySelector('.counter');
+    counterSpan.textContent = 1;
 }
 
 function incrementCounter(button) {
@@ -13,10 +16,6 @@ function incrementCounter(button) {
         counterValue++; // Increment the counter
         counterSpan.textContent = counterValue; // Update the counter display
         counterSpan.style.display = 'inline'; // Show the counter
-
-        // Show the "Add to Cart" button when counter is greater than zero
-        var addToCartButton = button.parentNode.querySelector('.add-to-cart-btn');
-        addToCartButton.style.display = 'none';
     }
 }
 
