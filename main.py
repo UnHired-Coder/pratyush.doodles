@@ -1,5 +1,4 @@
-from PratyushDoodlesApp import app
+from PratyushDoodlesApp import app, socketio
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
+    socketio.run(app, debug=True)

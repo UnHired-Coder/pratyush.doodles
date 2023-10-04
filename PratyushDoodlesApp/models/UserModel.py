@@ -16,7 +16,7 @@ class User(db.Model):
     address = db.relationship('Address', backref = 'of_user', lazy=True)
 
     # 1:1
-    cart = db.relationship('Cart', backref='of_user', lazy=True)
+    cart = db.relationship('Cart', backref='of_user', lazy=True, uselist=False)
 
     # 1:M
     orders = db.relationship('Order', backref='of_user', lazy=True)
@@ -24,9 +24,13 @@ class User(db.Model):
     def __init__(self, name, email):
         self.name = name
         self.email = email
+        self.initialize_cart()
 
-    def __repr__(self):
-        return f'<User {self.id} {self.name} {self.mobile_number} {self.email}>'
+    def initialize_cart(self):
+        db.session.add(self)
+        db.session.flush()
+        self.cart = Cart(self.id)
+        db.session.commit()
 
     def add_or_update_address(self):
         pass
@@ -44,7 +48,7 @@ class User(db.Model):
         pass    
 
     def __repr__(self):
-        return f'<User {self.name}>'
+        return f'<User {self.email}>'
 
 
 class Cart(db.Model):
@@ -63,8 +67,10 @@ class Cart(db.Model):
         self.user_id = user_id
         self.creation_date = datetime.now().date()
 
-    def add_to_cart(self):
-        pass    
+    def add_to_cart(self, product_id):
+        cartItem = CartItem(cart_id = self.id, product_id = product_id)
+        db.session.add(cartItem)
+        db.session.commit()
 
     def remove_from_cart(self):
         pass

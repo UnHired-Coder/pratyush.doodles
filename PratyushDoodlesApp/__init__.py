@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask_socketio import SocketIO
+
 
 def create_app():
     app = Flask(__name__)
@@ -11,6 +13,7 @@ def create_app():
 
 
 app = create_app()
+socketio = SocketIO(app, async_mode = None)
 db = SQLAlchemy(app)
 
 from PratyushDoodlesApp.business.cart import *

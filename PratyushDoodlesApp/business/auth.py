@@ -15,36 +15,30 @@ google_bp = make_google_blueprint(client_id='826108091887-4tj9nulbl2jc879kjor41e
 
 @auth_bp.route('/login')
 def login():
-    print("login")
     if not google.authorized:
         return redirect(url_for('google.login'))
     resp = google.get('/oauth2/v2/userinfo')
     assert resp.ok, resp.text
 
-    user = add_user(resp.json())
+    userdata = resp.json()
+    user_email = userdata['email']
+    user_name = userdata['name'] 
+    
+    user = User.query.filter_by(email = user_email).first()
+
+    if not User:
+        user = User(name = user_name, email = user_email)
+
     data = {
         'user': user
     }
 
     return render_template('index.html', data=data)
 
-def add_user(userdata):
-    user_name = userdata['name']  
-    user_email = userdata['email']
-
-    user = User(name = user_name, email = user_email)
-    db.session.add(user)
-    db.session.commit()
-    session['user'] = userdata
-
-    return user
-
 @auth_bp.route('/logout')
 def logout():
-    session.pop('user')
-    
+    session.pop('user')    
     return redirect(url_for('home.home'))
-    
 
 
 app.register_blueprint(auth_bp, url_prefix='/auth')

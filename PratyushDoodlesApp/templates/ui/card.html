@@ -18,15 +18,16 @@
         </div>
 
         {% if quantity %}
-            <p>Items: {{ quantity }}</p>
-        {% endif %}
+           <p>Items: {{ quantity }}</p>
+        {% else %}
         <div class="product-actions">
-            <button class="btn btn-success add-to-cart-btn" onclick="toggleOptions(this)">Add to Cart</button>
+            <button class="btn btn-success add-to-cart-btn"  product_id = "{{ product.id }}" onclick="toggleOptions(this); addItemToCart(this)">Add to Cart</button>
             <div class="cart-options" style="display: none;">
                 <button class="btn btn-danger" onclick="decrementCounter(this)">-</button>
                 <span class="counter" style="display: inline;">1</span>
                 <button class="btn btn-success" onclick="incrementCounter(this)">+</button>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>

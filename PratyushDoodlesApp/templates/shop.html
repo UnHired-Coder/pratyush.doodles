@@ -17,4 +17,13 @@
         {% endif %}
     </div>
 </section>
+
+<script>
+    function addItemToCart(button) {
+        // Use the socket variable to interact with the WebSocket connection
+        let product_id = $(button).attr('product_id')
+        socket.emit('addItemToCart', { product_id: product_id });
+        console.log("Event: addItemToCart", product_id)
+    }
+</script>
 {% endblock %}

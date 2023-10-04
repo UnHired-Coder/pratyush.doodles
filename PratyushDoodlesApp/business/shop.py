@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash, Blueprint
-from .. import app
+from .. import app, socketio
 from ..forms.AddItemForm import ProductForm
 from ..models.UserModel import User
 from .util import *
@@ -20,6 +20,13 @@ def shop():
 
     return render_template('shop.html', data = data)
 
+@socketio.on( 'addItemToCart' )
+def addItemToCart(data):
+    product_id = data.get('product_id')
+    current_user = get_current_user()
+    # Fix this hardcoded user id
+    user = User.query.filter_by(id = 1).first()
+    user.cart.add_to_cart(product_id)
 
 #Admin actions
 @shop_bp.route('/add_product', methods=['GET', 'POST'])
