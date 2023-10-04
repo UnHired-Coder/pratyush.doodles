@@ -18,20 +18,24 @@ def login():
     if not google.authorized:
         return redirect(url_for('google.login'))
     resp = google.get('/oauth2/v2/userinfo')
-    assert resp.ok, resp.text
 
-    userdata = resp.json()
-    user_email = userdata['email']
-    user_name = userdata['name'] 
-    
-    user = User.query.filter_by(email = user_email).first()
+    if resp.ok and resp.text:
+        userdata = resp.json()
+        user_email = userdata['email']
+        user_name = userdata['name'] 
+        
+        user = User.query.filter_by(email = user_email).first()
 
-    if not User:
-        user = User(name = user_name, email = user_email)
+        if not User:
+            user = User(name = user_name, email = user_email)
 
-    data = {
-        'user': user
-    }
+        data = {
+            'user': user
+        }
+    else:
+        data = {
+            'error': "Login failed!"
+        }
 
     return render_template('index.html', data=data)
 
