@@ -11,13 +11,12 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/')
 @home_bp.route('/home')
 def home():
-    user_id = get_current_user()
-    user = User.query.filter_by(id = user_id)
+    user = get_current_user()
 
     data = {}
     if not user:
         data = {
-            'show_error': "Please login to access your cart!",
+            'show_error': "Logged out!",
         }
     else:
         data = {

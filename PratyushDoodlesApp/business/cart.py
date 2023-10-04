@@ -11,8 +11,7 @@ cart_bp = Blueprint('cart', __name__)
 
 @cart_bp.route('/cart')
 def cart():
-    user_id = get_current_user()
-    user = User.query.filter_by(id = user_id).first()
+    user = get_current_user()
 
     if not user:
         data = {

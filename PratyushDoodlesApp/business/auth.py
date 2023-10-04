@@ -30,7 +30,7 @@ def login():
     user_name = userdata['name'] 
 
     user = User.query.filter_by(email = user_email).first()
-    if not User:
+    if not user:
         user = User(name = user_name, email = user_email)
 
     data = {

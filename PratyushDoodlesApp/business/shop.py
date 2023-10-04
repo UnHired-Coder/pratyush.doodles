@@ -11,8 +11,7 @@ shop_bp = Blueprint('shop', __name__)
 # Define routes and views for the 'auth' Blueprint
 @shop_bp.route('/shop')
 def shop():
-    user_id = get_current_user()
-    user = User.query.filter_by(id = user_id)
+    user = get_current_user()
     products = Product.query.all()
 
     data = {}
@@ -32,9 +31,7 @@ def shop():
 def addItemToCart(data):
     product_id = data.get('product_id')
 
-    user_id = get_current_user()
-    user = User.query.filter_by(id = user_id)
-
+    user = get_current_user()
     user.cart.add_to_cart(product_id)
 
 
