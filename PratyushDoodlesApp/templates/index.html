@@ -19,7 +19,7 @@
     <!-- Header -->
     <header class="header">
         <div class="header-item">
-            {% if data.user %}
+            {% if data.user and data.user.id %}
             <a href="{{ url_for('auth.logout') }}"><button class="signup-button">Logout</button></a>
             {% else %}
             <a href="{{ url_for('auth.login') }}"><button class="signup-button">Log In</button></a>
@@ -41,7 +41,7 @@
 
     {% block email %}
 
-    {% if data.user %}
+    {% if data.user and data.user.id %}
     <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
     {% endif %}
 
@@ -60,6 +60,10 @@
 
     <!-- Body Content -->
     <main>
+        {% if data.show_error %}
+            <p id="logged-in-as">Error: {{ data.show_error }}</p>
+        {% endif %}
+
         {% block content %}
         <section>
             <h2>Home</h2>

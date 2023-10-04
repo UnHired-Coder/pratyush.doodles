@@ -11,22 +11,41 @@ shop_bp = Blueprint('shop', __name__)
 # Define routes and views for the 'auth' Blueprint
 @shop_bp.route('/shop')
 def shop():
+    user_id = get_current_user()
+    user = User.query.filter_by(id = user_id)
     products = Product.query.all()
 
-    data = {
-        'user': get_current_user(),
-        'products': products
-    }
+    data = {}
+    if len(products) == 0:
+        data = {
+            'show_error' : "No Products Listed!"
+        }
+    else:
+        data = {
+            'user': user,
+            'products': products
+        }
 
     return render_template('shop.html', data = data)
 
 @socketio.on( 'addItemToCart' )
 def addItemToCart(data):
     product_id = data.get('product_id')
-    current_user = get_current_user()
-    # Fix this hardcoded user id
-    user = User.query.filter_by(id = 1).first()
+
+    user_id = get_current_user()
+    user = User.query.filter_by(id = user_id)
+
     user.cart.add_to_cart(product_id)
+
+
+
+
+
+
+
+
+
+
 
 #Admin actions
 @shop_bp.route('/add_product', methods=['GET', 'POST'])

@@ -34,7 +34,14 @@
     <!-- Body Content -->
     <main>
         <section>
-            <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
+            {% if data.user and data.user.name %}
+                <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
+            {% endif %}
+
+            {% if data.show_error %}
+                <p id="logged-in-as">Error: {{ data.show_error }}</p>
+            {% endif %}
+            
             <h4>Welcome to cart</h4>
             {% for cart_item in data.cart_items %}
                 {% with product=cart_item['product'], quantity = cart_item['quantity'] %}

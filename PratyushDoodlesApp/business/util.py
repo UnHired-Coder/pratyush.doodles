@@ -2,8 +2,7 @@ from flask import session
 from ..models.UserModel import User
 
 def get_current_user():
-    userdata = session.get('user')
-    user = None  
-    if userdata:
-        user = User(name=userdata['name'], email=userdata['email'])
-    return user    
+    user_id = session.get('user_id')
+    if user_id:
+        return User.query.filter_by(id = user_id).first()
+    return None    

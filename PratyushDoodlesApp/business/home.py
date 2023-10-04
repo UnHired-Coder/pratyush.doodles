@@ -11,9 +11,18 @@ home_bp = Blueprint('home', __name__)
 @home_bp.route('/')
 @home_bp.route('/home')
 def home():
-    data = {
-        'user': get_current_user()
-    }
+    user_id = get_current_user()
+    user = User.query.filter_by(id = user_id)
+
+    data = {}
+    if not user:
+        data = {
+            'show_error': "Please login to access your cart!",
+        }
+    else:
+        data = {
+            'user': user
+        }
 
     return render_template('index.html', data = data)
 
