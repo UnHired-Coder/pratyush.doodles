@@ -1,63 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- about.html -->
+{% extends 'index.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ data.title }}</title>
-    <!-- Add your CSS links and styles here -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+{% block title %}Login in{% endblock %}
 
-<body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
-    <script>
-            // const socket = io.connect('http://' + document.domain + ':' + location.port)
-    </script>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="header-item">
-        <a href="{{ url_for('home.home') }}"><button class="signup-button">Go Back</button></a>
-        </div>
-
-        <div class="header-logo-title">
-            <img class="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-            <h1>pratyush.doodles</h1>
-        </div>
-
-        <div class="header-item">
-            <a href="{{ url_for('cart.cart') }}"><img src="{{ url_for('static', filename='images/ic_cart.png') }}" alt="cart"></a>
-        </div>
-    </header>
-
-    <!-- Body Content -->
-    <main>
-        <section>
-            {% if data.user and data.user.name %}
-                <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
-            {% endif %}
-
-            {% if data.show_error %}
-                <p id="logged-in-as">Error: {{ data.show_error }}</p>
-            {% endif %}
-            
-            <h4>Welcome to cart</h4>
-            {% for cart_item in data.cart_items %}
-                {% with product=cart_item['product'], quantity = cart_item['quantity'] %}
-                    {% include 'ui/card.html' %}
-                {% endwith %}
-            {% endfor %}
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <!-- <p>&copy; {{ current_year }} Your Flask App. All rights reserved.</p> -->
-    </footer>
-
-    <!-- Add your JavaScript scripts here if needed -->
-    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-</body>
-
-</html>
+{% block content %}
+    {% if data.user and data.user.name %}
+        <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
+    {% endif %}
+    
+    <h4>Welcome to cart</h4>
+    
+    {% for cart_item in data.cart_items %}
+        {% with product=cart_item['product'], quantity = cart_item['quantity'] %}
+            {% include 'ui/card.html' %}
+        {% endwith %}
+    {% endfor %}
+{% endblock %}

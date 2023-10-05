@@ -36,7 +36,7 @@ class User(db.Model):
         pass
 
     def place_order(self):
-        pass
+        self.cart.place_order()
 
     def cancel_order(self):
         pass            
@@ -55,12 +55,14 @@ class Cart(db.Model):
     __tablename__ = 'cart'
     
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     creation_date = db.Column(db.Date, nullable=False)
 
     # Relationships
     # 1:M
     cart_items = db.relationship('CartItem', backref='of_cart', lazy=True)
+
+    # 1:1
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 
     def __init__(self, user_id):
@@ -76,7 +78,15 @@ class Cart(db.Model):
         pass
 
     def place_order(self):
-        pass
+        order_items = []
+        total_amount = 0
+        for cartItem in self.cart_items:
+            order_item = OrderItem(cart_id = self.id, product_id = cartItem.product_id, quantity = cartItem.quantity)
+            order_items.append(order_item)
+            product = Product.query.filter_by(id = cartItem.product_id).first()
+            total_amount += product.price
+
+        order = Order(user_id = self.id, address = self.address, order_items = order_items, amount = total_amount)
 
     def order_placed(self):
         pass    
@@ -99,13 +109,14 @@ class CartItem(db.Model):
     # 1:1 
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)  
 
-    def __init__(self, product_id, cart_id):
+    def __init__(self, product_id, cart_id, quantity=1):
         self.product_id = product_id
         self.cart_id = cart_id
-        self.quantity = 1
+        self.quantity = quantity
 
-    def update_quantity(self):
-        pass
+    def update_quantity(self, delta):
+        self.quantity += delta
+        self.quantity >= 0
 
     def __repr__(self):
         return f'<CartItem {self.cart_id}>'
@@ -130,10 +141,10 @@ class Order(db.Model):
     order_items = db.relationship('OrderItem', backref='of_order', lazy=True)
 
 
-    def __init__(self, user_id, address, order_item, amount):
+    def __init__(self, user_id, address, order_items, amount):
         self.user_id = user_id
         self.address = address
-        self.order_items = order_item
+        self.order_items = order_items
         self.order_date = datetime.now().date()
         self.amount = amount
         self.status = "Dispatched"
@@ -160,12 +171,13 @@ class OrderItem(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
 
 
-    def __init__(self, quantity, price, order_id, product_id):
+    def __init__(self, quantity, price, product_id):
         self.quantity = quantity
         self.price = price
-        self.order_id = order_id
         self.product_id = product_id
 
+    def set_order_id(self, order_id):
+        self.order_id = order_id   
     
     def __repr__(self):
         return f'<OrderItem {self.product_id}>'    

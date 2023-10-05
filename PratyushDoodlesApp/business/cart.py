@@ -1,6 +1,6 @@
 from flask import render_template
 from flask import Blueprint
-from .. import app
+from .. import app, socketio
 from ..models.UserModel import Cart
 from ..models.ProductModel import Product
 from .util import *
@@ -42,6 +42,18 @@ def cart():
     }
 
     return render_template('cart.html', data=data)
+
+@socketio.on( 'placeOrder' )
+def placeOrder():
+    user = get_current_user()
+
+    if not user:
+        data = {
+            'show_error': "Please login to access your cart!",
+        }    
+        return render_template('cart.html', data=data)
+    
+        
 
 
 app.register_blueprint(cart_bp)    
