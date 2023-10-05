@@ -10,10 +10,10 @@
             <h3> {{ product.name }}</h3>
         </div>
         <div class="description-prod">
-            <p>This is a sticker.</p>
+            <p>{{ product.description }}</p>
         </div>
         <div class="description-prod">
-            <p>{{ quantity }} items in stock.</p>
+            <p>{{ product.stock_quantity }} items in stock.</p>
         </div>
         <div class="card-footer">
             <div class="wcf-left"><span class="price">Rs {{ product.price }}/-</span></div>
