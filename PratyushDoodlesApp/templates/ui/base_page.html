@@ -12,8 +12,9 @@
     <div class="container-fluid">
 
         <!--  Login Button -->
-        <div class="navbar-item align-center-horizontal" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
-            aria-expanded="false" aria-label="Toggle navigation" alt="Logo">
+        <div class="navbar-item align-center-horizontal" data-bs-toggle="collapse"
+            data-bs-target="#navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
+            alt="Logo">
             <img class="ic-20" src="{{ url_for('static', filename='images/ic_user.png') }}">
             <p>
                 Profile
@@ -73,6 +74,41 @@
         </div>
     </div>
 </nav>
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <!-- If not enough space this menu will be visible -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="container">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ url_for('home.home') }}">New Items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('shop.shop') }}">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('others.questions') }}">Question?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('others.contact') }}">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('others.about') }}">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</nav>
+</div>
 
 {% block content %}
 

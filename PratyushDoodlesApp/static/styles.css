@@ -27,6 +27,10 @@ body {
     height: 60px;
 }
 
+.navbar-nav{
+    justify-content: center;
+}
+
 
 /* Icons */
 .ic-20{
