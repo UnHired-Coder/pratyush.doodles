@@ -1,22 +1,26 @@
 <!-- about.html -->
-{% extends 'index.html' %}
-
-{% block title %}About Us{% endblock %}
+{% extends 'ui/base_page.html' %}
 
 {% block content %}
-<section>
-    <h2>Shop</h2>
-    <p>Welcome to Shop</p>
-    <div class="products-list">
-        {% if data.products %}
-            {% for product in data.products %}
-                {% with product=product %}
-                    {% include 'ui/card.html' %}
-                {% endwith %}
-            {% endfor %}
-        {% endif %}
+
+
+<div class="container text-center">
+    <div class="shell">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    {% if data.products %}
+                        {% for product in data.products %}
+                            {% with product=product %}
+                                {% include 'ui/card.html' %}
+                            {% endwith %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
 <script>
     function addItemToCart(button) {
@@ -25,5 +29,5 @@
         socket.emit('addItemToCart', { product_id: product_id });
         console.log("Event: addItemToCart", product_id)
     }
-</script>
+</script> 
 {% endblock %}

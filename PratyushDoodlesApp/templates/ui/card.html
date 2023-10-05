@@ -1,33 +1,23 @@
-<!-- card.html -->
-<div class="card">
-    <div class="card-header">
-        {{ product.name }}
+<div class="wsk-cp-product">
+    <div class="wsk-cp-img">
+        <img src="{{ product.product_images[0].picture_url }}" alt="Product" class="img-responsive" />
     </div>
-    <div class="card-body">
-        <div class="product-description">
-            {{ product.description }}
+    <div class="wsk-cp-text">
+        <div class="category">
+            <span onclick="addItemToCart(this)">Add to cart</span>
         </div>
-        <div class="product-price">
-            Price: ${{ product.price }}
+        <div class="title-product">
+            <h3> {{ product.name }}</h3>
         </div>
-        <div class="product-stock">
-            Stock Quantity: {{ product.stock_quantity }}
+        <div class="description-prod">
+            <p>This is a sticker.</p>
         </div>
-        <div class="product-images">
-            <img src="{{ product.product_images[0].picture_url }}" class="d-block w-100" alt="Product Image">
+        <div class="description-prod">
+            <p>{{ quantity }} items in stock.</p>
         </div>
-
-        {% if quantity %}
-           <p>Items: {{ quantity }}</p>
-        {% else %}
-        <div class="product-actions">
-            <button class="btn btn-success add-to-cart-btn"  product_id = "{{ product.id }}" onclick="toggleOptions(this); addItemToCart(this)">Add to Cart</button>
-            <div class="cart-options" style="display: none;">
-                <button class="btn btn-danger" onclick="decrementCounter(this)">-</button>
-                <span class="counter" style="display: inline;">1</span>
-                <button class="btn btn-success" onclick="incrementCounter(this)">+</button>
-            </div>
+        <div class="card-footer">
+            <div class="wcf-left"><span class="price">Rs {{ product.price }}/-</span></div>
+            <div class="wcf-right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
         </div>
-        {% endif %}
     </div>
 </div>
