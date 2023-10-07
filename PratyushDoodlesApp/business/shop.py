@@ -29,6 +29,8 @@ def addItemToCart(data):
     user = get_current_user()
     user.cart.add_to_cart(product_id)
 
+    socketio.emit('updateCart')
+
 
 
 

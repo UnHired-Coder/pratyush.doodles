@@ -56,11 +56,11 @@
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Cart</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                {% with data=data %}
-                    {% include 'cart.html' %}
-                {% endwith %}
-            </div>
+            {% with data=data %}
+                <div class="offcanvas-body" id="cart-container">
+                        {% include 'cart.html' %}
+                </div>
+            {% endwith %}
         </div>
     </div>
 </nav>

@@ -51,6 +51,19 @@ def removeItemFromCart(data):
     user = get_current_user()
     user.cart.remove_from_cart(product_id)
 
+@cart_bp.route('/getCartItems')
+def getCartItems():
+    # Fetch cart items as a list of objects
+    user = get_current_user()
+    data = {
+        'user' : user
+    }
+
+    # Render the Jinja2 template with the cart items
+    rendered_template = render_template('cart.html', data=data)
+    return rendered_template
+
+
 @socketio.on( 'placeOrder' )
 def placeOrder():
     user = get_current_user()
