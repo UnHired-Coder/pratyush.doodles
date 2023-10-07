@@ -14,16 +14,11 @@ def shop():
     user = get_current_user()
     products = Product.query.all()
 
-    data = {}
+    data = {'user': user}
     if len(products) == 0:
-        data = {
-            'show_error' : "No Products Listed!"
-        }
+        data['show_error'] = "No Products Listed!"
     else:
-        data = {
-            'user': user,
-            'products': products
-        }
+        data['products'] = products
 
     return render_template('shop.html', data = data)
 

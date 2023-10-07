@@ -4,14 +4,17 @@
 <nav class="navbar">
     <!-- Login info -->
     <div class="container-fluid">
+        {% if data.user %}
         <div class="collapse" id="navbarToggleExternalContent">
-            <h5 class="text-body-emphasis h4">Logged in as: Pratyush Tiwari</h5>
-            <span class="text-body-secondary email">Email: example@gmail.com </span>
+            <h5 class="text-body-emphasis h4">Logged in as: {{ data.user.name }}</h5>
+            <span class="text-body-secondary email">Email: {{ data.user.email }}</span>
         </div>
+        {% endif %}
     </div>
     <div class="container-fluid">
 
         <!--  Login Button -->
+        {% if data.user %}
         <div class="navbar-item align-center-horizontal" data-bs-toggle="collapse"
             data-bs-target="#navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
             alt="Logo">
@@ -20,6 +23,16 @@
                 Profile
             </p>
         </div>
+        {% else %}
+        <a class="nav-link " href="{{ url_for('auth.login') }}">
+            <div class="navbar-item align-center-horizontal" alt="Logo">
+                <img class="ic-20" src="{{ url_for('static', filename='images/ic_user.png') }}">
+                <p>
+                    Log-In
+                </p>
+            </div>
+        </a>
+        {% endif %}
 
         <div class="header-item">
             <img class="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
