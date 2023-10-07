@@ -78,8 +78,10 @@ class Cart(db.Model):
         db.session.add(cart_item)
         db.session.commit()
 
-    def remove_from_cart(self):
-        pass
+    def remove_from_cart(self, product_id):
+        cart_item = CartItem.query.filter_by(product_id = product_id).first()
+        db.session.delete(cart_item)
+        db.session.commit()
 
     def place_order(self):
         order_items = []
@@ -121,6 +123,10 @@ class CartItem(db.Model):
     def update_quantity(self, delta):
         self.quantity += delta
         assert self.quantity >= 0
+
+    def get_product(self):
+        product = Product.query.filter_by(id = self.product_id).first()
+        return product    
 
     def __repr__(self):
         return f'<CartItem {self.cart_id}>'

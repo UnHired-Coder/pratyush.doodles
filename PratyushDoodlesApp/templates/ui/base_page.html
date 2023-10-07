@@ -105,4 +105,12 @@
 
 
 {% endblock content %}
+<script>
+    function removeItemFromCart(button) {
+        // Use the socket variable to interact with the WebSocket connection
+        let product_id = $(button).attr('product_id')
+        socket.emit('removeItemFromCart', { product_id: product_id });
+        console.log("Event: removeItemFromCart", product_id)
+    }
+</script> 
 {% endblock body %}

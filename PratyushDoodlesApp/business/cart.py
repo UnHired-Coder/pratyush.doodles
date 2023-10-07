@@ -43,6 +43,14 @@ def cart():
 
     return render_template('cart.html', data=data)
 
+
+@socketio.on( 'removeItemFromCart' )
+def removeItemFromCart(data):
+    product_id = data.get('product_id')
+
+    user = get_current_user()
+    user.cart.remove_from_cart(product_id)
+
 @socketio.on( 'placeOrder' )
 def placeOrder():
     user = get_current_user()
