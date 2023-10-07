@@ -70,8 +70,12 @@ class Cart(db.Model):
         self.creation_date = datetime.now().date()
 
     def add_to_cart(self, product_id):
-        cartItem = CartItem(cart_id = self.id, product_id = product_id)
-        db.session.add(cartItem)
+        cart_item = CartItem.query.filter_by(product_id = product_id).first()
+        if cart_item is None:
+            cart_item = CartItem(cart_id = self.id, product_id = product_id)
+        else :
+            cart_item.update_quantity(delta = +1)
+        db.session.add(cart_item)
         db.session.commit()
 
     def remove_from_cart(self):
@@ -116,7 +120,7 @@ class CartItem(db.Model):
 
     def update_quantity(self, delta):
         self.quantity += delta
-        self.quantity >= 0
+        assert self.quantity >= 0
 
     def __repr__(self):
         return f'<CartItem {self.cart_id}>'

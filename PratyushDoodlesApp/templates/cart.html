@@ -8,7 +8,7 @@
     {% for cart_item in data.user.cart.cart_items %}
     <form class="d-flex mt-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">{{ cart_item.product_id }}</button>
+        <button class="btn btn-outline-success" type="submit">{{ cart_item.quantity }}</button>
     </form>
     {% endfor %}
 {% else %}
