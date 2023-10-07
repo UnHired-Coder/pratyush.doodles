@@ -17,7 +17,7 @@
             <p>{{ product.stock_quantity }} items in stock.</p>
         </div>
         <div class="category">
-            <span onclick="addItemToCart(this)">Add to cart</span>
+            <span  product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
         </div>
     </div>
 </div>
