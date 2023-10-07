@@ -1,18 +1,27 @@
-<!-- about.html -->
-{% extends 'index.html' %}
-
-{% block title %}Login in{% endblock %}
-
-{% block content %}
-    {% if data.user and data.user.name %}
-        <p id="logged-in-as">(Logged in as {{ data.user.name }})</p>
-    {% endif %}
-    
-    <h4>Welcome to cart</h4>
-    
-    {% for cart_item in data.cart_items %}
-        {% with product=cart_item['product'], quantity = cart_item['quantity'] %}
-            {% include 'ui/card.html' %}
-        {% endwith %}
+{% if data.user %}
+{% if data.user.cart and (data.user.cart.cart_items|length>0) %}
+<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Items</a>
+    </li>
+</ul>
+    {% for cart_item in data.user.cart.cart_items %}
+    <form class="d-flex mt-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">{{ cart_item.product_id }}</button>
+    </form>
     {% endfor %}
-{% endblock %}
+{% else %}
+<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Your Cart is Empty</a>
+    </li>
+</ul>
+{% endif %}
+{% else %}
+<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Log-In to access your Cart</a>
+    </li>
+</ul>
+{% endif%}
