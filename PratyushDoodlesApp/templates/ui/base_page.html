@@ -58,7 +58,7 @@
             </div>
             <div class="offcanvas-body">
                 {% if data.user %}
-                    {% if data.user.cart and data.user.cart.size %}
+                    {% if data.user.cart and (data.user.cart.cart_items|length>0) %}
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Items</a>
@@ -66,12 +66,12 @@
                     </ul>
                     <form class="d-flex mt-3" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success" type="submit">Cart Item 1</button>
                     </form>
                     {% else %}
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Cart Items</a>
+                            <a class="nav-link active" aria-current="page" href="#">Your Cart is Empty</a>
                         </li>
                     </ul>
                     {% endif %}
