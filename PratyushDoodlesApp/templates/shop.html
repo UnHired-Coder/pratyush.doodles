@@ -8,15 +8,15 @@
     <div class="shell">
         <div class="container">
             <div class="row">
-                <div class="col-md-3">
                     {% if data.products %}
                         {% for product in data.products %}
+                        <div class="col-md-3">
                             {% with product=product %}
                                 {% include 'ui/card.html' %}
                             {% endwith %}
+                        </div>
                         {% endfor %}
                     {% endif %}
-                </div>
             </div>
         </div>
     </div>
