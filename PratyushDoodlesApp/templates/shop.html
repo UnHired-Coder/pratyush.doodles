@@ -28,6 +28,10 @@
         let product_id = $(button).attr('product_id')
         socket.emit('addItemToCart', { product_id: product_id });
         console.log("Event: addItemToCart", product_id)
+
+        // Open the navbar
+        const cartButton = document.getElementById('nav-cart-button');
+        cartButton.click()
     }
 </script> 
 {% endblock %}
