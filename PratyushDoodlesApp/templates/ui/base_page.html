@@ -109,6 +109,8 @@
     function removeItemFromCart(button) {
         // Use the socket variable to interact with the WebSocket connection
         let product_id = $(button).attr('product_id')
+        cart_item = document.getElementById('cart-item-'+product_id);
+        cart_item.style.visibility = 'hidden'
         socket.emit('removeItemFromCart', { product_id: product_id });
         console.log("Event: removeItemFromCart", product_id)
     }
