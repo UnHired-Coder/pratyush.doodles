@@ -5,11 +5,15 @@
         <a class="nav-link active" aria-current="page" href="#">Items</a>
     </li>
 </ul>
+<div class="flex-column">
     {% for cart_item in data.user.cart.cart_items %}
-        {% with cart_item=cart_item, product=cart_item.get_product() %}
-            {% include 'ui/cart_item.html' %}
-        {% endwith %}
+        <div id = "cart-item-{{ cart_item.product_id }}">
+            {% with cart_item=cart_item, product=cart_item.get_product() %}
+                {% include 'ui/cart_item.html' %}
+            {% endwith %}
+        </div>
     {% endfor %}
+</div>    
 {% else %}
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
     <li class="nav-item">
