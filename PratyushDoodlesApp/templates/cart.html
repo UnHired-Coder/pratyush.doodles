@@ -6,10 +6,13 @@
     </li>
 </ul>
     {% for cart_item in data.user.cart.cart_items %}
-    <form class="d-flex mt-3" role="search">
+        {% with cart_item=cart_item %}
+            {% include 'ui/cart_item.html' %}
+        {% endwith %}
+    <!-- <form class="d-flex mt-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">{{ cart_item.quantity }}</button>
-    </form>
+    </form> -->
     {% endfor %}
 {% else %}
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
