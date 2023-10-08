@@ -32,7 +32,6 @@
     function expandFaq(faqId) {
         const faqCheckBox = document.getElementById('faq-drawer-' + faqId);
         faqCheckBox.checked = !faqCheckBox.checked; // Toggle the checked state
-
         const faqContent = document.getElementById('faq-drawer__content-wrapper-' + faqId);
         if (faqCheckBox.checked) {
             faqContent.style.maxHeight = '0px';
