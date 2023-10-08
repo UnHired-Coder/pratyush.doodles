@@ -9,7 +9,7 @@
         <h1>Frequently Asked Questions </h1>
     </div>
     <div class="container-fluid faq-drawer col-md-6" id="faqs-container">
-       
+        Loading...
     </div>
     <div class=" mt-3 container-fluid text-center">
         <p>for any other questions reach out to us at <b>pratyush.doodles@gmail.com</b></p>
@@ -28,5 +28,18 @@
                 console.error('Error:', error);
             });
     });
+
+    function expandFaq(faqId) {
+        const faqCheckBox = document.getElementById('faq-drawer-' + faqId);
+        faqCheckBox.checked = !faqCheckBox.checked; // Toggle the checked state
+
+        const faqContent = document.getElementById('faq-drawer__content-wrapper-' + faqId);
+        if (faqCheckBox.checked) {
+            faqContent.style.maxHeight = '0px';
+        } else {
+            faqContent.style.maxHeight = '350px';
+        }
+    }
+
 </script>
 {% endblock %}
