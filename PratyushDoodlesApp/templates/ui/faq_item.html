@@ -1,7 +1,7 @@
 {% for faq in data.faqs %}
-<input class="faq-drawer__trigger" id="faq-drawer-{{faq.id}}" type="checkbox" onclick="expandFaq({{faq.id}})"/>
-<label class="faq-drawer__title" for="faq-drawer-{{faq.id}}">{{ faq.question }}</label>
-<div class="faq-drawer__content-wrapper" id="faq-drawer__content-wrapper-{{faq.id}}">
+<input class="faq-switch" id="faq-drawer-{{faq.id}}" type="checkbox" onclick="expandFaq({{faq.id}})"/>
+<label class="faq-title-container" for="faq-drawer-{{faq.id}}">{{ faq.question }}</label>
+<div class="faq-content-container" id="faq-content-container-{{faq.id}}">
     <div class="faq-drawer__content">
         <p>
             {{ faq.answer }}

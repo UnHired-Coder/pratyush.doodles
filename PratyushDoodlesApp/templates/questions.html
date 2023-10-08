@@ -8,7 +8,7 @@
     <div class="container mt-5 text-center">
         <h1>Frequently Asked Questions </h1>
     </div>
-    <div class="container-fluid faq-drawer col-md-6" id="faqs-container">
+    <div class="mt-5 container-fluid faq-drawer col-md-6" id="faqs-container">
         Loading...
     </div>
     <div class=" mt-3 container-fluid text-center">
@@ -32,7 +32,7 @@
     function expandFaq(faqId) {
         const faqCheckBox = document.getElementById('faq-drawer-' + faqId);
         faqCheckBox.checked = !faqCheckBox.checked; // Toggle the checked state
-        const faqContent = document.getElementById('faq-drawer__content-wrapper-' + faqId);
+        const faqContent = document.getElementById('faq-content-container-' + faqId);
         if (faqCheckBox.checked) {
             faqContent.style.maxHeight = '0px';
         } else {
