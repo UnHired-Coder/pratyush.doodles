@@ -4,6 +4,7 @@ from ..forms.AddItemForm import ProductForm
 from ..models.UserModel import User
 from .util import *
 from ..models.ProductModel import Product, ProductImage
+from ..models.FaqModel import Faq
 from .. import db
 
 shop_bp = Blueprint('shop', __name__)
@@ -68,6 +69,31 @@ def add_product():
         
 
     return render_template('add_item.html', form=form)
-   
+
+@shop_bp.route('/add_faqs', methods=['GET', 'POST'])
+def add_afqs():
+
+    faq = Faq(question="How long will it take to receive my stickers?", answer="We dispatch your order within 2 business days, and delivery time varies based on your location. You can expect your stickers to arrive as per standard postal service timelines.")
+    db.session.add(faq)
+
+    faq = Faq(question="Do you provide tracking information for my order?", answer="Yes, we share tracking information via email once your order is dispatched. You can monitor the progress of your delivery.")
+    db.session.add(faq)
+
+    faq = Faq(question="Can I return or exchange my stickers?", answer="We apologize, but we do not accept returns or exchanges for stickers. All sales are final.")
+    db.session.add(faq)
+
+    faq = Faq(question="What if my stickers arrive damaged?", answer="We take great care in packaging your stickers to ensure they arrive in excellent condition. If, however, your stickers are damaged during transit, please contact us at pratyush.doodles@gmail.com with a photo of the damaged items, and we'll assist you accordingly.")
+    db.session.add(faq)
+
+    faq = Faq(question="Can I get a refund for my purchase?", answer="We process refunds in cases of damaged or defective stickers. Please contact us at pratyush.doodles@gmail.com with details and photos, and we'll initiate the refund process.")
+    db.session.add(faq)
+
+    faq = Faq(question="What kind of quality can I expect from your stickers?", answer="Our stickers are crafted with care on high-quality glossy paper. They are designed to be durable, vibrant, and long-lasting.")
+    db.session.add(faq)
+
+    db.session.commit()
+    data = {}
+    return render_template('questions.html', data=data)
+
 
 app.register_blueprint(shop_bp)

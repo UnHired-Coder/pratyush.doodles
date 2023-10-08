@@ -1,6 +1,7 @@
 from flask import render_template
 from flask import Blueprint
 from .. import app
+from ..models.FaqModel import Faq
 from .util import *
 
 
@@ -14,6 +15,19 @@ def questions():
     }
   
     return render_template('questions.html', data=data)
+
+@others_bp.route('/getFaqs')
+def getFaqs():
+    # Fetch cart items as a list of objects
+    faqs = Faq.query.all()
+    data = {
+        'faqs' : faqs
+    }
+
+    # Render the Jinja2 template with the cart items
+    rendered_template = render_template('ui/faq_item.html', data=data)
+    return rendered_template
+
 
 @others_bp.route('/contact')
 def contact():

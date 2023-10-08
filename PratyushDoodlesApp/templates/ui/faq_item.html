@@ -1,0 +1,11 @@
+{% for faq in data.faqs %}
+<input class="faq-drawer__trigger" id="faq-drawer" type="checkbox" />
+<label class="faq-drawer__title" for="faq-drawer">{{ faq.question }}</label>
+<div class="faq-drawer__content-wrapper">
+    <div class="faq-drawer__content">
+        <p>
+            {{ faq.answer }}
+        </p>
+    </div>
+</div>
+{% endfor %}

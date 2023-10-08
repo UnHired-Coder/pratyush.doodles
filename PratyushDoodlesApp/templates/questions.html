@@ -6,16 +6,27 @@
 {% block content %}
 <section>
     <div class="container mt-5 text-center">
-        <h1>You got any Questions?</h1>
-        <div class="container-fluid">
-            <p>You can write to us at <b>pratyush.doodles@gmail.com</b></p>
-        </div>
-        <h2></h2>
-        <div class="row">
-            <div class="col-md-4 ">
-
-            </div>
-        </div>
+        <h1>Frequently Asked Questions </h1>
+    </div>
+    <div class="container-fluid faq-drawer col-md-6" id="faqs-container">
+       
+    </div>
+    <div class=" mt-3 container-fluid text-center">
+        <p>for any other questions reach out to us at <b>pratyush.doodles@gmail.com</b></p>
+    </div>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        fetch('/getFaqs')
+            .then(response => response.text()) // Get the rendered template as HTML
+            .then(data => {
+                const cartContainer = document.getElementById('faqs-container');
+                cartContainer.innerHTML = data; // Insert the template HTML into the container
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+</script>
 {% endblock %}
- 
