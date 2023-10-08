@@ -48,7 +48,8 @@ def addItemToCart(data):
     product_id = data.get('product_id')
 
     user = get_current_user()
-    user.cart.add_to_cart(product_id)
+    if user:
+        user.cart.add_to_cart(product_id)
 
     socketio.emit('updateCart')
 
