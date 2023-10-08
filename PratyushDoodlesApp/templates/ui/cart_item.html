@@ -1,7 +1,6 @@
 <div class="row mb-4 d-flex justify-content-between align-items-center">
     <div class="col-md-2 col-lg-2 col-xl-2">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-            class="img-fluid rounded-3" alt="Cotton T-shirt">
+        <img src="{{ product.product_images[0].picture_url }}" alt="Product" class="img-fluid rounded-3" />
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3">
         <h6 class="text-muted">{{ product.name }}</h6>
@@ -11,7 +10,9 @@
         <h6 class="mb-0">Rs.{{ product.price }}</h6>
     </div>
     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-        <span  class="text-muted" product_id="{{ product.id }}" onclick="removeItemFromCart(this)">x</span>
+        <span class="text-muted" product_id="{{ product.id }}" onclick="removeItemFromCart(this)">
+            <img class="ic-20" src="{{ url_for('static', filename='images/ic_trash.png') }}">
+        </span>
     </div>
     <hr class="my-4">
 </div>

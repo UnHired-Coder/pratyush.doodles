@@ -5,7 +5,14 @@
 
 {% block content %}
     <section>
-        <h2>About Us</h2>
-        <p>Welcome to about us</p>
+        <div class="container mt-2 text-center">
+            <h1>About Us</h1>
+            <div class="container-fluid mt-1">
+                <p>Well nothing, I just felt like sharing my random thoughts :)</p>
+            </div>
+            <div class="container-fluid about-page-team">
+                <img class="img-fluid ic-200"  src="{{ url_for('static', filename='images/our_team.svg') }}" alt="">
+            </div>
+            <h2 class="mt-4">Our Team</h2>
     </section>
 {% endblock %}

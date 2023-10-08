@@ -43,135 +43,17 @@ body {
     height: 30px;
 }
 
+.ic-200{
+    width: 700px;
+    height: 700px;
+}
+
+.ic-300{
+    width: 300px;
+    height: 300px;
+}
+
 /* Alignments */
 .align-center-horizontal{
     align-items: center;
 }
-
-
-/* header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    color: black;
-    padding: 10px 20px;
-    padding-left: 40px;
-} */
-
-/* header a {
-    text-decoration: none;
-}
-
-
-
-.header-logo {
-    width: 117px;
-    height: 100px;
-}
-
-.header-logo-title {
-    display: flex;
-    align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: gray;
-}
-
-.signup-button {
-    padding: 10px 20px;
-    border: none;
-    background: none;
-    color: black;
-    cursor: pointer;
-}
-
-
-.navbar {
-    background-color: white;
-    color: black;
-    font-family: Arial, sans-serif;
-}
-
-.nav-list {
-    list-style: none;
-    display: flex;
-}
-
-.nav-item {
-    padding: 10px 20px;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: black;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #f00; 
-}
-
-
-.card {
-    width: 200px; 
-    height: 200px;
-    margin: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ddd;
-}
-
-.card-header {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.product-description {
-    margin-bottom: 10px;
-}
-
-.product-price {
-    color: #007bff;
-    font-weight: bold;
-}
-
-.product-stock {
-    color: #28a745;
-}
-
-.product-actions {
-    margin-top: 15px;
-}
-
-.product-actions button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    font-size: 1rem;
-}
-
-.btn-success {
-    background-color: #28a745;
-    color: #fff;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-#logged-in-as{
-    padding: 10px 60px;
-}
-
-.product-description{
-    text-align:start;
-}
-
-.products-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12%, 1fr)); 
-    gap: 10px; 
-    justify-content: center;
-    align-content: center; 
-    height: auto;
-} */
