@@ -89,6 +89,21 @@ input[type="checkbox"] {
     padding: 10px;
 }
 
+.total-amount {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.checkout-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
 
 /* Icons */
 .ic-20 {
