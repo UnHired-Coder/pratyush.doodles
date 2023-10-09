@@ -81,6 +81,15 @@ input[type="checkbox"] {
     display: none;
 }
 
+.sticky-card {
+    position: sticky;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+
 /* Icons */
 .ic-20 {
     width: 20px;
