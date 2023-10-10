@@ -1,6 +1,67 @@
 <!-- about.html -->
 {% extends 'ui/base_page.html' %}
 {% block content %}
- <h1>Checkout!</h1>
+<div class="container mt-5">
+    {% if data.user %}
+    {% if data.cart_items and (data.cart_items|length>0) %}
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="flex-column m4">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">
+                            <h2>Order Summary</h2>
+                        </a>
+                    </li>
+                </ul>
+                <div class="mt-5">
+                    {% for cart_item in data.cart_items %}
+                    <div id="cart-item-{{ cart_item.product_id }}">
+                        {% with cart_item=cart_item, product=cart_item.get_product() %}
+                        {% include 'ui/cart_item.html' %}
+                        {% endwith %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class=" col-md-6 mt-5">
+            <!-- <div class="container mt-3"> -->
+            <div class="flex-column">
+                <div class="col-md-8 mx-auto">
+                    <div class="total-payable">
+                        Total Amount: Rs {{ data.total_amount }}/-
+                    </div>
+                    <div class="shipping-amount">
+                        Shipping Charges: Rs {{ data.total_amount }}/-
+                    </div>
+                    <div class="total-amount">
+                        <hr class="my-4">
+                        Total Payable: Rs {{ data.total_amount }}/-
+                    </div>
+                </div>
+                <div class="col-md-6 mx-auto">
+                    <a href="{{ url_for('checkout.checkout') }}">
+                        <button class="checkout-button">Place Order</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% else %}
+    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Your Cart is Empty</a>
+        </li>
+    </ul>
+    {% endif %}
+    {% else %}
+    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Log-In to access your Cart</a>
+        </li>
+    </ul>
+    {% endif%}
+</div>
 {% endblock content %}
- 

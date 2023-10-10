@@ -89,6 +89,21 @@ input[type="checkbox"] {
     padding: 10px;
 }
 
+.total-payable{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    color: grey;
+}
+
+.shipping-amount {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: grey;
+}
+
 .total-amount {
     font-size: 18px;
     font-weight: bold;
@@ -114,6 +129,16 @@ input[type="checkbox"] {
 .ic-30 {
     width: 30px;
     height: 30px;
+}
+
+.ic-50 {
+    width: 50px;
+    height: 50px;
+}
+
+.ic-100 {
+    width: 100px;
+    height: 100px;
 }
 
 .ic-200 {
