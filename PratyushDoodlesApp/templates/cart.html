@@ -13,17 +13,17 @@
             {% endwith %}
         </div>
     {% endfor %}
-    <div class="flex" style="position: absolute; bottom: 0;">
+    <div class="container" style="position: absolute; bottom: 0;">
         <hr class="my-4">
         <div class="container mt-3">
             <div class="row">
                 <div class="col-md-6">
                     <!-- Total Amount -->
                     <div class="total-amount">
-                        Total Amount: ₹ {{ data.total_amount }}/- <!-- Replace with your actual total amount -->
+                        Total: ₹ {{ data.total_amount }}/- <!-- Replace with your actual total amount -->
                     </div>
                 </div>
-                <div class="col-md-6 text-end">
+                <div class="col-md-6 justify-content-center">
                     <!-- Checkout Button -->
                     <a href="{{ url_for('checkout.checkout') }}">
                         <button class="checkout-button">Place order</button>
