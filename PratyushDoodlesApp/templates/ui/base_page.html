@@ -115,6 +115,10 @@
         console.log("Event: removeItemFromCart", product_id)
     }
 
+    function onItemRemoved(button){
+        updateCart(expandCart = false);
+    }
+
     function addItemToCart(button) {
         // Use the socket variable to interact with the WebSocket connection
         let product_id = $(button).attr('product_id');
@@ -146,6 +150,8 @@
         updateCart(expandCart = false);
     });
 
+
     socket.on('updateCart', updateCart);
+    socket.on('onItemRemoved', onItemRemoved);
 </script> 
 {% endblock body %}

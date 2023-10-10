@@ -32,7 +32,10 @@ def removeItemFromCart(data):
 
     user = get_current_user()
     user.cart.remove_from_cart(product_id)
-    socketio.emit('updateCart')
+    data = {
+        'expand_cart': False
+    }
+    socketio.emit('onItemRemoved')
 
 
 def getCartData():
