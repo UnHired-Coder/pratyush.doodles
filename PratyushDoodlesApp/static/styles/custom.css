@@ -110,6 +110,12 @@ input[type="checkbox"] {
     margin-bottom: 10px;
 }
 
+.total-amount-large {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .checkout-button {
     background-color: black;
     color: white;

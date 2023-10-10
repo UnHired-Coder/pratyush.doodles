@@ -30,17 +30,15 @@
             <div class="flex-column">
                 <div class="col-md-8 mx-auto">
                     <div class="total-payable">
-                        Total Amount: Rs {{ data.total_amount }}/-
+                        Total Amount: ₹{{ data.total_amount }}/-
                     </div>
                     <div class="shipping-amount">
-                        Shipping Charges: Rs {{ data.total_amount }}/-
+                        Shipping Charges: ₹30/-
                     </div>
-                    <div class="total-amount">
+                    <div class="total-amount-large">
                         <hr class="my-4">
-                        Total Payable: Rs {{ data.total_amount }}/-
+                        Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                </div>
-                <div class="col-md-6 mx-auto">
                     <a href="{{ url_for('checkout.checkout') }}">
                         <button class="checkout-button">Place Order</button>
                     </a>
