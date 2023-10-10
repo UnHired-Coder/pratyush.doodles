@@ -1,4 +1,4 @@
-{% if data.loggedin == True %}
+{% if data.user %}
 {% if data.cart_items and (data.cart_items|length>0) %}
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
     <li class="nav-item">
@@ -25,7 +25,9 @@
                 </div>
                 <div class="col-md-6 text-end">
                     <!-- Checkout Button -->
-                    <button class="checkout-button">Checkout</button>
+                    <a href="{{ url_for('others.questions') }}">
+                        <button class="checkout-button">Checkout</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -41,7 +43,7 @@
 {% else %}
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">{{ data.loggedin }} {{ data.loggedin==True }} Log-In to access your Cart</a>
+        <a class="nav-link active" aria-current="page" href="#">Log-In to access your Cart</a>
     </li>
 </ul>
 {% endif%} 

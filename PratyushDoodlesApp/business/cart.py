@@ -76,7 +76,7 @@ def getCartItems():
             total_amount = total_amount + (product.price * cart_item.quantity)
 
     data = {
-        'loggedin' : True,
+        'user' : user,
         'items_count' : items_count,
         'total_amount' : total_amount,
         'cart_items' : cart_items
