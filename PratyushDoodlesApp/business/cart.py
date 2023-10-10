@@ -11,37 +11,10 @@ cart_bp = Blueprint('cart', __name__)
 
 @cart_bp.route('/cart')
 def cart():
-    user = get_current_user()
-
-    if not user:
-        data = {
-            'show_error': "Please login to access your cart!",
-        }
-        return render_template('cart.html', data=data)
-
-
-    cart = Cart.query.filter_by(user_id=user.id).first()
-    if not cart:
-        data = {
-            'show_error':"Couldn't load cart!"
-        }
-        return render_template('cart.html', data=data)
-
-
-    cart_items = []
-    for item in cart.cart_items:
-        product = Product.query.filter_by(id = item.product_id).first()
-        cart_items.append({
-            'product':product,
-            'quantity':item.quantity
-        })
-
-    data = {
-        'user': user,
-        'cart_items': cart_items
-    }
-
-    return render_template('cart.html', data=data)
+    pass
+    # make this checkout page
+    # data = getCartData()
+    # return render_template('cart.html', data=data)
 
 @socketio.on( 'addItemToCart' )
 def addItemToCart(data):
@@ -59,9 +32,10 @@ def removeItemFromCart(data):
 
     user = get_current_user()
     user.cart.remove_from_cart(product_id)
+    socketio.emit('updateCart')
 
-@cart_bp.route('/getCartItems')
-def getCartItems():
+
+def getCartData():
     # Fetch cart items as a list of objects
     user = get_current_user()
     items_count = 0
@@ -75,12 +49,18 @@ def getCartItems():
             product = Product.query.filter_by(id = cart_item.product_id).first()
             total_amount = total_amount + (product.price * cart_item.quantity)
 
-    data = {
+    return {
         'user' : user,
         'items_count' : items_count,
         'total_amount' : total_amount,
         'cart_items' : cart_items
     }
+
+
+@cart_bp.route('/getCartItems')
+def getCartItems():
+    # Fetch cart items as a list of objects
+    data = getCartData()
 
     # Render the Jinja2 template with the cart items
     rendered_template = render_template('cart.html', data=data)
