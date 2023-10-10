@@ -64,8 +64,22 @@ def removeItemFromCart(data):
 def getCartItems():
     # Fetch cart items as a list of objects
     user = get_current_user()
+    items_count = 0
+    total_amount = 0
+    cart_items = None
+    if user and user.cart:
+        cart_items = user.cart.cart_items
+        for cart_item in cart_items:
+            items_count = items_count + cart_item.quantity
+            
+            product = Product.query.filter_by(id = cart_item.product_id).first()
+            total_amount = total_amount + (product.price * cart_item.quantity)
+
     data = {
-        'user' : user
+        'loggedin' : True,
+        'items_count' : items_count,
+        'total_amount' : total_amount,
+        'cart_items' : cart_items
     }
 
     # Render the Jinja2 template with the cart items

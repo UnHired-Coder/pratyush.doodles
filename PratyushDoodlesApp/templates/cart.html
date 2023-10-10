@@ -1,12 +1,12 @@
-{% if data.user %}
-{% if data.user.cart and (data.user.cart.cart_items|length>0) %}
+{% if data.loggedin == True %}
+{% if data.cart_items and (data.cart_items|length>0) %}
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Items</a>
+        <a class="nav-link active" aria-current="page" href="#">Items {{data.items_count}}</a>
     </li>
 </ul>
 <div class="flex-column">
-    {% for cart_item in data.user.cart.cart_items %}
+    {% for cart_item in data.cart_items %}
         <div id = "cart-item-{{ cart_item.product_id }}">
             {% with cart_item=cart_item, product=cart_item.get_product() %}
                 {% include 'ui/cart_item.html' %}
@@ -20,7 +20,7 @@
                 <div class="col-md-6">
                     <!-- Total Amount -->
                     <div class="total-amount">
-                        Total Amount: Rs 50.00/- <!-- Replace with your actual total amount -->
+                        Total Amount: Rs {{ data.total_amount }}/- <!-- Replace with your actual total amount -->
                     </div>
                 </div>
                 <div class="col-md-6 text-end">
@@ -41,7 +41,7 @@
 {% else %}
 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Log-In to access your Cart</a>
+        <a class="nav-link active" aria-current="page" href="#">{{ data.loggedin }} {{ data.loggedin==True }} Log-In to access your Cart</a>
     </li>
 </ul>
 {% endif%} 
