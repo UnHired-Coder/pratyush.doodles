@@ -4,15 +4,15 @@ from .. import app
 from .util import *
 
 
-payments_bp = Blueprint('payments', __name__)
+checkout_bp = Blueprint('checkout', __name__)
 
 # Define routes and views for the 'auth' Blueprint
-@payments_bp.route('/payments')
-def payments():
+@checkout_bp.route('/checkout')
+def checkout():
     user = get_current_user()
     data = {
         'user': user
     }
-    return render_template('payments.html', data=data)
+    return render_template('checkout.html', data=data)
 
-app.register_blueprint(payments_bp)
+app.register_blueprint(checkout_bp)

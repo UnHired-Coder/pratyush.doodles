@@ -19,7 +19,7 @@ db = SQLAlchemy(app)
 from PratyushDoodlesApp.business.cart import *
 from PratyushDoodlesApp.business.auth import *
 from PratyushDoodlesApp.business.shop import *
-from PratyushDoodlesApp.business.payments import *
+from PratyushDoodlesApp.business.checkout import *
 from PratyushDoodlesApp.business.others import *
 from PratyushDoodlesApp.business.home import *
 from PratyushDoodlesApp.models.ProductModel import *
