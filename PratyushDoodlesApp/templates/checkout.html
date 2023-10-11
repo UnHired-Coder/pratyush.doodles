@@ -39,7 +39,7 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                    <a href="{{ url_for('checkout.checkout') }}">
+                    <a href="{{ url_for('checkout.initiate_payment') }}">
                         <button class="checkout-button">Pay Now</button>
                     </a>
                 </div>
@@ -62,4 +62,5 @@
     </ul>
     {% endif%}
 </div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 {% endblock content %}
