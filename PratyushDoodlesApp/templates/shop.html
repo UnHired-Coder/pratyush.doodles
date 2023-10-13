@@ -9,7 +9,7 @@
         <div class="row">
             {% if data.products %}
                 {% for product in data.products %}
-                <div class="col">
+                <div style="width: 250px;">
                     {% with product=product %}
                         {% include 'ui/product_card.html' %}
                     {% endwith %}
