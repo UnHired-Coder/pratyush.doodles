@@ -1,11 +1,20 @@
 <div class="wsk-cp-product">
-    <div class="wsk-cp-img">
-        <img src="{{ product.product_images[0].picture_url }}" alt="Product" class="img-responsive" />
+    <img class="wsk-cp-img" src="{{ product.product_images[0].picture_url }}" alt="Product" class="img-responsive" />
+    <!-- <img class="ic-16" src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" class="img-responsive" /> -->
+    <div class="card-header">
+        <div class="wcf-left"><span class="product-name">{{ product.name }}</span></div>
+        <div class="wcf-right"> <span class="product-price"> ₹ {{ product.price }}/-</span></div>
     </div>
-    <div class="wsk-cp-text">
-        <div class="title-product">
-            <h3> ₹ {{ product.price }}/-</h3>
+    <div>
+        <div class="card-description">
+            <span class="">{{ product.description }} {% if product.price==40 %}
+                ddf df dfd fd fdf df dfdf d fdf df dfd fdf dfd ffd
+            {% endif %} </span>
         </div>
+        <span class="buy-btn"  product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
+    </div>
+    
+    <!-- <div class="wsk-cp-text">
         <div class="card-footer">
             <div class="wcf-left"><span class="price">{{ product.name }}</span></div>
             <div class="wcf-right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
@@ -13,11 +22,12 @@
         <div class="description-prod text-muted">
             <p>{{ product.description }}</p>
         </div>
-        <div class="description-prod items-in-stock">
+        <div class="items-in-stock">
             <p>{{ product.stock_quantity }} items in stock.</p>
         </div>
-        <div class="category">
-            <span  product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
+        <div class="title-product wcf-right">
+            <h3> ₹ {{ product.price }}/-</h3>
         </div>
-    </div>
+        <span  product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
+    </div> -->
 </div>

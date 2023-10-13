@@ -10,7 +10,7 @@
             <div class="row">
                 {% if data.products %}
                     {% for product in data.products %}
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             {% with product=product %}
                                 {% include 'ui/product_card.html' %}
                             {% endwith %}

@@ -127,6 +127,12 @@ input[type="checkbox"] {
 }
 
 /* Icons */
+.ic-16 {
+    width: 16px;
+    height: 16px;
+}
+
+
 .ic-20 {
     width: 20px;
     height: 20px;
