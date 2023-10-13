@@ -12,6 +12,7 @@ body {
 .wsk-cp-product {
     margin: 2px;
     height: auto;
+    width: 200px;
     background: #fff;
     padding: 4px;
     border-radius: 6px;
