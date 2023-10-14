@@ -1,14 +1,15 @@
 <div class="shipping-address-container">
-    <h1>Shipping</h1>
-    <p>Please enter your shipping details.</p>
-    <hr />
-    <div class="shipping-address-form">
-      
+  <h1>Shipping</h1>
+  <p>Please enter your shipping details.</p>
+  <hr />
+  <div class="shipping-address-form">
     <div class="shipping-address-fields shipping-address-fields--2">
       <label class="shipping-address-field">
         <span class="shipping-address-field__label" for="firstname">First name</span>
         <input class="shipping-address-field__input" type="text" id="firstname" value="John" />
       </label>
+    </div>
+    <div class="shipping-address-fields shipping-address-fields--2">
       <label class="shipping-address-field">
         <span class="shipping-address-field__label" for="lastname">Last name</span>
         <input class="shipping-address-field__input" type="text" id="lastname" value="Doe" />
@@ -22,7 +23,7 @@
       <span class="shipping-address-field__label" for="country">Country</span>
       <select class="shipping-address-field__input" id="country">
         <option value=""></option>
-        <option value="unitedstates">United States</option>
+        <option value="unitedstates">India</option>
       </select>
     </label>
     <div class="shipping-address-fields shipping-address-fields--3">
@@ -30,18 +31,25 @@
         <span class="shipping-address-field__label" for="zipcode">Zip code</span>
         <input class="shipping-address-field__input" type="text" id="zipcode" />
       </label>
+    </div>
+
+    <div class="shipping-address-fields shipping-address-fields--3">
       <label class="shipping-address-field">
         <span class="shipping-address-field__label" for="city">City</span>
         <input class="shipping-address-field__input" type="text" id="city" />
       </label>
-      <label class="shipping-address-field">
-        <span class="shipping-address-field__label" for="state">State</span>
-        <select class="shipping-address-field__input" id="state">
-          <option value=""></option>
-        </select>
-      </label>
     </div>
-    </div>
-    <hr>
-    <button class="shipping-address-button">Continue</button>
+
+    <div class="shipping-address-fields shipping-address-fields--3">
+    <label class="shipping-address-field">
+      <span class="shipping-address-field__label" for="state">State</span>
+      <select class="shipping-address-field__input" id="state">
+        <option value=""></option>
+      </select>
+    </label>
+   </div>
   </div>
+</div>
+<hr>
+<button class="shipping-address-button">Save Shipping Address</button>
+</div>

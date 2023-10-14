@@ -25,10 +25,13 @@
                 </div>
             </div>
         </div>
-        <div class=" col-md-6 mt-5">
+        <div class=" col-md-6">
             <!-- <div class="container mt-3"> -->
             <div class="flex-column">
-                <div class="col-md-8 mx-auto">
+                <div class="col-lg-12 mx-auto">
+                    <div id="shipping-address">
+                        
+                    </div>
                     <div class="total-payable">
                         Total Amount: ₹{{ data.total_amount }}/-
                     </div>
@@ -39,12 +42,13 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                    <div id="shipping-address">
-                        
-                    </div>
                     {% if (data.user.address|length) > 0 %}
                         <a href="{{ url_for('checkout.initiate_payment') }}">
                             <button class="checkout-button">Pay Now</button>
+                        </a>
+                    {% else %} 
+                        <a href="#">
+                            <button class="checkout-button-disabled">Pay Now</button>
                         </a>
                     {% endif %}
                 </div>
