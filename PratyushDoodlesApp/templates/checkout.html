@@ -115,5 +115,12 @@ function onShippingAddressSaved(event) {
 
     socket.emit('updateShippingAddress', {formData: formData});
 }
+
+function onAddressUpdated(){
+    location.reload();
+}
+
+socket.on('addressUpdated', onAddressUpdated)
+
 </script>
 {% endblock content %}

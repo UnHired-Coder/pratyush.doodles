@@ -74,10 +74,9 @@ def updateShippingAddress(data):
     user = get_current_user()    
     address = Address(recipient_name, address_line1, city, state, country, postal_code, addressLine2=address_line2, street="1 street", mobile_number=2233232323, user_id=user.id, order_id=None)
     user.add_or_update_address(address)
-
-    return redirect(url_for('shop.shop'))
-
-
+    
+    socketio.emit('addressUpdated')
+    
 
 # @socketio.on( '' )
 # def shipping_address():
