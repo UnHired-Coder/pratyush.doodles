@@ -117,7 +117,10 @@
     }
 
     function onItemRemoved(button) {
-        updateCart(expandCart = false);
+        if(location.pathname == '/checkout'){
+            location.reload()
+        }
+        updateCart(expandCart = false, refreshPage = refreshPage);
     }
 
     function addItemToCart(button) {
