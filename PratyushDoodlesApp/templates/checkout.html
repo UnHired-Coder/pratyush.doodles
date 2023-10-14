@@ -39,9 +39,14 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                    <a href="{{ url_for('checkout.initiate_payment') }}">
-                        <button class="checkout-button">Pay Now</button>
-                    </a>
+                    <div id="shipping-address">
+                        
+                    </div>
+                    {% if (data.user.address|length) > 0 %}
+                        <a href="{{ url_for('checkout.initiate_payment') }}">
+                            <button class="checkout-button">Pay Now</button>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -63,4 +68,20 @@
     {% endif%}
 </div>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function (event) {
+        fetch('/getShippingAddress')
+            .then(response => response.text()) // Get the rendered template as HTML
+            .then(data => {
+                const cartContainer = document.getElementById('shipping-address');
+                cartContainer.innerHTML = data; // Insert the template HTML into the container
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+</script>
 {% endblock content %}
