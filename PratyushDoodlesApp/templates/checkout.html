@@ -29,9 +29,14 @@
             <!-- <div class="container mt-3"> -->
             <div class="flex-column">
                 <div class="col-lg-12 mx-auto">
+                    {% if not data.user.address %}
                     <div id="shipping-address">
-                        
                     </div>
+                    {% else %}
+                        {% with address=data.user.address %}
+                            {% include 'ui/saved_address.html' %}
+                        {% endwith %}
+                    {% endif %}
                     <div class="total-payable">
                         Total Amount: ₹{{ data.total_amount }}/-
                     </div>
@@ -42,7 +47,7 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                    {% if (data.user.address|length) > 0 %}
+                    {% if data.user.address %}
                         <a href="{{ url_for('checkout.initiate_payment') }}">
                             <button class="checkout-button">Pay Now</button>
                         </a>
@@ -87,5 +92,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
             });
     });
 
+function onShippingAddressSaved(event) {
+    event.preventDefault();
+
+    const recipientName = document.getElementById("recipient_name").value;
+    const addressLine1 = document.getElementById("address_line1").value;
+    const addressLine2 = document.getElementById("address_line2").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const postalCode = document.getElementById("postal_code").value;
+    const country = document.getElementById("country").value;
+
+    const formData = {
+        recipient_name: recipientName,
+        address_line1: addressLine1,
+        address_line2: addressLine2,
+        city: city,
+        state: state,
+        postal_code: postalCode,
+        country: country
+    };
+
+    socket.emit('updateShippingAddress', {formData: formData});
+}
 </script>
 {% endblock content %}

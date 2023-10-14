@@ -13,7 +13,7 @@ class User(db.Model):
 
     # Relationships
     # 1:1
-    address = db.relationship('Address', backref = 'of_user', lazy=True)
+    address = db.relationship('Address', backref = 'of_user', lazy=True, uselist=False)
 
     # 1:1
     cart = db.relationship('Cart', backref='of_user', lazy=True, uselist=False)
@@ -32,8 +32,10 @@ class User(db.Model):
         self.cart = Cart(self.id)
         db.session.commit()
 
-    def add_or_update_address(self):
-        pass
+    def add_or_update_address(self, address):
+        self.address = address
+        db.session.add(address)
+        db.session.commit()
 
     def place_order(self):
         self.cart.place_order()
@@ -205,6 +207,7 @@ class Address(db.Model):
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
     pincode = db.Column(db.String(255), nullable=False)
+    country = db.Column(db.String(255), nullable=False)
     mobile_number = db.Column(db.String(15), nullable=False)
 
 
@@ -216,13 +219,14 @@ class Address(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
 
 
-    def __init__(self, recipient_name, addressLine1, street, city, state, pincode, addressLine2=None, user_id=None, order_id=None):
+    def __init__(self, recipient_name, addressLine1, city, state, country, pincode, addressLine2=None, street=None, mobile_number=None, user_id=None, order_id=None):
         self.recipient_name = recipient_name
         self.addressLine1 = addressLine1
         self.addressLine2 = addressLine2
         self.street = street
         self.city = city
         self.state = state
+        self.country = country
         self.pincode = pincode
         self.mobile_number = mobile_number
 

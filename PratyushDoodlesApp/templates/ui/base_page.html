@@ -41,8 +41,8 @@
 
         <!-- Cart Button -->
 
-        <div class="navbar-item align-center-horizontal" id="nav-cart-button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <div class="navbar-item align-center-horizontal" id="nav-cart-button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <img class="ic-20" src="{{ url_for('static', filename='images/ic_cart.png') }}">
             <p>
                 Cart
@@ -57,9 +57,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             {% with data=data %}
-                <div class="offcanvas-body" id="cart-container">
-                        {% include 'cart.html' %}
-                </div>
+            <div class="offcanvas-body" id="cart-container">
+                {% include 'cart.html' %}
+            </div>
             {% endwith %}
         </div>
     </div>
@@ -99,6 +99,7 @@
         </div>
 </nav>
 </div>
+<p style="display: none;" class="alert alert-warning" role="alert" id="error"></p>
 
 {% block content %}
 
@@ -109,13 +110,13 @@
     function removeItemFromCart(button) {
         // Use the socket variable to interact with the WebSocket connection
         let product_id = $(button).attr('product_id')
-        cart_item = document.getElementById('cart-item-'+product_id);
+        cart_item = document.getElementById('cart-item-' + product_id);
         cart_item.remove();
         socket.emit('removeItemFromCart', { product_id: product_id });
         console.log("Event: removeItemFromCart", product_id)
     }
 
-    function onItemRemoved(button){
+    function onItemRemoved(button) {
         updateCart(expandCart = false);
     }
 
@@ -128,21 +129,21 @@
 
     function updateCart(expandCart = true) {
         return new Promise((resolve, reject) => {
-        fetch('/getCartItems')
-            .then(response => response.text()) // Get the rendered template as HTML
-            .then(data => {
+            fetch('/getCartItems')
+                .then(response => response.text()) // Get the rendered template as HTML
+                .then(data => {
 
-                const cartContainer = document.getElementById('cart-container');
-                cartContainer.innerHTML = data; // Insert the template HTML into the container
-               
-                if(expandCart){
-                    const cartButton = document.getElementById('nav-cart-button');
-                    cartButton.click();
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    const cartContainer = document.getElementById('cart-container');
+                    cartContainer.innerHTML = data; // Insert the template HTML into the container
+
+                    if (expandCart) {
+                        const cartButton = document.getElementById('nav-cart-button');
+                        cartButton.click();
+                    }
+                })
+                .catch(error => {
+                    error(error);
+                });
         });
     }
 
@@ -150,8 +151,18 @@
         updateCart(expandCart = false);
     });
 
+    function error(error) {
+        var errorUi = document.getElementById('error')
+        errorUi.innerHTML = error
+        errorUi.style.display = 'block'
+
+        setTimeout(function () {
+            errorUi.style.display = "none"; // Hide the element by setting its display property to "none"
+        }, 5000);
+    }
 
     socket.on('updateCart', updateCart);
     socket.on('onItemRemoved', onItemRemoved);
-</script> 
+    socket.on('error', error);
+</script>
 {% endblock body %}

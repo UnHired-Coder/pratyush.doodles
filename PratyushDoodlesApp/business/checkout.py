@@ -1,10 +1,11 @@
-from flask import render_template, Blueprint, jsonify, flash
+from flask import render_template, Blueprint, jsonify, flash, redirect, url_for
 from .. import app, razorpayClient
 from .util import *
 from .cart import getCartData
 from ..forms.ShippingAddressForm import ShippingAddressForm
 from .. import socketio
-
+from ..models.UserModel import Address
+from .. import db
 
 checkout_bp = Blueprint('checkout', __name__)
 
@@ -41,20 +42,21 @@ def getShippingAddress():
 
 @socketio.on( 'updateShippingAddress' )
 def updateShippingAddress(data):
-
     errors = []
+    form_data = data.get('formData')
 
-    recipient_name = data.form_data.get('recipient_name', '')
-    address_line1 = data.form_data.get('address_line1', '')
-    city = data.form_data.get('city', '')
-    state = data.form_data.get('state', '')
-    postal_code = data.form_data.get('postal_code', '')
-    country = data.form_data.get('country', '')
+    recipient_name = form_data.get('recipient_name', '')
+    address_line1 = form_data.get('address_line1', '')
+    address_line2 = form_data.get('address_line2', '')
+    city = form_data.get('city', '')
+    state = form_data.get('state', '')
+    postal_code = form_data.get('postal_code', '')
+    country = form_data.get('country', '')
 
     if not recipient_name:
         errors.append("Recipient Name is required.")
     if not address_line1:
-        errors.append("Address Line 1 is required.")
+        errors.append("Address is required.")
     if not city:
         errors.append("City is required.")
     if not state:
@@ -64,10 +66,16 @@ def updateShippingAddress(data):
     if not country:
         errors.append("Country is required.")
 
-    if errors:
+    if len(errors) > 0:
         response = {'status': 'error', 'errors': errors}
-    else:
-        response = {'status': 'success'}
+        socketio.emit('error', errors[0])
+        return
+
+    user = get_current_user()    
+    address = Address(recipient_name, address_line1, city, state, country, postal_code, addressLine2=address_line2, street="1 street", mobile_number=2233232323, user_id=user.id, order_id=None)
+    user.add_or_update_address(address)
+
+    return redirect(url_for('shop.shop'))
 
 
 

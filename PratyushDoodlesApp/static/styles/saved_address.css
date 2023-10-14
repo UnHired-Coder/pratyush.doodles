@@ -1,0 +1,85 @@
+.card-wrap {
+    background-color: #fff;
+    font-family: Montserrat,sans-serif;
+    height: 370px;
+}
+
+.card-wrap.horizontal {
+    display: flex;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
+
+.card-wrap.horizontal,
+.card-wrap.horizontal figure {
+    height: 120px
+}
+
+.card-wrap.horizontal figure {
+    width: 154px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.horizontal figure img {
+    position: absolute;
+    top: -50px;
+}
+
+.horizontal .card-info {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.horizontal .card-info,
+.horizontal .card-address a,
+.horizontal .card-phone a {
+    color: #888;  
+}
+
+.horizontal .card-address {
+    display: flex;
+    flex-grow: 1;
+}
+
+.horizontal .card-address a {
+    text-decoration: none;
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+.horizontal .card-address .card-title {
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.horizontal .card-phone {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ccc;
+}
+
+.horizontal .card-phone span {
+    display: block;
+    text-transform: uppercase;
+    color: #333;
+    font-size: 12px;
+}
+
+.horizontal .card-phone a {
+    text-align: center;
+    flex-grow: 1;
+    padding: 9px 15px 0;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.horizontal .card-phone a:first-child {
+    border-bottom: 1px solid #ccc;
+}

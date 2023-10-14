@@ -1,0 +1,29 @@
+<div class="container">
+    <h2>Shipping To</h2>
+    <div class="row">
+        <div class="card-wrap horizontal">
+            <div class="card-img-container">
+                <a href="#">
+                    <figure>
+                        <img src="https://www.justice4you.com/assets/media/images/2017/bg-offices-long-beach.jpg">
+                    </figure>
+                </a>
+            </div>
+
+            <div class="card-info">
+                <div class="card-address">
+                    <a href="#">
+                        <p class="card-title">{{ address.recipient_name }}</p>
+                        <p>{{ address.addressLine1 }} {{ address.addressLine2 }} {{ address.city }} {{ address.state }}
+                            {{ address.country }} <br><br>
+                        </p>
+                    </a>
+                </div>
+                <div class="card-phone">
+                    <a href="#"><span>Phone</span>{{ address.mobile_number }}</a>
+                    <a href="#"><span>Pin Code</span>{{ address.pincode }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
