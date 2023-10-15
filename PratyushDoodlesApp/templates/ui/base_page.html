@@ -19,7 +19,7 @@
         <div class="navbar-item align-center-horizontal" data-bs-toggle="collapse"
             data-bs-target="#navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
             alt="Logo">
-            <img class="ic-20" src="{{ url_for('static', filename='images/ic_user.png') }}">
+            <img class="ic-20" id="user-profile" src="{{ url_for('static', filename='images/ic_user.png') }}">
             <p>
                 Profile
             </p>
@@ -153,6 +153,20 @@
 
     document.addEventListener("DOMContentLoaded", function (event) {
         updateCart(expandCart = false);
+    });
+
+    var isProfileOpen = false;
+    document.getElementById('user-profile').addEventListener('click', function(event) {
+        console.log(isProfileOpen);
+        if(!isProfileOpen){
+            isProfileOpen = true;
+            setTimeout(function () {
+                if(isProfileOpen){
+                document.getElementById('user-profile').click();
+                isProfileOpen = false;
+                }
+            }, 4000);
+        }
     });
 
     function error(error) {
