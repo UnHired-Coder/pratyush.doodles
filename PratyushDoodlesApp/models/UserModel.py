@@ -8,7 +8,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
-    mobile_number = db.Column(db.String(15), unique=True, nullable=True)
+    phone_number = db.Column(db.String(15), unique=True, nullable=True)
     email = db.Column(db.String(255), nullable=False)
 
     # Relationships
@@ -203,12 +203,11 @@ class Address(db.Model):
 
     addressLine1 = db.Column(db.String(255), nullable=False)
     addressLine2 = db.Column(db.String(255), nullable=True)
-    street  = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(255), nullable=False)
     state = db.Column(db.String(255), nullable=False)
     pincode = db.Column(db.String(255), nullable=False)
     country = db.Column(db.String(255), nullable=False)
-    mobile_number = db.Column(db.String(15), nullable=False)
+    phone_number = db.Column(db.String(15), nullable=False)
 
 
     # Relationships
@@ -219,16 +218,16 @@ class Address(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=True)
 
 
-    def __init__(self, recipient_name, addressLine1, city, state, country, pincode, addressLine2=None, street=None, mobile_number=None, user_id=None, order_id=None):
+    def __init__(self, recipient_name, addressLine1, city, state, country, pincode, phone_number, user_id, order_id=None, addressLine2=None):
         self.recipient_name = recipient_name
         self.addressLine1 = addressLine1
         self.addressLine2 = addressLine2
-        self.street = street
         self.city = city
         self.state = state
         self.country = country
         self.pincode = pincode
-        self.mobile_number = mobile_number
+        self.phone_number = phone_number
+        self.user_id = user_id
 
     def update_address(self):
         pass    

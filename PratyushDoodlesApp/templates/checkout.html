@@ -102,6 +102,7 @@ function onShippingAddressSaved(event) {
     const state = document.getElementById("state").value;
     const postalCode = document.getElementById("postal_code").value;
     const country = document.getElementById("country").value;
+    const phone_number = document.getElementById("phone_number").value;
 
     const formData = {
         recipient_name: recipientName,
@@ -110,7 +111,8 @@ function onShippingAddressSaved(event) {
         city: city,
         state: state,
         postal_code: postalCode,
-        country: country
+        country: country,
+        phone_number: phone_number
     };
 
     socket.emit('updateShippingAddress', {formData: formData});

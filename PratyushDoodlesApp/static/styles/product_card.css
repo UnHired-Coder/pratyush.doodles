@@ -92,3 +92,27 @@ body {
     text-decoration: none;
     color: #000000;
 }
+
+.image-with-menu{
+    position: relative;
+}
+
+.wsk-cp-product:hover .icon-button{
+    display: flex;
+}
+
+.icon-button {
+    background-color: rgb(255, 255, 255);
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    display: none;
+}
+
+
+

@@ -52,6 +52,7 @@ def updateShippingAddress(data):
     state = form_data.get('state', '')
     postal_code = form_data.get('postal_code', '')
     country = form_data.get('country', '')
+    phone_number = form_data.get('phone_number', '')
 
     if not recipient_name:
         errors.append("Recipient Name is required.")
@@ -65,6 +66,8 @@ def updateShippingAddress(data):
         errors.append("Postal Code is required.")
     if not country:
         errors.append("Country is required.")
+    if not phone_number:
+        error.append("Phone number is required")    
 
     if len(errors) > 0:
         response = {'status': 'error', 'errors': errors}
@@ -72,11 +75,11 @@ def updateShippingAddress(data):
         return
 
     user = get_current_user()    
-    address = Address(recipient_name, address_line1, city, state, country, postal_code, addressLine2=address_line2, street="1 street", mobile_number=2233232323, user_id=user.id, order_id=None)
+    address = Address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, user_id=user.id, order_id=None)
     user.add_or_update_address(address)
-    
+
     socketio.emit('addressUpdated')
-    
+
 
 # @socketio.on( '' )
 # def shipping_address():
