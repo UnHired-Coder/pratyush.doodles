@@ -6,8 +6,9 @@
     <div class="container-fluid">
         {% if data.user %}
         <div class="collapse" id="navbarToggleExternalContent">
-            <h5 class="text-body-emphasis h4">Logged in as: {{ data.user.name }}</h5>
-            <span class="text-body-secondary email">Email: {{ data.user.email }}</span>
+            {% with user = data.user %}
+                {% include 'ui/profile_section.html' %}
+            {% endwith %}
         </div>
         {% endif %}
     </div>
@@ -120,7 +121,7 @@
         if(location.pathname == '/checkout'){
             location.reload()
         }
-        updateCart(expandCart = false, refreshPage = refreshPage);
+        updateCart(expandCart = false);
     }
 
     function addItemToCart(button) {
