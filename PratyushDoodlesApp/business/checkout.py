@@ -75,8 +75,7 @@ def updateShippingAddress(data):
         return
 
     user = get_current_user()    
-    address = Address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, user_id=user.id, order_id=None)
-    user.add_or_update_address(address)
+    user.add_or_update_address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, order_id=None)
 
     socketio.emit('addressUpdated')
 

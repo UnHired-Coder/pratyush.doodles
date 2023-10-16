@@ -32,9 +32,25 @@ class User(db.Model):
         self.cart = Cart(self.id)
         db.session.commit()
 
-    def add_or_update_address(self, address):
-        self.address = address
-        db.session.add(address)
+    def add_or_update_address(self, recipient_name, addressLine1, city, state, country, pincode, phone_number, order_id=None, addressLine2=None):
+        address = Address.query.filter_by(user_id = self.id).first()
+        updated_address = Address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, user_id=self.id, order_id=None)
+
+        if address:
+            address.recipient_name = updated_address.recipient_name
+            address.addressLine1 = updated_address.addressLine1
+            address.city = updated_address.city
+            address.state = updated_address.state
+            address.country = updated_address.country
+            address.pincode = updated_address.pincode
+            address.addressLine2 = updated_address.addressLine2
+            address.phone_number = updated_address.phone_number
+            address.user_id = updated_address.user_id
+            address.order_id = updated_address.order_id
+        else:
+             db.session.add(address)
+
+        self.address = updated_address
         db.session.commit()
 
     def place_order(self):
