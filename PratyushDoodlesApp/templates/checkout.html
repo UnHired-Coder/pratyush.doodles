@@ -29,14 +29,13 @@
             <!-- <div class="container mt-3"> -->
             <div class="flex-column">
                 <div class="col-lg-12 mx-auto">
-                    {% if not data.user.address %}
-                    <div id="shipping-address">
+                    <div id="shipping-address" style="display: {% if not data.user.address %} block {% else %} none {% endif%};">
                     </div>
-                    {% else %}
+                    <div id="shipping-address-filled" style="display: {% if data.user.address %} block {% else %} none {% endif%};">
                         {% with address=data.user.address %}
                             {% include 'ui/saved_address.html' %}
                         {% endwith %}
-                    {% endif %}
+                    </div>
                     <div class="total-payable">
                         Total Amount: ₹{{ data.total_amount }}/-
                     </div>
@@ -120,6 +119,14 @@ function onShippingAddressSaved(event) {
 
 function onAddressUpdated(){
     location.reload();
+}
+
+function onShippingAddressEdit(){
+    let editAddressField = document.getElementById('shipping-address')
+    let editAddressFieldFilled = document.getElementById('shipping-address-filled')
+
+    editAddressField.style.display = 'block'
+    editAddressFieldFilled.style.display = 'none'
 }
 
 socket.on('addressUpdated', onAddressUpdated)

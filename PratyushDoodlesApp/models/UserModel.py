@@ -34,7 +34,7 @@ class User(db.Model):
 
     def add_or_update_address(self, recipient_name, addressLine1, city, state, country, pincode, phone_number, order_id=None, addressLine2=None):
         address = Address.query.filter_by(user_id = self.id).first()
-        updated_address = Address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, user_id=self.id, order_id=None)
+        updated_address = Address(recipient_name=recipient_name, addressLine1=addressLine1, city=city, state=state, country=country, pincode=pincode, addressLine2=addressLine2, phone_number=phone_number, user_id=self.id, order_id=None)
 
         if address:
             address.recipient_name = updated_address.recipient_name

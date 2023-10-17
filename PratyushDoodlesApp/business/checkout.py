@@ -67,7 +67,7 @@ def updateShippingAddress(data):
     if not country:
         errors.append("Country is required.")
     if not phone_number:
-        error.append("Phone number is required")    
+        errors.append("Phone number is required")    
 
     if len(errors) > 0:
         response = {'status': 'error', 'errors': errors}

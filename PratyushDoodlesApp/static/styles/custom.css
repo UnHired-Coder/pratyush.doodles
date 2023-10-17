@@ -136,6 +136,15 @@ input[type="checkbox"] {
     margin-bottom: 10px;
 }
 
+.edit-button {
+    color: rgb(2, 2, 2);
+    border: none;
+    padding: 8px 20px;
+    font-size: 12px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
 /* Icons */
 .ic-16 {
     width: 16px;
