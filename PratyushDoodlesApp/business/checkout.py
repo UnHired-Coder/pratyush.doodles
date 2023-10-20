@@ -6,8 +6,10 @@ from ..forms.ShippingAddressForm import ShippingAddressForm
 from .. import socketio
 from ..models.UserModel import Address
 from .. import db
+from flask_wtf import CSRFProtect
 
 checkout_bp = Blueprint('checkout', __name__)
+currency = 'INR'
 
 # Define routes and views for the 'auth' Blueprint
 @checkout_bp.route('/checkout')
@@ -15,21 +17,52 @@ def checkout():
     data = getCartData()
     return render_template('checkout.html', data=data)
 
-@checkout_bp.route('/initiate_payment', methods=['GET', 'POST'])
-def initiate_payment():
-    amount = 1000  # The amount to be paid in paise (e.g., 1000 paise = ₹10)
-    currency = 'INR'  # Currency code (e.g., INR for Indian Rupees)
-
+# @checkout_bp.route('/initiate_payment', methods=['GET', 'POST'])
+def initiate_payment(amount):
     payment_data = {
         'amount': amount,
         'currency': currency,
+        'payment_capture': 1
     }
 
     # Create a Razorpay order
-    order = razorpayClient.order.create(payment_data)
+    order = razorpayClient.order.create(data = payment_data)
+    order_id = order['id']
+    return order_id
 
-    # Return the order ID to the client-side for payment initiation
-    return jsonify({'order_id': order['id']})
+@checkout_bp.route( '/getOrderOptions' )
+def getOrderOptions():
+    data = getCartData()
+    if data and data['user']:
+        user = data['user']
+        amount_payable = data['total_amount']
+        order_id = initiate_payment(amount_payable)
+        return  {
+                    "key": app.config['RAZORPAY_KEY_ID'], 
+                    "amount": amount_payable, 
+                    "currency": currency,
+                    "name": "Pratyush Doodles",
+                    "description": "This is sample transaction",
+                    "image": "https://example.com/your_logo",
+                    "order_id": order_id, 
+                    "callback_url": "http://127.0.0.1:5000/payment_callback",
+                    "prefill": {
+                        "name": user.name,
+                        "email": user.email,
+                        "contact": user.phone_number
+                    },
+                    "notes": {
+                        "address": "This payment is going to Pratyush Doodles"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                }
+    return None
+
+@checkout_bp.route('/payment_callback', methods=['POST'])
+def payment_callback():
+    return ""
 
 @checkout_bp.route( '/getShippingAddress' )
 def getShippingAddress():
@@ -105,4 +138,6 @@ def updateShippingAddress(data):
 
 #     return render_template('shipping_address.html', form=form)
 
+csrf = CSRFProtect(app)
+csrf.exempt(checkout_bp)
 app.register_blueprint(checkout_bp)

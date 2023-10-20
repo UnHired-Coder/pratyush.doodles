@@ -23,16 +23,6 @@ def shop():
 
     return render_template('shop.html', data = data)
 
-
-
-
-
-
-
-
-
-
-
 #Admin actions
 @shop_bp.route('/add_product', methods=['GET', 'POST'])
 def add_product():

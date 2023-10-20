@@ -29,11 +29,13 @@
             <!-- <div class="container mt-3"> -->
             <div class="flex-column">
                 <div class="col-lg-12 mx-auto">
-                    <div id="shipping-address" style="display: {% if not data.user.address %} block {% else %} none {% endif%};">
+                    <div id="shipping-address"
+                        style="display: {% if not data.user.address %} block {% else %} none {% endif%};">
                     </div>
-                    <div id="shipping-address-filled" style="display: {% if data.user.address %} block {% else %} none {% endif%};">
+                    <div id="shipping-address-filled"
+                        style="display: {% if data.user.address %} block {% else %} none {% endif%};">
                         {% with address=data.user.address %}
-                            {% include 'ui/saved_address.html' %}
+                        {% include 'ui/saved_address.html' %}
                         {% endwith %}
                     </div>
                     <div class="total-payable">
@@ -47,13 +49,11 @@
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
                     {% if data.user.address %}
-                        <a href="{{ url_for('checkout.initiate_payment') }}">
-                            <button class="checkout-button">Pay Now</button>
-                        </a>
-                    {% else %} 
-                        <a href="#shipping-address-container">
-                            <button class="checkout-button-disabled">Pay Now</button>
-                        </a>
+                        <button id="rzp-pay-button" class="checkout-button">Pay Now</button>
+                    {% else %}
+                    <a href="#shipping-address-container">
+                        <button class="checkout-button-disabled">Pay Now</button>
+                    </a>
                     {% endif %}
                 </div>
             </div>
@@ -75,11 +75,25 @@
     </ul>
     {% endif%}
 </div>
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script>
+    document.getElementById('rzp-pay-button').onclick = function (e) {
+        fetch('/getOrderOptions')
+        .then(response => response.text()) // Get the rendered template as HTML
+            .then(data => {
+                var payload = JSON.parse(data)
+                console.log(payload);
+                var rzp1 = new Razorpay(payload);
+                rzp1.open();
+                e.preventDefault();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 
-document.addEventListener("DOMContentLoaded", function (event) {
+    document.addEventListener("DOMContentLoaded", function (event) {
         fetch('/getShippingAddress')
             .then(response => response.text()) // Get the rendered template as HTML
             .then(data => {
@@ -91,45 +105,45 @@ document.addEventListener("DOMContentLoaded", function (event) {
             });
     });
 
-function onShippingAddressSaved(event) {
-    event.preventDefault();
+    function onShippingAddressSaved(event) {
+        event.preventDefault();
 
-    const recipientName = document.getElementById("recipient_name").value;
-    const addressLine1 = document.getElementById("address_line1").value;
-    const addressLine2 = document.getElementById("address_line2").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    const postalCode = document.getElementById("postal_code").value;
-    const country = document.getElementById("country").value;
-    const phone_number = document.getElementById("phone_number").value;
+        const recipientName = document.getElementById("recipient_name").value;
+        const addressLine1 = document.getElementById("address_line1").value;
+        const addressLine2 = document.getElementById("address_line2").value;
+        const city = document.getElementById("city").value;
+        const state = document.getElementById("state").value;
+        const postalCode = document.getElementById("postal_code").value;
+        const country = document.getElementById("country").value;
+        const phone_number = document.getElementById("phone_number").value;
 
-    const formData = {
-        recipient_name: recipientName,
-        address_line1: addressLine1,
-        address_line2: addressLine2,
-        city: city,
-        state: state,
-        postal_code: postalCode,
-        country: country,
-        phone_number: phone_number
-    };
+        const formData = {
+            recipient_name: recipientName,
+            address_line1: addressLine1,
+            address_line2: addressLine2,
+            city: city,
+            state: state,
+            postal_code: postalCode,
+            country: country,
+            phone_number: phone_number
+        };
 
-    socket.emit('updateShippingAddress', {formData: formData});
-}
+        socket.emit('updateShippingAddress', { formData: formData });
+    }
 
-function onAddressUpdated(){
-    location.reload();
-}
+    function onAddressUpdated() {
+        location.reload();
+    }
 
-function onShippingAddressEdit(){
-    let editAddressField = document.getElementById('shipping-address')
-    let editAddressFieldFilled = document.getElementById('shipping-address-filled')
+    function onShippingAddressEdit() {
+        let editAddressField = document.getElementById('shipping-address')
+        let editAddressFieldFilled = document.getElementById('shipping-address-filled')
 
-    editAddressField.style.display = 'block'
-    editAddressFieldFilled.style.display = 'none'
-}
+        editAddressField.style.display = 'block'
+        editAddressFieldFilled.style.display = 'none'
+    }
 
-socket.on('addressUpdated', onAddressUpdated)
+    socket.on('addressUpdated', onAddressUpdated)
 
 </script>
 {% endblock content %}

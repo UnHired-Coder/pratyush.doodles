@@ -13,11 +13,11 @@
 
 .card-wrap.horizontal,
 .card-wrap.horizontal figure {
-    height: 120px
+    height: 100px
 }
 
 .card-wrap.horizontal figure {
-    width: 154px;
+    width: 50px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -25,7 +25,8 @@
 
 .horizontal figure img {
     position: absolute;
-    top: -50px;
+    width: 100%;
+    height: 50%;
 }
 
 .horizontal .card-info {
