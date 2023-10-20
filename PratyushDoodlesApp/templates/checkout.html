@@ -48,13 +48,10 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                    {% if data.user.address %}
-                        <button id="rzp-pay-button" class="checkout-button">Pay Now</button>
-                    {% else %}
-                    <a href="#shipping-address-container">
+                        <button id="rzp-pay-button"  style="display:  {% if data.user.address %} block {% else %} none {% endif %};" class="checkout-button">Pay Now</button>
+                    <a style="display: {% if data.user.address %} none {% else %} block {% endif %}; " href="#shipping-address-container">
                         <button class="checkout-button-disabled">Pay Now</button>
                     </a>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -78,6 +75,7 @@
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+
     document.getElementById('rzp-pay-button').onclick = function (e) {
         fetch('/getOrderOptions')
         .then(response => response.text()) // Get the rendered template as HTML

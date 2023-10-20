@@ -46,6 +46,7 @@ def getOrderOptions():
                     "image": "https://example.com/your_logo",
                     "order_id": order_id, 
                     "callback_url": "http://127.0.0.1:5000/payment_callback",
+                    "redirect": True,
                     "prefill": {
                         "name": user.name,
                         "email": user.email,
@@ -62,7 +63,9 @@ def getOrderOptions():
 
 @checkout_bp.route('/payment_callback', methods=['POST'])
 def payment_callback():
-    return ""
+    user = get_current_user()
+    user.place_order()
+    return user.name
 
 @checkout_bp.route( '/getShippingAddress' )
 def getShippingAddress():
@@ -111,32 +114,6 @@ def updateShippingAddress(data):
     user.add_or_update_address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, order_id=None)
 
     socketio.emit('addressUpdated')
-
-
-# @socketio.on( '' )
-# def shipping_address():
-#     form = ShippingAddressForm()
-
-#     if form.validate_on_submit():
-#         # Process the form data (e.g., save it to a database)
-#         # For this example, we'll just print the data to the console
-#         print(f'Recipient Name: {form.recipient_name.data}')
-#         print(f'Address Line 1: {form.address_line1.data}')
-#         print(f'Address Line 2: {form.address_line2.data}')
-#         print(f'City: {form.city.data}')
-#         print(f'State: {form.state.data}')
-#         print(f'Postal Code: {form.postal_code.data}')
-#         print(f'Country: {form.country.data}')
-
-#         # Redirect to a success page or do something else
-#         return redirect(url_for('success'))
-
-#     # If the form is not valid, show error messages
-#     for field, errors in form.errors.items():
-#         for error in errors:
-#             flash(f"Error in field '{field}': {error}")
-
-#     return render_template('shipping_address.html', form=form)
 
 csrf = CSRFProtect(app)
 csrf.exempt(checkout_bp)

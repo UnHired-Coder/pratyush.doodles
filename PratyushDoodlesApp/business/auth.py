@@ -32,6 +32,8 @@ def login():
     user = User.query.filter_by(email = user_email).first()
     if not user:
         user = User(name = user_name, email = user_email)
+        db.session.add(user)
+        db.session.commit()
 
     data = {
         'user': user

@@ -48,7 +48,7 @@ class User(db.Model):
             address.user_id = updated_address.user_id
             address.order_id = updated_address.order_id
         else:
-             db.session.add(address)
+            db.session.add(updated_address)
 
         self.address = updated_address
         db.session.commit()
@@ -105,12 +105,14 @@ class Cart(db.Model):
         order_items = []
         total_amount = 0
         for cartItem in self.cart_items:
-            order_item = OrderItem(cart_id = self.id, product_id = cartItem.product_id, quantity = cartItem.quantity)
-            order_items.append(order_item)
             product = Product.query.filter_by(id = cartItem.product_id).first()
             total_amount += product.price
+            order_item = OrderItem(product_id = cartItem.product_id, quantity = cartItem.quantity, price =  product.price)
+            order_items.append(order_item)
 
-        order = Order(user_id = self.id, address = self.address, order_items = order_items, amount = total_amount)
+        order = Order(user_id = self.id, address = self.of_user.address, order_items = order_items, amount = total_amount)
+        db.session.add(order)
+        db.session.commit()
 
     def order_placed(self):
         pass    
@@ -163,7 +165,7 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     # 1:1
-    address = db.relationship('Address', backref = 'of_order', lazy=True)
+    address = db.relationship('Address', backref = 'of_order', lazy=True, uselist=False)
 
     # 1:M 
     order_items = db.relationship('OrderItem', backref='of_order', lazy=True)
