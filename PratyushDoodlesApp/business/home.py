@@ -25,4 +25,22 @@ def home():
 
     return render_template('index.html', data = data)
 
+@home_bp.route('/orders')
+def orders():
+    user = get_current_user()
+
+    data = {}
+    if not user:
+        data = {
+            'show_error': "Logged out!",
+        }
+    else:
+        orders = user.ger_orders()
+        data = {
+            'user': user,
+            'orders': orders
+        }
+
+    return render_template('orders.html', data = data)
+
 app.register_blueprint(home_bp)

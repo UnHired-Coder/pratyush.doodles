@@ -17,7 +17,6 @@ def checkout():
     data = getCartData()
     return render_template('checkout.html', data=data)
 
-# @checkout_bp.route('/initiate_payment', methods=['GET', 'POST'])
 def initiate_payment(amount):
     payment_data = {
         'amount': amount,
@@ -64,7 +63,7 @@ def getOrderOptions():
 def payment_callback():
     user = get_current_user()
     user.place_order()
-    return user.name
+    return redirect(url_for('home.orders'))
 
 @checkout_bp.route( '/getShippingAddress' )
 def getShippingAddress():

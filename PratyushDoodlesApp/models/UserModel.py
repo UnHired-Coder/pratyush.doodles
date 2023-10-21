@@ -56,6 +56,9 @@ class User(db.Model):
     def place_order(self):
         self.cart.place_order()
 
+    def ger_orders(self):
+        return self.orders    
+
     def cancel_order(self):
         pass            
 
@@ -106,13 +109,12 @@ class Cart(db.Model):
         total_amount = 0
         for cartItem in self.cart_items:
             product = Product.query.filter_by(id = cartItem.product_id).first()
-            total_amount += product.price
+            total_amount += (product.price * cartItem.quantity)
             order_item = OrderItem(product_id = cartItem.product_id, quantity = cartItem.quantity, price =  product.price)
             order_items.append(order_item)
-
             db.session.delete(cartItem)
 
-        order = Order(user_id = self.id, address = self.of_user.address, order_items = order_items, amount = total_amount)
+        order = Order(user_id = self.of_user.id, address = self.of_user.address, order_items = order_items, amount = total_amount)
         db.session.add(order)
         db.session.commit()
 
