@@ -46,7 +46,6 @@ def getOrderOptions():
                     "image": "https://example.com/your_logo",
                     "order_id": order_id, 
                     "callback_url": "http://127.0.0.1:5000/payment_callback",
-                    "redirect": True,
                     "prefill": {
                         "name": user.name,
                         "email": user.email,

@@ -110,6 +110,8 @@ class Cart(db.Model):
             order_item = OrderItem(product_id = cartItem.product_id, quantity = cartItem.quantity, price =  product.price)
             order_items.append(order_item)
 
+            db.session.delete(cartItem)
+
         order = Order(user_id = self.id, address = self.of_user.address, order_items = order_items, amount = total_amount)
         db.session.add(order)
         db.session.commit()
