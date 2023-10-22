@@ -1,11 +1,13 @@
 <div class="row">
+    {% if data.user %}
     <p type="button" class="">Logged in with: <b>{{ data.user.email }}</b></p>
     <div class="container" style="position: absolute; bottom: 0;">
         <div class="row">
-            <a type="button"  class="btn btn-light col" href="mailto:pratyush.doodles@gmail.com">
+            <a type="button" class="btn btn-light col mb-2" href="mailto:pratyush.doodles@gmail.com">
                 Write to Us
             </a>
             <p type="button" class="btn btn-dark">Logout</p>
         </div>
     </div>
+    {% endif %}
 </div>
