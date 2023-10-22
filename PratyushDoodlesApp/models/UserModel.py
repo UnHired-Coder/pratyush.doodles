@@ -116,11 +116,13 @@ class Cart(db.Model):
         
         order_address = self.of_user.address.copy()
         db.session.add(order_address)
-        db.session.flush()
-        order_address_id = order_address.id
-
-        order = Order(user_id = self.user_id, address_id = order_address_id, order_items = order_items, amount = total_amount)
+        
+        order = Order(user_id = self.user_id, address = order_address, order_items = order_items, amount = total_amount)
         db.session.add(order)
+        db.session.flush()
+
+        order.address.order_id = order.id
+
         db.session.commit()
 
     def order_placed(self):
@@ -174,15 +176,15 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     # 1:1
-    address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
+    address = db.relationship('Address', backref='of_order', lazy=True, uselist=False)
 
     # 1:M 
     order_items = db.relationship('OrderItem', backref='of_order', lazy=True)
 
 
-    def __init__(self, user_id, address_id, order_items, amount):
+    def __init__(self, user_id, address, order_items, amount):
         self.user_id = user_id
-        self.address_id = address_id
+        self.address = address
         self.order_items = order_items
         self.order_date = datetime.now().date()
         self.amount = amount
@@ -263,4 +265,4 @@ class Address(db.Model):
         pass    
 
     def __repr__(self):
-        return f'<Address {self.addressLine1}>'        
+        return f'{self.addressLine1}, {self.city}, {self.state}, {self.country}, {self.pincode}, \n Contact: {self.phone_number}'     
