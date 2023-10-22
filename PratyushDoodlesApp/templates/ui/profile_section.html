@@ -1,5 +1,11 @@
-<div class="flex-column">
-    <button type="button" class="btn btn-light">My Orders</button>
-    <button type="button" class="btn btn-light">Write to us</button>
-    <button type="button" class="btn btn-light">Email: {{ data.user.email }}</button>
+<div class="row">
+    <p type="button" class="">Logged in with: <b>{{ data.user.email }}</b></p>
+    <div class="container" style="position: absolute; bottom: 0;">
+        <div class="row">
+            <a type="button"  class="btn btn-light col" href="mailto:pratyush.doodles@gmail.com">
+                Write to Us
+            </a>
+            <p type="button" class="btn btn-dark">Logout</p>
+        </div>
+    </div>
 </div>
