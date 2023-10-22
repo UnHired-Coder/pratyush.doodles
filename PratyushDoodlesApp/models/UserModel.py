@@ -113,8 +113,13 @@ class Cart(db.Model):
             order_item = OrderItem(product_id = cartItem.product_id, quantity = cartItem.quantity, price =  product.price)
             order_items.append(order_item)
             db.session.delete(cartItem)
+        
+        order_address = self.of_user.address.copy()
+        db.session.add(order_address)
+        db.session.flush()
+        order_address_id = order_address.id
 
-        order = Order(user_id = self.of_user.id, address = self.of_user.address, order_items = order_items, amount = total_amount)
+        order = Order(user_id = self.user_id, address_id = order_address_id, order_items = order_items, amount = total_amount)
         db.session.add(order)
         db.session.commit()
 
@@ -165,19 +170,19 @@ class Order(db.Model):
     status = db.Column(db.String(255), nullable=False)
 
     # Relationships
-    # M:1
+    # 1:1
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     # 1:1
-    address = db.relationship('Address', backref = 'of_order', lazy=True, uselist=False)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
 
     # 1:M 
     order_items = db.relationship('OrderItem', backref='of_order', lazy=True)
 
 
-    def __init__(self, user_id, address, order_items, amount):
+    def __init__(self, user_id, address_id, order_items, amount):
         self.user_id = user_id
-        self.address = address
+        self.address_id = address_id
         self.order_items = order_items
         self.order_date = datetime.now().date()
         self.amount = amount
@@ -250,6 +255,9 @@ class Address(db.Model):
         self.pincode = pincode
         self.phone_number = phone_number
         self.user_id = user_id
+
+    def copy(self):
+        return Address(recipient_name=self.recipient_name, addressLine1=self.addressLine1, city=self.city, state=self.state, country=self.country, pincode=self.pincode, addressLine2=self.addressLine2, phone_number=self.phone_number, user_id=None, order_id=None)
 
     def update_address(self):
         pass    
