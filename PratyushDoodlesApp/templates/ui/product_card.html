@@ -1,6 +1,10 @@
 <div class="wsk-cp-product">
     <div class="image-with-menu">
-        <img class="wsk-cp-img img-responsive" src="{{ product.product_images[0].picture_url }}" alt="Product" />
+        <div class="product-images">
+            {% for product_image in product.product_images %}
+                <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product" />
+            {% endfor %}
+        </div>
         <div class="icon-button">
             <img class="ic-16 img-responsive" src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product"  />    
         </div>

@@ -9,7 +9,7 @@
         <div class="row">
             {% if data.products %}
                 {% for product in data.products %}
-                <div style="width: 250px;">
+                <div style="width: 250px;" id="wsk-cp-product-{{ product.id }}">
                     {% with product=product %}
                         {% include 'ui/product_card.html' %}
                     {% endwith %}
@@ -21,4 +21,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    let currentIndex = 0;
+    let intervalId = null; // Initialize a variable to store the interval ID
+
+    function setUpAnimation() {
+            const hoverCard = document.getElementById("wsk-cp-product-3"); // Replace "hover-card" with the actual ID or class of your card
+            const productImages = hoverCard.querySelectorAll(".wsk-cp-img");
+            hoverCard.addEventListener("mouseenter", function () {
+                //start
+                if (intervalId === null) {
+                    intervalId = setInterval(function () {
+                        productImages[currentIndex].style.opacity = 0; // Hide the current image
+                        currentIndex = (currentIndex + 1) % productImages.length; // Cycle through the images
+                        productImages[currentIndex].style.opacity = 1; // Show the next image
+                    }, 1000);
+                }
+            });
+            hoverCard.addEventListener("mouseleave", function () {
+                //stop
+                if (intervalId !== null) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+            });
+        }
+
+        setUpAnimation()
+</script>
 {% endblock %}

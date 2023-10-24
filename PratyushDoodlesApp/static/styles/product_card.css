@@ -18,10 +18,18 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+.product-images {
+    height: 200px;
+    width: 100%;
+    position: relative;
+}
 
 .wsk-cp-img {
     height: 200px;
     width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 
