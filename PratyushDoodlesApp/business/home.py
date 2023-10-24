@@ -8,38 +8,24 @@ from .util import *
 
 home_bp = Blueprint('home', __name__)
 
-@home_bp.route('/')
-@home_bp.route('/home')
+@home_bp.route('/home', methods=['GET'])
 def home():
     user = get_current_user()
-
-    data = {}
-    if not user:
-        data = {
-            'show_error': "Logged out!",
-        }
-    else:
-        data = {
-            'user': user
-        }
+    data = {
+        'user': user
+    }
 
     return render_template('index.html', data = data)
 
-@home_bp.route('/orders')
+@home_bp.route('/orders', methods=['GET'])
 def orders():
     user = get_current_user()
 
-    data = {}
-    if not user:
-        data = {
-            'show_error': "Logged out!",
-        }
-    else:
-        orders = user.ger_orders()
-        data = {
-            'user': user,
-            'orders': orders
-        }
+    orders = user.ger_orders()
+    data = {
+        'user': user,
+        'orders': orders
+    }
 
     return render_template('orders.html', data = data)
 

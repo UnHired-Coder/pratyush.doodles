@@ -10,16 +10,16 @@ from .. import db
 shop_bp = Blueprint('shop', __name__)
 
 # Define routes and views for the 'auth' Blueprint
+@shop_bp.route('/')
 @shop_bp.route('/shop')
 def shop():
     user = get_current_user()
     products = Product.query.all()
 
-    data = {'user': user}
-    if len(products) == 0:
-        data['show_error'] = "No Products Listed!"
-    else:
-        data['products'] = products
+    data = {
+        'user': user,
+        'products': products
+    }
 
     return render_template('shop.html', data = data)
 

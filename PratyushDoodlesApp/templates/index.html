@@ -1,6 +1,21 @@
 <!-- about.html -->
 {% extends 'ui/base_page.html' %}
 {% block content %}
- <h1>Hello!</h1>
+<div class="container text-center">
+    <div class="shell">
+        <div class="row">
+            {% if data.products %}
+            {% for product in data.products %}
+            <div style="width: 250px;">
+                {% with product=product %}
+                {% include 'ui/product_card.html' %}
+                {% endwith %}
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No products listed!</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock content %}
- 

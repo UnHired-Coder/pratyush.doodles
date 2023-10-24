@@ -13,17 +13,15 @@ google_bp = make_google_blueprint(client_id='826108091887-4tj9nulbl2jc879kjor41e
                                    redirect_to ='auth.login',
                                    scope=["profile", "email"])
 
-@auth_bp.route('/login')
+@auth_bp.route('/login', methods=['GET'])
 def login():
     if not google.authorized:
         return redirect(url_for('google.login'))
     resp = google.get('/oauth2/v2/userinfo')
 
     if not (resp.ok and resp.text):
-        data = {
-            'show_error': "Login failed!"
-        }
-        return render_template('index.html', data=data)
+        socketio.emit('error', 'Something went wrong, try again.')
+        return render_template('index.html', data={})
 
     userdata = resp.json()
     user_email = userdata['email']
@@ -42,7 +40,7 @@ def login():
     session['user_id'] = user.id
     return render_template('index.html', data=data)
 
-@auth_bp.route('/logout')
+@auth_bp.route('/logout', methods=['GET'])
 def logout():
     session.pop('user_id')    
     return redirect(url_for('home.home'))

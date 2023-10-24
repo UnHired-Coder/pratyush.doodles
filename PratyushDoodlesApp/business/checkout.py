@@ -9,9 +9,12 @@ from .. import db
 from flask_wtf import CSRFProtect
 
 checkout_bp = Blueprint('checkout', __name__)
-currency = 'INR'
 
-# Define routes and views for the 'auth' Blueprint
+currency = 'INR'
+shipping_charges = 30
+logo_url = "https://example.com/your_logo"
+payment_success_callback = "http://127.0.0.1:5000/payment_callback"
+
 @checkout_bp.route('/checkout')
 def checkout():
     data = getCartData()
@@ -35,16 +38,18 @@ def getOrderOptions():
     if data and data['user']:
         user = data['user']
         amount_payable = data['total_amount']
-        order_id = initiate_payment(amount_payable)
+        amount_payable_in_paise = (amount_payable + shipping_charges) * 100
+
+        order_id = initiate_payment(amount_payable_in_paise)
         return  {
                     "key": app.config['RAZORPAY_KEY_ID'], 
-                    "amount": amount_payable, 
+                    "amount": amount_payable_in_paise, 
                     "currency": currency,
                     "name": "Pratyush Doodles",
                     "description": "This is sample transaction",
-                    "image": "https://example.com/your_logo",
+                    "image": logo_url,
                     "order_id": order_id, 
-                    "callback_url": "http://127.0.0.1:5000/payment_callback",
+                    "callback_url": payment_success_callback,
                     "prefill": {
                         "name": user.name,
                         "email": user.email,
@@ -57,6 +62,8 @@ def getOrderOptions():
                         "color": "#3399cc"
                     }
                 }
+
+    socketio.emit('error', 'Something went wrong!')
     return None
 
 @checkout_bp.route('/payment_callback', methods=['POST'])
@@ -79,25 +86,25 @@ def updateShippingAddress(data):
     errors = []
     form_data = data.get('formData')
 
-    recipient_name = form_data.get('recipient_name', '')
-    address_line1 = form_data.get('address_line1', '')
-    address_line2 = form_data.get('address_line2', '')
-    city = form_data.get('city', '')
-    state = form_data.get('state', '')
-    postal_code = form_data.get('postal_code', '')
-    country = form_data.get('country', '')
-    phone_number = form_data.get('phone_number', '')
+    recipient_name = form_data.get('recipient_name', None)
+    address_line1 = form_data.get('address_line1', None)
+    address_line2 = form_data.get('address_line2', None)
+    city = form_data.get('city', None)
+    state = form_data.get('state', None)
+    postal_code = form_data.get('postal_code', None)
+    country = form_data.get('country', None)
+    phone_number = form_data.get('phone_number', None)
 
     if not recipient_name:
         errors.append("Recipient Name is required.")
     if not address_line1:
         errors.append("Address is required.")
+    if not postal_code:
+        errors.append("Postal Code is required.")
     if not city:
         errors.append("City is required.")
     if not state:
         errors.append("State is required.")
-    if not postal_code:
-        errors.append("Postal Code is required.")
     if not country:
         errors.append("Country is required.")
     if not phone_number:

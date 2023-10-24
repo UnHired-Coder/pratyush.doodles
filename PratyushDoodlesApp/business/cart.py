@@ -5,16 +5,8 @@ from ..models.UserModel import Cart
 from ..models.ProductModel import Product
 from .util import *
 
-
-
 cart_bp = Blueprint('cart', __name__)
 
-@cart_bp.route('/cart')
-def cart():
-    pass
-    # make this checkout page
-    # data = getCartData()
-    # return render_template('cart.html', data=data)
 
 @socketio.on( 'addItemToCart' )
 def addItemToCart(data):
@@ -32,11 +24,12 @@ def removeItemFromCart(data):
 
     user = get_current_user()
     user.cart.remove_from_cart(product_id)
-    data = {
-        'expand_cart': False
-    }
     socketio.emit('onItemRemoved')
 
+@cart_bp.route('/getCartItems')
+def getCartItems():
+    data = getCartData()
+    return render_template('cart.html', data=data)
 
 def getCartData():
     # Fetch cart items as a list of objects
@@ -58,17 +51,6 @@ def getCartData():
         'total_amount' : total_amount,
         'cart_items' : cart_items
     }
-
-
-@cart_bp.route('/getCartItems')
-def getCartItems():
-    # Fetch cart items as a list of objects
-    data = getCartData()
-
-    # Render the Jinja2 template with the cart items
-    rendered_template = render_template('cart.html', data=data)
-    return rendered_template
-
 
 @socketio.on( 'placeOrder' )
 def placeOrder():
