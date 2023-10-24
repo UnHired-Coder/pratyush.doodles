@@ -6,7 +6,7 @@
             <a type="button" class="btn btn-light col mb-2" href="mailto:pratyush.doodles@gmail.com">
                 Write to Us
             </a>
-            <p type="button" class="btn btn-dark">Logout</p>
+            <a type="button" class="btn btn-dark" href="{{ url_for('auth.logout') }}">Logout</a>
         </div>
     </div>
     {% endif %}

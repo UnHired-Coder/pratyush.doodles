@@ -1,9 +1,10 @@
 from flask import render_template, redirect, url_for, session
 from flask import Blueprint
 from flask_dance.contrib.google import make_google_blueprint, google
-from .. import app
+from .. import app, login_manager
 from .. import db
 from ..models.UserModel import User
+from flask_login import login_user, logout_user
 
 
 auth_bp = Blueprint('auth', __name__)
@@ -12,6 +13,10 @@ google_bp = make_google_blueprint(client_id='826108091887-4tj9nulbl2jc879kjor41e
                                    client_secret='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',
                                    redirect_to ='auth.login',
                                    scope=["profile", "email"])
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @auth_bp.route('/login', methods=['GET'])
 def login():
@@ -37,12 +42,12 @@ def login():
         'user': user
     }
 
-    session['user_id'] = user.id
+    login_user(user)
     return render_template('index.html', data=data)
 
 @auth_bp.route('/logout', methods=['GET'])
 def logout():
-    session.pop('user_id')    
+    logout_user()
     return redirect(url_for('home.home'))
 
 

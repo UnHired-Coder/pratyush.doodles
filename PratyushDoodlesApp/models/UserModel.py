@@ -2,8 +2,10 @@ from flask import Flask
 from .. import db
 from ..models.ProductModel import Product
 from datetime import datetime
+from flask_login import UserMixin, LoginManager
 
-class User(db.Model):
+
+class User(db.Model, UserMixin):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
