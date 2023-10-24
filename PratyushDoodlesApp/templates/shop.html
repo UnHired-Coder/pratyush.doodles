@@ -28,7 +28,7 @@
         hoverCards.forEach(function (hoverCard) {
             const productImages = hoverCard.querySelectorAll(".wsk-cp-img");
 
-            let currentIndex = productImages.length-1;
+            let currentIndex = 0;
             let intervalId = null; // Initialize a variable to store the interval ID
 
             // initiallly make last visible
@@ -45,7 +45,7 @@
 
                         intervalId = setInterval(function () {
                             productImages[currentIndex].style.opacity = 0; // Hide the current image
-                            currentIndex = (currentIndex - 1 + productImages.length) % productImages.length; // Cycle through the images
+                            currentIndex = (currentIndex + 1) % productImages.length; // Cycle through the images
                             productImages[currentIndex].style.opacity = 1; // Show the next image
                         }, 1000);
                     }
@@ -56,7 +56,7 @@
 
                         // reset
                         productImages[currentIndex].style.opacity = 0;
-                        productImages[productImages.length-1].style.opacity = 1;
+                        productImages[0].style.opacity = 1;
 
                         clearInterval(intervalId);
                         intervalId = null;
