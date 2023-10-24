@@ -34,16 +34,19 @@
     </div>
 </div>    
 {% else %}
-<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Your Cart is Empty</a>
-    </li>
-</ul>
+<div class="row ml-auto">
+    <p>
+        No items added.
+    </p>
+    <p>
+        Visit <a type="button" class="btn btn-dark" href="{{ url_for('shop.shop') }}"><b>Shop</b></a> to add items.
+    </p>
+</div>
 {% endif %}
 {% else %}
-<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Log-In to access your Cart</a>
-    </li>
-</ul>
-{% endif%} 
+    <div class="row ml-auto">
+        <p>
+            <a type="button" class="btn btn-dark" href="{{ url_for('auth.login') }}"><b>Log-In</b></a> to access your cart
+        </p>
+    </div>
+{% endif%}
