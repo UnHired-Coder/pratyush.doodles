@@ -33,6 +33,8 @@ def add_product():
         product_description = form.description.data
         product_price = form.price.data
         product_stock_quantity = form.stock_quantity.data
+        discount_percent = form.discount_percent.data
+        product_highlight = form.product_highlight.data
 
         # Get the list of image URLs
         image_urls = [url for url in form.images.data.split(',')]
@@ -40,7 +42,7 @@ def add_product():
         # Now you have the product data and the list of image URLs
 
         # Redirect to a success page or perform further actions
-        product = Product(name = product_name, description = product_description, price = product_price, stock_quantity=product_stock_quantity)
+        product = Product(name = product_name, description = product_description, price = product_price, stock_quantity=product_stock_quantity, discount_percent = discount_percent, product_highlight= product_highlight)
         db.session.add(product)
         db.session.flush()
 

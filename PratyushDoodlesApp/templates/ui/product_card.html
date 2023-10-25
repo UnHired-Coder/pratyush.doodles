@@ -2,21 +2,26 @@
     <div class="image-with-menu">
         <div class="product-images">
             {% for product_image in product.product_images %}
-                <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product" />
+            <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product" />
             {% endfor %}
         </div>
         <div class="icon-button">
-            <img class="ic-16 img-responsive" src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product"  />    
+            <img class="ic-16 img-responsive" src="{{ url_for('static', filename='images/ic_share.png') }}"
+                alt="Product" />
         </div>
     </div>
-    <div class="card-header">
+    <div class="card-header pt-2">
         <div class="wcf-left"><span class="product-name">{{ product.name }}</span></div>
-        <div class="wcf-right"> <span class="product-price"> ₹ {{ product.price }}/-</span></div>
+        <div class="wcf-right"> <span class="product-price p-1"> Rs. {{ product.price }}/-</span></div>
+        <div class="wcf-right product-before-discount p-1">
+            <s>{{ product.getDiscount() }}</s> <b class="product-discount"> ({{
+                product.discount_percent }}% off) </b>
+        </div>
     </div>
     <div>
         <div class="card-description">
             <span class="">{{ product.description }}</span>
         </div>
-        <span class="buy-btn"  product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
+        <span class="buy-btn" product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
     </div>
 </div>
