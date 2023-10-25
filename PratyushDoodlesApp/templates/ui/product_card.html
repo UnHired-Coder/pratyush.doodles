@@ -10,18 +10,18 @@
                 alt="Product" />
         </div>
     </div>
+
     <div class="card-header pt-2">
-        <div class="wcf-left"><span class="product-name">{{ product.name }}</span></div>
+        <div class="wcf-left"><span class="product-name p-1">{{ product.name }}</span></div>
         <div class="wcf-right"> <span class="product-price p-1"> Rs. {{ product.price }}/-</span></div>
-        <div class="wcf-right product-before-discount p-1">
-            <s>{{ product.getDiscount() }}</s> <b class="product-discount"> ({{
-                product.discount_percent }}% off) </b>
-        </div>
     </div>
     <div>
-        <div class="card-description">
-            <span class="">{{ product.description }}</span>
-
+        <div class="card-header card-description">
+            <div class="wcf-right product-before-discount p-1">
+                <s>{{ product.getDiscount() }}</s> <b class="product-discount"> ({{
+                    product.discount_percent }}% off) </b>
+            </div>
+            <div class="wcf-left p-1 text-start">{{ product.description }}</div>           
         </div>
         <span class="buy-btn" product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
     </div>

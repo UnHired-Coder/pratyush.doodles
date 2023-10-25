@@ -11,7 +11,7 @@ body {
 .wsk-cp-product {
     margin: 10px;
     height: auto;
-    width: 200px;
+    width: 300px;
     background: #fff;
     padding: 4px;
     border-radius: 6px;
@@ -19,13 +19,13 @@ body {
 }
 
 .product-images {
-    height: 200px;
+    height: 300px;
     width: 100%;
     position: relative;
 }
 
 .wsk-cp-img {
-    height: 200px;
+    height: 300px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -36,12 +36,11 @@ body {
 
 .card-header {
     margin: 1px;
-    border-top: 1px solid #ddd;
 }
 
 .card-header:after{
     content: '';
-    display: table;
+    display: block;
 }
 
 .card-header:after {
@@ -84,7 +83,6 @@ body {
     margin: 1px;
     font-size: 12px;
     width: 100%;
-    text-align: left;
     color: rgb(109, 109, 109);
 }
 
@@ -97,8 +95,8 @@ body {
     transition: all 0.2s ease-in-out;
     border-color: #141414;
     background: #ff9a02;
-    padding: 8px 16px;
-    border-radius: 27px;
+    padding: 8px 36px;
+    border-radius: 6px;
     margin: 0px 2px;
     margin-top: 8px;
     margin-bottom: 4px;
