@@ -12,12 +12,13 @@
         <div class="wcf-left"><span class="product-name">{{ product.name }}</span></div>
         <div class="wcf-right"> <span class="product-price"> Rs. {{ product.price }}/-</span></div>
     </div>
-    <div class="p-1 card-header card-description pb-2">
-        <div class="wcf-right product-before-discount">
-            <s>Rs. {{ product.getDiscount() }}/-</s> <b class="product-discount"> ({{
-                product.discount_percent }}% off) </b>
-        </div>
-        <div class="wcf-left text-start">{{ product.description }}</div>
+    <div class="p-1 card-header pb-2">
+        <span class="wcf-right product-before-discount">
+            <s>Rs. {{ product.getDiscount() }}/-</s> 
+        </span>
+        <div class="wcf-left text-start card-description">{{ product.description }}</div>
+        <div class="wcf-right"><b class="product-discount"> ({{
+            product.discount_percent }}% off) </b></div>
     </div>
-    <span class="buy-btn" product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
+    <span class="buy-btn m-2" product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
 </div>
