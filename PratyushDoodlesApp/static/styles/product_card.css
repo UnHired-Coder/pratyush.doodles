@@ -1,19 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i');
 
-body {
-    background: #ddd;
-}
-
-.shell {
-    padding: 80px 0;
-}
-
 .wsk-cp-product {
     margin: 10px;
     height: auto;
-    width: 300px;
+    width: 100%;
     background: #fff;
-    padding: 4px;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -57,7 +48,7 @@ body {
 
 .product-name {
     font-size: 14px;
-    width: 50%;
+    width: 70%;
     text-align: left;
     font-weight: bold;
     color: rgb(0, 0, 0);
@@ -106,10 +97,6 @@ body {
 .buy-btn:active {
     text-decoration: none;
     color: #000000;
-}
-
-.image-with-menu{
-    position: relative;
 }
 
 .wsk-cp-product:hover .icon-button{
