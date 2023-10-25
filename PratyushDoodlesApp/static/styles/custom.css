@@ -13,6 +13,11 @@ body {
     background-color: white;
 }
 
+.nav-item .active {
+    font-weight: bold;
+    border-bottom: #000 0.5px solid;
+}
+
 /* Pratyush doodles image and icon style */
 .header-item {
     display: flex;
