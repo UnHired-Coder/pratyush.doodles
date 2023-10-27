@@ -56,7 +56,7 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Cart</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <img class="ic-30" data-bs-dismiss="offcanvas" src="{{ url_for('static', filename='images/ic_close.svg') }}">
             </div>
             {% with data=data %}
             <div class="offcanvas-body" id="cart-container">
@@ -70,7 +70,7 @@
             aria-labelledby="offcanvasProfilelabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasProfilelabel">Profile</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <img class="ic-30" data-bs-dismiss="offcanvas" src="{{ url_for('static', filename='images/ic_close.svg') }}">
             </div>
             <div class="offcanvas-body">
                 {% with user = data.user %}
@@ -133,7 +133,7 @@
     navLinks.forEach(link => {
         const linkURL = link.getAttribute('href');
 
-        if(currentURL === '/'){
+        if (currentURL === '/') {
             currentURL = '/shop'
         }
 

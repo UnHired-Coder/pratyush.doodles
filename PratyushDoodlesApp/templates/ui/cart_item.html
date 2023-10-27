@@ -2,16 +2,16 @@
     <div class="col-md-2 col-lg-2 col-xl-2">
         <img src="{{ product.product_images[0].picture_url }}" alt="Product" class="rounded-3 ic-50" />
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-3">
+    <div class="col-md-5 col-lg-5 col-xl-5">
         <h6 class="text-muted">{{ product.name }}</h6>
         <h6 class="text-black mb-0">x {{ cart_item.quantity }}</h6>
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-3 offset-lg-1">
+    <div class="col-md-1 col-lg-1 col-xl-1 offset-lg-1">
         <h6 class="mb-0">₹{{ product.price }}</h6>
     </div>
-    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+    <div class="col-md-2 col-lg-2 col-xl-2 text-end">
         <span class="text-muted" product_id="{{ product.id }}" onclick="removeItemFromCart(this)">
-            <img class="ic-20" src="{{ url_for('static', filename='images/ic_trash.png') }}">
+            <img class="ic-30" src="{{ url_for('static', filename='images/ic_thrash.svg') }}">
         </span>
     </div>
     <hr class="my-4">
