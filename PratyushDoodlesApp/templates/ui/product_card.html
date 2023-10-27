@@ -3,6 +3,7 @@
         {% for product_image in product.product_images %}
         <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product" />
         {% endfor %}
+        <b class="pill wcf-left"> {{product.product_highlight }} </b>
     </div>
     <div class="icon-button p-1">
         <img class="ic-16 img-responsive" src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" />

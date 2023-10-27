@@ -48,9 +48,9 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                        <button id="rzp-pay-button"  style="display:  {% if data.user.address %} block {% else %} none {% endif %};" class="checkout-button">Pay Now</button>
+                        <button id="rzp-pay-button"  style="display:  {% if data.user.address %} block {% else %} none {% endif %};" class="dark-button">Pay Now</button>
                     <a style="display: {% if data.user.address %} none {% else %} block {% endif %}; " href="#shipping-address-container">
-                        <button class="checkout-button-disabled">Pay Now</button>
+                        <button class="dark-button-disabled">Pay Now</button>
                     </a>
                 </div>
             </div>
@@ -63,14 +63,14 @@
             No items added.
         </p>
         <p>
-            Visit <a type="button" class="btn btn-dark" href="{{ url_for('shop.shop') }}"><b>Shop</b></a> to add items.
+            Visit <a type="button" class="dark-button" href="{{ url_for('shop.shop') }}"><b>Shop</b></a> to add items.
         </p>
     </div>
     {% endif %}
     {% else %}
     <div class="row ml-auto">
         <p>
-            <a type="button" class="btn btn-dark" href="{{ url_for('auth.login') }}"><b>Log-In</b></a> to access your cart
+            <a type="button" class="dark-button" href="{{ url_for('auth.login') }}"><b>Log-In</b></a> to access your cart
         </p>
     </div>
     {% endif%}

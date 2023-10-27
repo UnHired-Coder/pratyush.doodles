@@ -26,7 +26,7 @@
                 <div class="col-md-6 justify-content-center">
                     <!-- Checkout Button -->
                     <a href="{{ url_for('checkout.checkout') }}">
-                        <button class="checkout-button">Place order</button>
+                        <button class="dark-button">Place order</button>
                     </a>
                 </div>
             </div>
@@ -39,14 +39,14 @@
         No items added.
     </p>
     <p>
-        Visit <a type="button" class="btn btn-dark" href="{{ url_for('shop.shop') }}"><b>Shop</b></a> to add items.
+        Visit <a type="button" class="dark-button" href="{{ url_for('shop.shop') }}"><b>Shop</b></a> to add items.
     </p>
 </div>
 {% endif %}
 {% else %}
     <div class="row ml-auto">
         <p>
-            <a type="button" class="btn btn-dark" href="{{ url_for('auth.login') }}"><b>Log-In</b></a> to access your cart
+            <a type="button" class="dark-button " href="{{ url_for('auth.login') }}"><b>Log-In</b></a> to access your cart
         </p>
     </div>
 {% endif%}

@@ -93,16 +93,17 @@ class Cart(db.Model):
         self.creation_date = datetime.now().date()
 
     def add_to_cart(self, product_id):
-        cart_item = CartItem.query.filter_by(product_id = product_id).first()
+        cart_item = CartItem.query.filter_by(cart_id = self.id, product_id = product_id).first()
         if cart_item is None:
             cart_item = CartItem(cart_id = self.id, product_id = product_id)
         else :
-            cart_item.update_quantity(delta = +1)
+            cart_item.update_quantity(delta = +1)    
+        
         db.session.add(cart_item)
         db.session.commit()
 
     def remove_from_cart(self, product_id):
-        cart_item = CartItem.query.filter_by(product_id = product_id).first()
+        cart_item = CartItem.query.filter_by(cart_id = self.id, product_id = product_id).first()
         db.session.delete(cart_item)
         db.session.commit()
 

@@ -10,7 +10,7 @@
 
         <div class="navbar-item  ml-10 text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasProfile"
             aria-controls="offcanvasProfile" aria-label="Toggle navigation">
-            <img class="ic-20" src="{{ url_for('static', filename='images/ic_user.png') }}">
+            <img class="ic-40" src="{{ url_for('static', filename='images/ic_user.svg') }}">
             <p>
                 Profile
             </p>
@@ -19,7 +19,7 @@
         {% else %}
         <a class="nav-link ml-10 text-center " href="{{ url_for('auth.login') }}">
             <div class="navbar-item align-center-horizontal" alt="Logo">
-                <img class="ic-20" src="{{ url_for('static', filename='images/ic_user.png') }}">
+                <img class="ic-40" src="{{ url_for('static', filename='images/ic_user.svg') }}">
                 <p>
                     Log-In
                 </p>
@@ -36,7 +36,7 @@
         <span class="row">
             {% if data.user and (data.user.orders|length > 0) %}
             <a href="{{ url_for('home.orders') }}" class="nav-link col text-center mr-5" id="nav-order-button">
-                <img class="ic-20" src="{{ url_for('static', filename='images/ic_order.png') }}">
+                <img class="ic-40" src="{{ url_for('static', filename='images/ic_orders.svg') }}">
                 <p>
                     Orders
                 </p>
@@ -44,7 +44,7 @@
             {% endif %}
             <div class="col navbar-item text-center mr-10" id="nav-cart-button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <img class="ic-20" src="{{ url_for('static', filename='images/ic_cart.png') }}">
+                <img class="ic-40" src="{{ url_for('static', filename='images/ic_cart.svg') }}">
                 <p>
                     Cart
                 </p>

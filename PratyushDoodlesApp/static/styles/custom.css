@@ -121,35 +121,6 @@ input[type="checkbox"] {
     margin-bottom: 10px;
 }
 
-.checkout-button {
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.checkout-button-disabled {
-    background-color: rgb(203, 200, 200);
-    color: rgb(255, 255, 255);
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-.edit-button {
-    color: rgb(2, 2, 2);
-    border: none;
-    padding: 8px 20px;
-    font-size: 12px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
 /* Icons */
 .ic-16 {
     width: 16px;
@@ -165,6 +136,11 @@ input[type="checkbox"] {
 .ic-30 {
     width: 30px;
     height: 30px;
+}
+
+.ic-40 {
+    width: 40px;
+    height: 40px;
 }
 
 .ic-50 {
@@ -190,4 +166,64 @@ input[type="checkbox"] {
 /* Alignments */
 .align-center-horizontal {
     align-items: center;
+}
+
+/* Buttons */
+
+.dark-button {
+    color: white;
+    background: #0D262C;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px 4px 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.dark-button-disabled {
+    color: white;
+    background: #F1F1F1;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px 4px 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.nutral-button {
+    color: white;
+    background: #0D262C;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px 4px 4px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.secondary-button {
+    color: black;
+    background: #F1F1F1;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px 4px 4px;
+    cursor: pointer;
+    border-radius: 5px;
 }

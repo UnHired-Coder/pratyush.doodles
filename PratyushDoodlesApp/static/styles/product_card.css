@@ -85,7 +85,7 @@
     font-size: 12px;
     transition: all 0.2s ease-in-out;
     border-color: #141414;
-    background: #ff9a02;
+    background: #94481A;
     padding: 8px 36px;
     border-radius: 6px;
     margin: 0px 2px;
@@ -96,7 +96,7 @@
 .buy-btn:focus,
 .buy-btn:active {
     text-decoration: none;
-    color: #000000;
+    color: #dbd9d9;
 }
 
 .wsk-cp-product:hover .icon-button{
@@ -117,4 +117,20 @@
 }
 
 
+.pill {
+    display: block;
+    position: relative;
+    top: 90%;
+    width: fit-content;
+    align-items: center;
+    justify-content: left;
+    padding: 2px 10px;
+    margin-left: 5px;
+    border-radius: 100vw;
+    background-color: #0D262C;
+    box-shadow: 0 1px 6px 0 rgb(171, 171, 171);
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+  }
+  
 
