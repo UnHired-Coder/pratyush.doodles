@@ -6,7 +6,7 @@ from ..forms.ShippingAddressForm import ShippingAddressForm
 from .. import socketio
 from ..models.UserModel import Address
 from .. import db
-from flask_wtf import CSRFProtect
+# from flask_wtf import CSRFProtect
 
 checkout_bp = Blueprint('checkout', __name__)
 
@@ -120,6 +120,6 @@ def updateShippingAddress(data):
 
     socketio.emit('addressUpdated')
 
-csrf = CSRFProtect(app)
-csrf.exempt(checkout_bp)
+# csrf = CSRFProtect(app)
+# csrf.exempt(checkout_bp)
 app.register_blueprint(checkout_bp)
