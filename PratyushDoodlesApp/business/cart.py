@@ -1,5 +1,5 @@
 from flask import render_template
-from flask import Blueprint
+from flask import Blueprint, request
 from .. import app, socketio
 from ..models.UserModel import Cart
 from ..models.ProductModel import Product
@@ -8,23 +8,25 @@ from .util import *
 cart_bp = Blueprint('cart', __name__)
 
 
-@socketio.on( 'addItemToCart' )
-def addItemToCart(data):
+@cart_bp.route('/addItemToCart', methods = ['POST'])
+def addItemToCart():
+    data = request.get_json()
     product_id = data.get('product_id')
-
     user = get_current_user()
     if user:
         user.cart.add_to_cart(product_id)   
+ 
+    return {}
 
-    socketio.emit('updateCart')
-
-@socketio.on( 'removeItemFromCart' )
-def removeItemFromCart(data):
+@cart_bp.route('/removeItemFromCart', methods = ['POST'])
+def removeItemFromCart():
+    data = request.get_json()
     product_id = data.get('product_id')
 
     user = get_current_user()
     user.cart.remove_from_cart(product_id)
-    socketio.emit('onItemRemoved')
+
+    return {}
 
 @cart_bp.route('/getCartItems')
 def getCartItems():
@@ -51,18 +53,5 @@ def getCartData():
         'total_amount' : total_amount,
         'cart_items' : cart_items
     }
-
-@socketio.on( 'placeOrder' )
-def placeOrder():
-    user = get_current_user()
-
-    if not user:
-        data = {
-            'show_error': "Please login to access your cart!",
-        }    
-        return render_template('cart.html', data=data)
-    
-        
-
 
 app.register_blueprint(cart_bp)    
