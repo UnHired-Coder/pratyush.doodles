@@ -15,10 +15,7 @@ def addItemToCart():
     user = get_current_user()
     if user:
         user.cart.add_to_cart(product_id)   
-
-    for i in range(1000000):
-        print(0)    
-
+ 
     return {}
 
 '''@socketio.on( 'addItemToCart' )
