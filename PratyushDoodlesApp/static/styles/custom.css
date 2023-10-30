@@ -148,6 +148,11 @@ input[type="checkbox"] {
     height: 50px;
 }
 
+.ic-80 {
+    width: 80px;
+    height: 80px;
+}
+
 .ic-100 {
     width: 100px;
     height: 100px;
