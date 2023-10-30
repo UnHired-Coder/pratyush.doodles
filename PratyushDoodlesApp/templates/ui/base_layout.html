@@ -16,6 +16,7 @@
 </script>
 
 <body>
+    <div class="loading" id="page-loader" style="display: none;"></div>
     {% block body %}
 
     {% endblock body %}
@@ -33,4 +34,29 @@
         
     {% endblock footer %}
 </footer>
+
+<script>
+
+    function showError(error) {
+        var errorUi = document.getElementById('error')
+        errorUi.innerHTML = error
+        errorUi.style.display = 'block'
+
+        setTimeout(function () {
+            errorUi.style.display = "none"; // Hide the element by setting its display property to "none"
+        }, 5000);
+    }
+
+    function showLoader(error) {
+        var loaderUi = document.getElementById('page-loader')
+        loaderUi.style.display = 'block'
+    }
+
+    function hideLoader(error) {
+        var loaderUi = document.getElementById('page-loader')
+        loaderUi.style.display = 'none'
+    }
+
+</script>
+
 </html>
