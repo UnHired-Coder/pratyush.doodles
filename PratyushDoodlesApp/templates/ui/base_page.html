@@ -238,10 +238,6 @@
         updateCart(expandCart = false);
     });
 
-    socket.on('updateCart', updateCart);
-    socket.on('onItemRemoved', function(){
-        onItemRemoved();
-    });
     socket.on('error', function() {
         showError();
     });
