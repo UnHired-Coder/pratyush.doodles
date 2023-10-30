@@ -90,7 +90,7 @@
                 e.preventDefault();
             })
             .catch(error => {
-                console.error('Error:', error);
+                showLoader('Error:', error);
             });
     }
 
@@ -102,7 +102,7 @@
                 cartContainer.innerHTML = data; // Insert the template HTML into the container
             })
             .catch(error => {
-                console.error('Error:', error);
+                showLoader('Error:', error);
             });
     });
 

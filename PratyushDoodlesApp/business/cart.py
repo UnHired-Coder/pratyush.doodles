@@ -1,5 +1,5 @@
 from flask import render_template
-from flask import Blueprint
+from flask import Blueprint, request
 from .. import app, socketio
 from ..models.UserModel import Cart
 from ..models.ProductModel import Product
@@ -8,7 +8,20 @@ from .util import *
 cart_bp = Blueprint('cart', __name__)
 
 
-@socketio.on( 'addItemToCart' )
+@cart_bp.route('/addItemToCart', methods = ['POST'])
+def addItemToCart():
+    data = request.get_json()
+    product_id = data.get('product_id')
+    user = get_current_user()
+    if user:
+        user.cart.add_to_cart(product_id)   
+
+    for i in range(1000000):
+        print(0)    
+
+    return {}
+
+'''@socketio.on( 'addItemToCart' )
 def addItemToCart(data):
     product_id = data.get('product_id')
 
@@ -16,7 +29,7 @@ def addItemToCart(data):
     if user:
         user.cart.add_to_cart(product_id)   
 
-    socketio.emit('updateCart')
+    socketio.emit('updateCart')'''
 
 @socketio.on( 'removeItemFromCart' )
 def removeItemFromCart(data):
