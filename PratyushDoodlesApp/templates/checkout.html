@@ -80,9 +80,11 @@
 <script>
 
     document.getElementById('rzp-pay-button').onclick = function (e) {
+        showLoader();
         fetch('/getOrderOptions')
         .then(response => response.text()) // Get the rendered template as HTML
             .then(data => {
+                hideLoader();
                 var payload = JSON.parse(data)
                 console.log(payload);
                 var rzp1 = new Razorpay(payload);
@@ -90,6 +92,7 @@
                 e.preventDefault();
             })
             .catch(error => {
+                hideLoader();
                 showError('Error:', error);
             });
     }
