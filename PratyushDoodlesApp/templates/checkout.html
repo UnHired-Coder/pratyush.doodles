@@ -107,6 +107,7 @@
     });
 
     function onShippingAddressSaved(event) {
+        showLoader();
         event.preventDefault();
 
         const recipientName = document.getElementById("recipient_name").value;
@@ -128,8 +129,29 @@
             country: country,
             phone_number: phone_number
         };
+        
+        fetch('/updateShippingAddress', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ formData: formData })
+        })
+        .then(response => {
+            console.log(response);
+            response.json()
+        })
+        .then(data => {
+            hideLoader();
+            onAddressUpdated();
+            console.log(data); // Process the response (e.g., cart update)
+        })
+        .catch(error => {
+            hideLoader();
+            showError('Error:', error);
+        });
 
-        socket.emit('updateShippingAddress', { formData: formData });
+        console.log("Event: updateShippingAddress", formData)
     }
 
     function onAddressUpdated() {
@@ -143,8 +165,6 @@
         editAddressField.style.display = 'block'
         editAddressFieldFilled.style.display = 'none'
     }
-
-    socket.on('addressUpdated', onAddressUpdated)
 
 </script>
 {% endblock content %}

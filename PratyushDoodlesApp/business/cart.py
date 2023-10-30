@@ -54,17 +54,4 @@ def getCartData():
         'cart_items' : cart_items
     }
 
-@socketio.on( 'placeOrder' )
-def placeOrder():
-    user = get_current_user()
-
-    if not user:
-        data = {
-            'show_error': "Please login to access your cart!",
-        }    
-        return render_template('cart.html', data=data)
-    
-        
-
-
 app.register_blueprint(cart_bp)    

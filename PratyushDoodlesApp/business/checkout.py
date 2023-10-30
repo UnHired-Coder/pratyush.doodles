@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, jsonify, flash, redirect, url_for
+from flask import render_template, Blueprint, jsonify, flash, redirect, url_for, request
 from .. import app, razorpayClient
 from .util import *
 from .cart import getCartData
@@ -81,8 +81,9 @@ def getShippingAddress():
 
     return render_template('ui/shipping_address.html', data = data)
 
-@socketio.on( 'updateShippingAddress' )
-def updateShippingAddress(data):
+@checkout_bp.route( '/updateShippingAddress', methods=['POST'])
+def updateShippingAddress():
+    data = request.get_json()
     errors = []
     form_data = data.get('formData')
 
@@ -118,7 +119,7 @@ def updateShippingAddress(data):
     user = get_current_user()    
     user.add_or_update_address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, order_id=None)
 
-    socketio.emit('addressUpdated')
+    return {}
 
 # csrf = CSRFProtect(app)
 # csrf.exempt(checkout_bp)
