@@ -28,13 +28,15 @@ def addItemToCart(data):
 
     socketio.emit('updateCart')'''
 
-@socketio.on( 'removeItemFromCart' )
-def removeItemFromCart(data):
+@cart_bp.route('/removeItemFromCart', methods = ['POST'])
+def removeItemFromCart():
+    data = request.get_json()
     product_id = data.get('product_id')
 
     user = get_current_user()
     user.cart.remove_from_cart(product_id)
-    socketio.emit('onItemRemoved')
+
+    return {}
 
 @cart_bp.route('/getCartItems')
 def getCartItems():

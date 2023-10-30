@@ -25,7 +25,7 @@
                 cartContainer.innerHTML = data; // Insert the template HTML into the container
             })
             .catch(error => {
-                showLoader(error)
+                showError(error)
             });
     });
 
