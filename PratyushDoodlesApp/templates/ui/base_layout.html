@@ -14,8 +14,7 @@
 <script>
         const socket = io.connect('http://127.0.0.1:5000'); // Replace with your server's URL
 </script>
-
-<body>
+<body background="{{ url_for('static', filename='images/background_1.svg') }}" style="background-size:cover; background-attachment: fixed;">
     <div class="loading" id="page-loader" style="display: none;"></div>
     {% block body %}
 
