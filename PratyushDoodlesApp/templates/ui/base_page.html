@@ -29,7 +29,7 @@
 
         <div class="header-item">
             <img class="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-            <h1>Mr.praty</h1>
+            <h1>pratyush.doodles</h1>
         </div>
 
         <!-- Cart Button -->
@@ -117,11 +117,14 @@
 </div>
 <p style="display: none;" class="alert alert-warning" role="alert" id="error"></p>
 
-{% block content %}
+<div class="container" style="background-color: white; box-shadow: 0 1px 1px 0 rgba(80, 80, 80, 0.16), 0 0 0 1px rgba(89, 89, 89, 0.08); opacity: 80%;
+height: 900px;  background-repeat: no-repeat; position: relative;">
+    {% block content %}
 
 
 
-{% endblock content %}
+    {% endblock content %}
+</div>
 <script>
     // Get the current URL
     var currentURL = window.location.pathname;
