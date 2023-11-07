@@ -157,7 +157,22 @@ input[type="checkbox"] {
     height: 100px;
 }
 
+.ic-400 {
+    width: 400px;
+    height: 400px;
+}
+
+.ic-500 {
+    width: 500px;
+    height: 500px;
+}
+
 .ic-200 {
+    width: 300px;
+    height: 300px;
+}
+
+.ic-700 {
     width: 700px;
     height: 700px;
 }

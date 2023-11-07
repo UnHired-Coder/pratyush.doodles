@@ -1,20 +1,117 @@
 <!-- about.html -->
 {% extends 'ui/base_page.html' %}
 {% block content %}
-<div class="container text-center">
-    <div class="shell">
-        <div class="row">
-            {% if data.products %}
-            {% for product in data.products %}
-            <div style="width: 250px;">
-                {% with product=product %}
-                {% include 'ui/product_card.html' %}
-                {% endwith %}
+<div class="container text-center pt-5">
+    <div class="row">
+
+        <div class="col-sm d-flex align-items-center justify-content-center">
+            <div class="container">
+                <h2>
+                    Stickers!
+                </h2>
+
+                <p class="pt-4">From funky designs that'll make you smile, to cool artwork that's perfect for expressing
+                    yourself, and romantic elements to share your deepest feelings, our Love & Emotions Sticker
+                    Collection is here to add a dash of emotion to your chats.</p>
+
+                <p>Whether you want to make someone's day, express your affection, or simply brighten up your
+                    conversations, our stickers are designed to do just that. Each sticker is crafted with love and a
+                    touch of creativity, aiming to bring joy to your messaging experience.</p>
+
+                <p>So, go ahead and explore our funky, cool, and romantic stickers. Let them speak when words fall
+                    short, and share the love and emotions that make life beautiful.</p>
+
+                <p>Thank you for choosing our stickers to enhance your messages. We hope they bring a smile to your face
+                    and warmth to your heart.</p>
+
+                <p>Spread the love, one sticker at a time!</p>
+
+
             </div>
-            {% endfor %}
-            {% else %}
-            <p>No products listed!</p>
-            {% endif %}
+        </div>
+        <div class="col-sm">
+            <img class="img-fluid" src="{{ url_for('static', filename='images/about_stickers.png') }}" alt="">
+        </div>
+    </div>
+
+    <div class="row pt-4">
+        <div class="col-sm">
+            <img class="img-fluid ic-500" src="{{ url_for('static', filename='images/about_cards.png') }}" alt="">
+        </div>
+        <div class="col-sm col-sm d-flex align-items-center justify-content-center">
+            <div class="container">
+                <h2>
+                    Cards!
+                </h2>
+                <p class="pt-4">Do you believe in the magic of movies? We sure do! That's why we're thrilled to
+                    introduce our Movie Magic Card Collection – a perfect blend of cards inspired by our favorite movie
+                    scenes, designed to help you express your emotions and affection in the most cinematic way.</p>
+
+                <p>Each card in this collection is a mini-masterpiece, capturing the essence of iconic movie moments and
+                    combining them with heartfelt messages to make your special someone feel like a star. Whether it's a
+                    romantic gesture, a feel-good message, or a heartwarming note, our cards are your ticket to a truly
+                    unforgettable gift.</p>
+
+                <p>With our Movie Magic Card Collection, you can create moments that are straight out of the silver
+                    screen. Let your loved ones know how much they mean to you and make their day a cinematic experience
+                    they'll treasure forever.</p>
+
+                <p>Thank you for choosing our cards to share your affection and emotions. We hope they bring joy,
+                    laughter, and maybe even a few tears of happiness to those you love.</p>
+
+                <p>Share the magic, one card at a time!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col-sm col-sm d-flex align-items-center justify-content-center">
+            <div class="container">
+                <h2>
+                    Ready to place order?
+                </h2>
+                Head over to <a type="button" class="dark-button" href="{{ url_for('shop.shop') }}"><b>Shop</b></a>
+                <p>and order your favourite items!</p>
+            </div>
+        </div>
+        <div class="col-sm">
+            <img class="img-fluid ic-500" src="{{ url_for('static', filename='images/about_gift_pack.png') }}" alt="">
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="d-flex">
+            <div class="container-sm">
+                <h2>
+                    Comics!
+                </h2>
+                <div class="col-sm">
+                    <p class="pt-4">If you're in the mood for a good laugh or a touch of boredom (hey, sometimes that's
+                        fun too!), you're in the right place. Pratyush's Doodles is your one-stop destination for a dose
+                        of humor, witty insights, and a dash of randomness through our comics.</p>
+
+                    <p>From funny anecdotes that'll have you chuckling in no time to the "boring" ones (which we promise
+                        are at least a bit intriguing), we've got a wide range of comics to cater to your every mood.
+                        Our goal is simple: to brighten your day, one comic at a time.</p>
+
+                    <p>So why wait? Come join us on this comic journey, and let's share some smiles together. Just click
+                        below and get ready for a rollercoaster of emotions – from laughter to "hmm, that's
+                        interesting."</p>
+
+                    <p>Thanks for stopping by Pratyush's Doodles. We're excited to have you on board and can't wait to
+                        share our quirky world with you!</p>
+
+                    <p>Keep doodling, keep smiling!</p>
+
+                    <p><a href="https://www.instagram.com/pratyush.doodles/" target="_blank">Visit Pratyush's Doodles on
+                            Instagram</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col-sm">
+            <img class="img-fluid" src="{{ url_for('static', filename='images/about_commics.png') }}" alt="">
         </div>
     </div>
 </div>
