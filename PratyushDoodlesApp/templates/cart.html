@@ -5,7 +5,7 @@
         <a class="nav-link" aria-current="page" href="#">Items {{data.items_count}}</a>
     </li>
 </ul>
-<div class="flex-column mb-8">
+<div class="flex-column pb-8">
     {% for cart_item in data.cart_items %}
         <div id = "cart-item-{{ cart_item.product_id }}">
             {% with cart_item=cart_item, product=cart_item.get_product() %}
