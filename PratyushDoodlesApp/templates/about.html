@@ -4,15 +4,59 @@
 {% block title %}About Us{% endblock %}
 
 {% block content %}
-    <section>
-        <div class="container pt-5 text-center">
-            <h4>About Us</h4>
-            <div class="container-fluid mt-1">
-                <p>Well nothing, I just felt like sharing my random thoughts :)</p>
-            </div>
-            <div class="container-fluid about-page-team">
-                <img class="img-fluid ic-700"  src="{{ url_for('static', filename='images/our_team.svg') }}" alt="">
+<section>
+    <div class="container pt-5 text-center">
+       
+        <div class="container-fluid about-page-team">
+            <img class="img-fluid ic-500" src="{{ url_for('static', filename='images/our_team.png') }}" alt="">
+        </div>
+        <div class="container-fluid mt-5">
+            <p>I wanted to extend my heartfelt thanks to each and every one of you. <br>
+                <br>
+                It's been a fantastic journey sharing my art with you, and your response has been overwhelming. Knowing
+                <br>
+                that my stickers and comics have brought a smile to your faces is the greatest reward I could ask for.
+            </p>
+        </div>
+
+        <h4 class="mt-5">How it started?</h4>
+        <div class="container-fluid about-page-team">
+            <img class="img-fluid ic-300" src="{{ url_for('static', filename='images/about_thinking.png') }}" alt="">
+        </div>
+        <div class="container-fluid mt-5">
+            <p>Well, nothing special 🙄 it all started with random doodles on back side of my diary.</p>
+            <p>I began to doodle simple cartoons, trying to capture moments of office life, like people
+                hard <br> at work, or those joyous cake-cutting celebrations. Each doodle was just a spontaneous, <br>
+                random creation, an escape from the daily routine.</p>
+        </div>
+
+        <div class="container-fluid about-page-team mt-5">
+            <img class="img-fluid ic-300" src="{{ url_for('static', filename='images/about_love_character.png') }}" alt="">
+        </div>
+        <div class="container-fluid mt-5">
+            <p>The surprising part was how much people around me loved these characters. Their reactions mirrored <br>
+                my own feelings.</p>
+        </div>
+
+        <div class="container-fluid about-page-team mt-5">
+            <img class="img-fluid ic-300" src="{{ url_for('static', filename='images/about_i_got_a_plan.png') }}" alt="">
+        </div>
+        <div class="container-fluid mt-5">
+            <p>I couldn't help but think that maybe, just maybe, these lovable characters deserved <br> a
+                place beyond the pages of my diary.</p>
+        </div>
+
+        <div class="row mt-5 mb-5 pt-5 pb-5">
+            <div class="col-sm">
+                <div class="col-sm">
+                    <img class="img-fluid ic-500" src="{{ url_for('static', filename='images/about_stickers.png') }}" alt="">
+                </div>
+                <div class="container">
+                    Buy <a type="button" class="dark-button" href="{{ url_for('shop.shop') }}"><b>Stickers</b></a> now!
+                </div>
             </div>
         </div>
-    </section>
+    
+    </div>
+</section>
 {% endblock %}
