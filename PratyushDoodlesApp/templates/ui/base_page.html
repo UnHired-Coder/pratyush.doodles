@@ -243,6 +243,61 @@
     });
 
 
+    function increaseValue(product_id) {
+        cart_item_quantity = document.getElementById('number-' + product_id);
+       
+        var value = parseInt(cart_item_quantity.value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        cart_item_quantity.value = value;
+
+        fetch('/addItemToCart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ product_id: product_id })
+            })
+            .then(response => {
+                response.json()
+            })
+            .then(data => {
+                console.log(data); // Process the response (e.g., cart update)
+            })
+            .catch(error => {
+                showError('Error:', error);
+        });
+    }
+
+    function decreaseValue(product_id) {
+        cart_item_quantity = document.getElementById('number-' + product_id);
+       
+        var value = parseInt(cart_item_quantity.value, 10);
+        value = isNaN(value) ? 0 : value;
+        value < 1 ? value = 1 : '';
+        value--;
+
+        if(value == 0){
+            updateCart(expandCart = false);
+        } else {
+            cart_item_quantity.value = value;
+        }
+
+        fetch('/reduceItemFromCart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ product_id: product_id })
+            })
+            .then(data => {
+                console.log(data); // Process the response (e.g., cart update)
+            })
+            .catch(error => {
+                showError('Error:', error);
+        });
+    }
+
     function showLoaderOnCart(error) {
         var loaderUi = document.getElementById('cart-loader')
         loaderUi.style.display = 'block'

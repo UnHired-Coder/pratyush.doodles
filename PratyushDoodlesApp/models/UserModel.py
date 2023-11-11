@@ -96,11 +96,22 @@ class Cart(db.Model):
         cart_item = CartItem.query.filter_by(cart_id = self.id, product_id = product_id).first()
         if cart_item is None:
             cart_item = CartItem(cart_id = self.id, product_id = product_id)
+            db.session.add(cart_item)
         else :
             cart_item.update_quantity(delta = +1)    
-        
-        db.session.add(cart_item)
+       
         db.session.commit()
+
+    def reduce_from_cart(self, product_id):
+        cart_item = CartItem.query.filter_by(cart_id = self.id, product_id = product_id).first()
+
+        if cart_item.quantity == 1:
+            self.remove_from_cart(product_id)
+        elif cart_item:
+            cart_item.update_quantity(delta = -1) 
+
+        db.session.commit()
+
 
     def remove_from_cart(self, product_id):
         cart_item = CartItem.query.filter_by(cart_id = self.id, product_id = product_id).first()

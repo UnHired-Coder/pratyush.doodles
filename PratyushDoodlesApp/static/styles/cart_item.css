@@ -1,34 +1,81 @@
 @media (min-width: 1025px) {
     .h-custom {
-    height: 100vh !important;
+        height: 100vh !important;
     }
-    }
-    
-    .card-registration .select-input.form-control[readonly]:not([disabled]) {
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
     font-size: 1rem;
     line-height: 2.15;
     padding-left: .75em;
     padding-right: .75em;
-    }
-    
-    .card-registration .select-arrow {
+}
+
+.card-registration .select-arrow {
     top: 13px;
-    }
-    
-    .bg-grey {
+}
+
+.bg-grey {
     background-color: #eae8e8;
-    }
-    
-    @media (min-width: 992px) {
+}
+
+@media (min-width: 992px) {
     .card-registration-2 .bg-grey {
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
     }
-    }
-    
-    @media (max-width: 991px) {
+}
+
+@media (max-width: 991px) {
     .card-registration-2 .bg-grey {
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
     }
-    }
+}
+
+.value-button {
+    display: inline-block;
+    margin: 0px;
+    width: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background: #eee;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.value-button:hover {
+    cursor: pointer;
+}
+
+form #decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+    margin: 0px;
+    padding: 0px;
+}
+
+.cart-quantity-input {
+    text-align: center;
+    border: none;
+    margin: 0px;
+    width: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
