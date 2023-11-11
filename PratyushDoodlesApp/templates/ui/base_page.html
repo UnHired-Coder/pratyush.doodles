@@ -278,7 +278,9 @@
         value--;
 
         if(value < 1){
-          showLoaderOnCart();
+           showLoaderOnCart();
+        } else {
+           cart_item_quantity.value = value;
         }
 
         fetch('/reduceItemFromCart', {
@@ -292,8 +294,6 @@
                 console.log(data); // Process the response (e.g., cart update)
                 if(value < 1){
                     updateCart(expandCart = false);
-                } else {
-                    cart_item_quantity.value = value;
                 }
             })
             .catch(error => {
