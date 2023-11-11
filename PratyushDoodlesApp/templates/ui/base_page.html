@@ -216,12 +216,12 @@
     }
 
     function updateCart(expandCart = true) {
-        showLoader();
+        showLoaderOnCart();
         return new Promise((resolve, reject) => {
             fetch('/getCartItems')
                 .then(response => response.text()) // Get the rendered template as HTML
                 .then(data => {
-                    hideLoader();
+                    hideLoaderOnCart();
 
                     const cartContainer = document.getElementById('cart-container');
                     cartContainer.innerHTML = data; // Insert the template HTML into the container
@@ -232,7 +232,7 @@
                     }
                 })
                 .catch(error => {
-                    hideLoader();
+                    hideLoaderOnCart();
                     showError(error);
                 });
         });
