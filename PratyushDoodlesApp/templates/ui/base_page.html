@@ -59,6 +59,7 @@
                 <img class="ic-30" data-bs-dismiss="offcanvas" src="{{ url_for('static', filename='images/ic_close.svg') }}">
             </div>
             {% with data=data %}
+            <div class="loading" id="cart-loader" style="display: none;"></div>
             <div class="offcanvas-body" id="cart-container">
                 {% include 'cart.html' %}
             </div>
@@ -149,7 +150,7 @@
 
     function removeItemFromCart(button) {
         // Use the socket variable to interact with the WebSocket connection
-        showLoader();
+        showLoaderOnCart();
         let product_id = $(button).attr('product_id')
         cart_item = document.getElementById('cart-item-' + product_id);
         cart_item.remove();
@@ -166,12 +167,12 @@
             response.json()
         })
         .then(data => {
-            hideLoader();
+            hideLoaderOnCart();
             onItemRemoved();
             console.log(data); // Process the response (e.g., cart update)
         })
         .catch(error => {
-            hideLoader();
+            hideLoaderOnCart();
             showError('Error:', error);
         });
 
@@ -240,6 +241,17 @@
     document.addEventListener("DOMContentLoaded", function (event) {
         updateCart(expandCart = false);
     });
+
+
+    function showLoaderOnCart(error) {
+        var loaderUi = document.getElementById('cart-loader')
+        loaderUi.style.display = 'block'
+    }
+
+    function hideLoaderOnCart(error) {
+        var loaderUi = document.getElementById('cart-loader')
+        loaderUi.style.display = 'none'
+    }
 
 </script>
 {% endblock body %}
