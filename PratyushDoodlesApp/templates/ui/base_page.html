@@ -183,7 +183,7 @@
         if (location.pathname == '/checkout') {
             location.reload()
         }
-        updateCart(toggleCart = false);
+        updateCart({toggleCart : false});
     }
 
     function addItemToCart(button) {
@@ -215,7 +215,7 @@
         console.log("Event: addItemToCart", product_id)
     }
 
-    function updateCart(toggleCart = true, hasLoader = true) {
+    function updateCart({ toggleCart = true, hasLoader = true}={}) {
 
         if(hasLoader){
             showLoaderOnCart();
@@ -243,7 +243,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", function (event) {
-        updateCart(toggleCart = false);
+        updateCart({toggleCart : false});
     });
 
 
@@ -267,7 +267,7 @@
             })
             .then(data => {
                 console.log(data); 
-                updateCart(toggleCart = false, hasLoader = false);
+                updateCart({toggleCart : false, hasLoader : false});
             })
             .catch(error => {
                 showError('Error:', error);
@@ -297,7 +297,7 @@
             })
             .then(data => {
                 console.log(data); 
-                updateCart(toggleCart = false, hasLoader = false);
+                updateCart({toggleCart : false, hasLoader : false});
             })
             .catch(error => {
                 showError('Error:', error);
