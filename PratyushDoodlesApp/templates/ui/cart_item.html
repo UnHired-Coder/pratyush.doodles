@@ -4,12 +4,16 @@
     </div>
     <div class="col-md-5 col-lg-5 col-xl-5">
         <h6 class="text-muted">{{ product.name }}</h6>
+            {% if source=='cart' %}
             <form class="align-items-center justify-content-center mt-2 mb-2">
                 <div class="value-button" id="decrease" onclick="decreaseValue('{{ product.id }}')" value="Decrease Value">-</div>
                 <input type="number" class="cart-quantity-input" id="number-{{ product.id }}" value="{{cart_item.quantity}}"
                     readonly="readonly" />
                 <div class="value-button" id="increase" onclick="increaseValue('{{ product.id }}')" value="Increase Value">+</div>
             </form>
+            {% else %} 
+            x {{cart_item.quantity}}
+            {% endif %} 
         </div>
     <div class="col-md-1 col-lg-1 col-xl-1 offset-lg-1">
         <h6 class="mb-0">₹{{ product.price }}</h6>

@@ -8,7 +8,7 @@
 <div class="flex-column">
     {% for cart_item in data.cart_items %}
         <div id = "cart-item-{{ cart_item.product_id }}">
-            {% with cart_item=cart_item, product=cart_item.get_product() %}
+            {% with cart_item=cart_item, product=cart_item.get_product(), source='cart' %}
                 {% include 'ui/cart_item.html' %}
             {% endwith %}
         </div>
