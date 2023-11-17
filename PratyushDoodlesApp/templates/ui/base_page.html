@@ -314,5 +314,12 @@
         loaderUi.style.display = 'none'
     }
 
+    function copyToClipboard(linkId) {
+      /* Logic to copy the link to the clipboard */
+      var linkInput = document.getElementById(linkId);
+      linkInput.select();
+      document.execCommand("copy");
+    }
+
 </script>
 {% endblock body %}

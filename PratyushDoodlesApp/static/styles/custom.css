@@ -120,6 +120,21 @@ input[type="checkbox"] {
     margin-bottom: 10px;
 }
 
+.link-copy {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 16px;
+}
+
+.popup:hover .link-copy {
+    display: block;
+}
+
 /* Icons */
 .ic-16 {
     width: 16px;
@@ -226,7 +241,7 @@ input[type="checkbox"] {
 
 .nutral-button {
     color: white;
-    background: #0D262C;
+    background: #7b7c7c;
     border: none;
     padding: 8px 16px;
     text-align: center;
