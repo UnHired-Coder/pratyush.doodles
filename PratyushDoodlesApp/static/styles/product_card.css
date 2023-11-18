@@ -12,7 +12,7 @@
 
 .wsk-cp-product:hover{
     transform: scale(1.05);
-    z-index:555555 !important;
+    z-index:1 !important;
 }
 
 .product-images {
