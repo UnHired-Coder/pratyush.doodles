@@ -30,6 +30,9 @@
             let intervalId = null; // Initialize a variable to store the interval ID
 
             // initiallly make last visible
+            for (let i = 1; i < productImages.length; i++) { 
+                productImages[i].style.opacity = 0;
+            }
             productImages[currentIndex].style.opacity = 1;
 
 
