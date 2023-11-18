@@ -36,22 +36,29 @@
             if (productImages.length > 0) {
                 hoverCard.addEventListener("mouseenter", function () {
                     //start
+                    console.log('start', intervalId, currentIndex);
                     if (intervalId === null) {
                         intervalId = setInterval(function () {
                             productImages[currentIndex].style.opacity = 0; // Hide the current image
                             currentIndex = (currentIndex + 1) % productImages.length; // Cycle through the images
                             productImages[currentIndex].style.opacity = 1; // Show the next image
                         }, 1000);
+
+                        console.log('start', intervalId, currentIndex);
+
                     }
                 });
                 hoverCard.addEventListener("mouseleave", function () {
                     //stop
+
+                    console.log('stop', intervalId, currentIndex);
                     if (intervalId !== null) {
                         // reset
+                        clearInterval(intervalId);
+
                         productImages[currentIndex].style.opacity = 0;
                         productImages[0].style.opacity = 1;
 
-                        clearInterval(intervalId);
                         intervalId = null;
                         currentIndex = 0;
                     }
