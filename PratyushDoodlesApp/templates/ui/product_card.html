@@ -12,22 +12,25 @@
     </div>
     <div class="p-1 card-header pb-2">
         <span class="wcf-right product-before-discount">
-            <s>Rs. {{ product.getDiscount() }}/-</s> 
+            <s>Rs. {{ product.getDiscount() }}/-</s>
         </span>
         <div class="wcf-left text-start card-description">{{ product.description }}</div>
         <div class="wcf-right"><b class="product-discount"> ({{
-            product.discount_percent }}% off) </b></div>
+                product.discount_percent }}% off) </b></div>
     </div>
     <span class="buy-btn m-2" product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
 
     <div class="popup">
-        <div class="icon-button p-1">
-            <div class="link-copy">
+        <div class="icon-button col p-1">
+            <div class="link-copy text-start" id="product-share-{{ product.id }}" style="width: 200px;">
                 <p>Copy link to share</p>
-                <input type="text" id="copy-link-{{ product.id }}" class="form-control" value="{{ product.id }} hh h h h h h h h " readonly>
-                <button class="nutral-button" type="button" onclick="copyToClipboard('copy-link-{{ product.id }}')">Copy</button>
+                <input type="text" id="copy-link-{{ product.id }}" class="form-control"
+                    value="{{ product.id }} hh h h h h h h h " readonly>
+                <button class="nutral-button" type="button"
+                    onclick="copyToClipboard('copy-link-{{ product.id }}')">Copy</button>
             </div>
-            <img class="ic-16 img-responsive" src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" />
+            <img class="ic-16 img-responsive" onclick="showShareLink('product-share-{{ product.id }}')"
+                src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" />
         </div>
     </div>
 </div>

@@ -14,7 +14,7 @@
     <div class="col-md-3 col-lg-3 col-xl-3 offset-lg-1">
         <h6 class="mb-2">Amount Paid: ₹{{ order.amount }}</h6>
         <div class="popup">
-            <div class="link-copy">
+            <div class="link-copy" id="tracking-link-share-{{ order.id }}">
                 <p>Use this Consignment Number to track your <a style="text-decoration: none; color: blue; font-weight: bold;"
                         href="https://www.indiapost.gov.in/MBE/Pages/Content/Speed-Post.aspx" target="_blank"> Indian
                         Post</a> Consignment </p>
@@ -22,7 +22,7 @@
                 <button class="nutral-button" type="button" onclick="copyToClipboard('copy-link-{{ order.id }}')">Copy
                     Consignment Number</button>
             </div>
-            <button class="dark-button">Track Order</h6>
+            <button class="dark-button" onclick="showShareLink('tracking-link-share-{{ order.id }}')">Track Order</h6>
         </div>
     </div>
     <hr class="my-4">

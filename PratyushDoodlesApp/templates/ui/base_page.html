@@ -319,7 +319,16 @@
       var linkInput = document.getElementById(linkId);
       linkInput.select();
       document.execCommand("copy");
+      linkInput.parentElement.style.display = 'none';
     }
 
+    function showShareLink(shareButtonId){
+        var linkInput = document.getElementById(shareButtonId);
+        console.log(linkInput);
+        linkInput.style.display = 'block';
+        linkInput.addEventListener('mouseleave', function (){
+            linkInput.style.display = 'none';
+        });
+    }
 </script>
 {% endblock body %}
