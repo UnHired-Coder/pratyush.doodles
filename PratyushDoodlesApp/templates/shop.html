@@ -8,11 +8,11 @@
     <div class="row">
         {% if data.products %}
             {% for product in data.products %}
-            <div style="width: 300px; margin-left: 10px; margin-right: 10px;">
+            <!-- <div style="width: 300px; margin-left: 10px; margin-right: 10px;"> -->
                 {% with product=product %}
                     {% include 'ui/product_card.html' %}
                 {% endwith %}
-            </div>
+            <!-- </div> -->
             {% endfor %}
         {% else %}
             <p>No products listed!</p>
