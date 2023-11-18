@@ -39,6 +39,8 @@
                     console.log('start', intervalId, currentIndex);
                     if (intervalId === null) {
                         intervalId = setInterval(function () {
+                            console.log('start', intervalId, currentIndex);
+
                             productImages[currentIndex].style.opacity = 0; // Hide the current image
                             currentIndex = (currentIndex + 1) % productImages.length; // Cycle through the images
                             productImages[currentIndex].style.opacity = 1; // Show the next image
@@ -51,9 +53,9 @@
                 hoverCard.addEventListener("mouseleave", function () {
                     //stop
 
-                    console.log('stop', intervalId, currentIndex);
                     if (intervalId !== null) {
                         // reset
+                        console.log('stop', intervalId, currentIndex);
                         clearInterval(intervalId);
 
                         productImages[currentIndex].style.opacity = 0;
