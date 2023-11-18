@@ -26,22 +26,21 @@
         hoverCards.forEach(function (hoverCard) {
             const productImages = hoverCard.querySelectorAll(".wsk-cp-img");
 
-            let currentIndex = 0;
+            let currentIndex = -1;
             let intervalId = null; // Initialize a variable to store the interval ID
 
             // initiallly make last visible
-            productImages[currentIndex].style.opacity = 1;
+            productImages[0].style.opacity = 1;
 
 
             if (productImages.length > 0) {
                 hoverCard.addEventListener("mouseenter", function () {
                     //start
-                    console.log('start', intervalId, currentIndex);
+                    console.log('start', intervalId, Math.max(currentIndex - 1, 0));
                     if (intervalId === null) {
                         intervalId = setInterval(function () {
-                            console.log('start', intervalId, currentIndex);
-
-                            productImages[currentIndex].style.opacity = 0; // Hide the current image
+                            console.log('start', intervalId, Math.max(currentIndex - 1, 0));
+                            productImages[Math.max(currentIndex - 1, 0)].style.opacity = 0; // Hide the current image
                             currentIndex = (currentIndex + 1) % productImages.length; // Cycle through the images
                             productImages[currentIndex].style.opacity = 1; // Show the next image
                         }, 1000);
