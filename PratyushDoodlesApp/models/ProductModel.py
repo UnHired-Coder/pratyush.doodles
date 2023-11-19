@@ -11,6 +11,7 @@ class Product(db.Model):
     stock_quantity = db.Column(db.Integer, nullable=False)
     discount_percent = db.Column(db.Integer, nullable=True)
     product_highlight = db.Column(db.String(255), nullable=True)
+    product_category = db.Column(db.String(255), nullable=False)
 
  
     # Relationships
@@ -18,13 +19,14 @@ class Product(db.Model):
     product_images = db.relationship('ProductImage', backref = 'of_product', lazy=True)
 
 
-    def __init__(self, name, description, price, stock_quantity, discount_percent, product_highlight):
+    def __init__(self, name, description, price, stock_quantity, discount_percent, product_highlight, product_category):
         self.name = name
         self.description = description
         self.price = price
         self.stock_quantity = stock_quantity
         self.discount_percent = discount_percent
         self.product_highlight = product_highlight
+        self.product_category = product_category
 
     def getDiscount(self):
         return self.price + ((self.price  *  self.discount_percent)/100)

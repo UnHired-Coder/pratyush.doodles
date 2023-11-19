@@ -16,9 +16,17 @@ def shop():
     user = get_current_user()
     products = Product.query.all()
 
+    product_categories = ['Stickers', 'Movie Cards']
+
+    products_with_categories = {}
+
+    for category in product_categories:
+        product_in_this_category = Product.query.filter_by(product_category = category).all()
+        products_with_categories[category] = product_in_this_category
+
     data = {
         'user': user,
-        'products': products
+        'products_with_categories': products_with_categories
     }
 
     return render_template('shop.html', data = data)
@@ -35,6 +43,7 @@ def add_product():
         product_stock_quantity = form.stock_quantity.data
         discount_percent = form.discount_percent.data
         product_highlight = form.product_highlight.data
+        product_category = form.product_category.data
 
         # Get the list of image URLs
         image_urls = [url for url in form.images.data.split(',')]
@@ -42,7 +51,7 @@ def add_product():
         # Now you have the product data and the list of image URLs
 
         # Redirect to a success page or perform further actions
-        product = Product(name = product_name, description = product_description, price = product_price, stock_quantity=product_stock_quantity, discount_percent = discount_percent, product_highlight= product_highlight)
+        product = Product(name = product_name, description = product_description, price = product_price, stock_quantity=product_stock_quantity, discount_percent = discount_percent, product_highlight= product_highlight, product_category = product_category)
         db.session.add(product)
         db.session.flush()
 

@@ -58,6 +58,13 @@
             {% endfor %}
         </div>
         <div>
+            {{ form.product_category.label }}<br>
+            {{ form.product_category() }}
+            {% for error in form.product_category.errors %}
+                    <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div>
             <input type="submit" value="Add Product">
         </div>
     </form>

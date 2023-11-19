@@ -4,15 +4,20 @@
 {% block content %}
 
 
-<div class="container text-center pt-5 pb-5">
+<div class="container text-center pb-5">
     <div class="row">
-        {% if data.products %}
-            {% for product in data.products %}
-            <!-- <div style="width: 300px; margin-left: 10px; margin-right: 10px;"> -->
-                {% with product=product %}
-                    {% include 'ui/product_card.html' %}
-                {% endwith %}
-            <!-- </div> -->
+        {% if data.products_with_categories %}
+            {% for category, products in data.products_with_categories.items() %}
+                {% if products and products|length > 0 %}
+                    <h4 class="pb-5 pt-5">{{ category }}</h4>
+                    {% for product in products %}
+                    <!-- <div style="width: 300px; margin-left: 10px; margin-right: 10px;"> -->
+                        {% with product=product %}
+                            {% include 'ui/product_card.html' %}
+                        {% endwith %}
+                    <!-- </div> -->
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         {% else %}
             <p>No products listed!</p>
@@ -72,6 +77,8 @@
             }
         });
     }
+
+    
 
     setUpAnimation()
 </script>
