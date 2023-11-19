@@ -16,6 +16,7 @@ logo_url = "https://example.com/your_logo"
 payment_success_callback = "https://pratyushdoodles.pythonanywhere.com/payment_callback"
 
 @checkout_bp.route('/checkout')
+@checkout_bp.route('/checkout/')
 def checkout():
     data = getCartData()
     return render_template('checkout.html', data=data)
@@ -32,7 +33,8 @@ def initiate_payment(amount):
     order_id = order['id']
     return order_id
 
-@checkout_bp.route( '/getOrderOptions' )
+@checkout_bp.route( '/getOrderOptions')
+@checkout_bp.route( '/getOrderOptions/')
 def getOrderOptions():
     data = getCartData()
     if data and data['user']:

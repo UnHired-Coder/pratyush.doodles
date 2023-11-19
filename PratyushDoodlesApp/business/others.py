@@ -8,6 +8,7 @@ from .util import *
 others_bp = Blueprint('others', __name__)
 # Define routes and views for the 'auth' Blueprint
 @others_bp.route('/questions', methods=['GET'])
+@others_bp.route('/questions/', methods=['GET'])
 def questions():
     user = get_current_user()
     data = {
@@ -17,6 +18,7 @@ def questions():
     return render_template('questions.html', data=data)
 
 @others_bp.route('/getFaqs', methods=['GET'])
+@others_bp.route('/getFaqs/', methods=['GET'])
 def getFaqs():
     # Fetch cart items as a list of objects
     faqs = Faq.query.all()
@@ -30,6 +32,7 @@ def getFaqs():
 
 
 @others_bp.route('/contact', methods=['GET'])
+@others_bp.route('/contact/', methods=['GET'])
 def contact():
     user = get_current_user()
     data = {
@@ -39,6 +42,7 @@ def contact():
     return render_template('contact.html', data=data)
 
 @others_bp.route('/about', methods=['GET'])
+@others_bp.route('/about/', methods=['GET'])
 def about():
     user = get_current_user()
     data = {

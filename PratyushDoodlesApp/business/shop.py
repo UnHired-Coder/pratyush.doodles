@@ -12,6 +12,7 @@ shop_bp = Blueprint('shop', __name__)
 # Define routes and views for the 'auth' Blueprint
 @shop_bp.route('/')
 @shop_bp.route('/shop')
+@shop_bp.route('/shop/')
 def shop():
     user = get_current_user()
     products = Product.query.all()
