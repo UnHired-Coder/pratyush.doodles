@@ -1,0 +1,78 @@
+<!-- about.html -->
+{% extends 'ui/base_page.html' %}
+
+{% block content %}
+
+
+<div class="container pt-5 text-center">
+    <h4>{{ data.product.product_category }}</h4>
+
+        {% if data.product %}
+            {% with product=data.product %}
+                {% include 'ui/product_card.html' %}
+            {% endwith %}
+        {% else %}
+            <p>Invalid Link!</p>
+        {% endif %}
+    <div class="container-fluid">
+        <p>Checkout <a type="button" class="dark-button col mb-2" href="{{ url_for('shop.shop') }}">
+                Shop
+            </a>for other stickers</p>
+    </div>
+</div>
+
+<script>
+    function setUpAnimation() {
+        const hoverCards = document.querySelectorAll(".wsk-cp-product"); // Replace "hover-card" with the actual ID or class of your card
+        hoverCards.forEach(function (hoverCard) {
+            const productImages = hoverCard.querySelectorAll(".wsk-cp-img");
+
+            let currentIndex = 0;
+            let intervalId = null; // Initialize a variable to store the interval ID
+
+            // initiallly make last visible
+            for (let i = 1; i < productImages.length; i++) { 
+                productImages[i].style.opacity = 0;
+            }
+            productImages[currentIndex].style.opacity = 1;
+
+
+            if (productImages.length > 0) {
+                hoverCard.addEventListener("mouseenter", function () {
+                    //start
+                    console.log('start', intervalId, currentIndex);
+                    if (intervalId === null) {
+                        intervalId = setInterval(function () {
+                            console.log('start', intervalId, currentIndex);
+
+                            productImages[currentIndex].style.opacity = 0; // Hide the current image
+                            currentIndex = (currentIndex + 1) % productImages.length; // Cycle through the images
+                            productImages[currentIndex].style.opacity = 1; // Show the next image
+                        }, 1000);
+
+                        console.log('start', intervalId, currentIndex);
+
+                    }
+                });
+                hoverCard.addEventListener("mouseleave", function () {
+                    //stop
+
+                    if (intervalId !== null) {
+                        // reset
+                        console.log('stop', intervalId, currentIndex);
+                        clearInterval(intervalId);
+
+
+                        productImages[currentIndex].style.opacity = 0;
+                        productImages[0].style.opacity = 1;
+
+                        intervalId = null;
+                        currentIndex = 0;
+                    }
+                });
+            }
+        });
+    }    
+    setUpAnimation()
+</script>
+{% endblock %}

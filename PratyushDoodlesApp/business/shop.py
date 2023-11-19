@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash, Blueprint
+from flask import Flask, render_template, request, redirect, url_for, flash, Blueprint
 from .. import app, socketio
 from ..forms.AddItemForm import ProductForm
 from ..models.UserModel import User
@@ -15,6 +15,19 @@ shop_bp = Blueprint('shop', __name__)
 def shop():
     user = get_current_user()
     products = Product.query.all()
+   
+    # If it's a single product to show
+    product_id = request.args.get('product_id')
+    if product_id:
+        product = Product.query.filter_by(id = product_id).first()
+
+        data = {
+            'user': user,
+            'product': product
+        }
+
+        return render_template('shop_product.html', data = data)
+
 
     product_categories = ['Stickers', 'Movie Cards']
 
