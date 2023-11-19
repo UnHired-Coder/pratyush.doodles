@@ -29,7 +29,7 @@
                 <button class="nutral-button" type="button"
                     onclick="copyToClipboard('copy-link-{{ product.id }}')">Copy</button>
             </div>
-            <img class="ic-16 img-responsive" onclick="showShareLink('product-share-{{ product.id }}')"
+            <img class="ic-16 img-responsive" onclick="showShareLink(this, 'product-share-{{ product.id }}')"
                 src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" />
         </div>
     </div>

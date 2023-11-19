@@ -322,12 +322,14 @@
       linkInput.parentElement.style.display = 'none';
     }
 
-    function showShareLink(shareButtonId){
+    function showShareLink(shareButton, shareButtonId){
         var linkInput = document.getElementById(shareButtonId);
         console.log(linkInput);
         linkInput.style.display = 'block';
         linkInput.addEventListener('mouseleave', function (){
             linkInput.style.display = 'none';
+            linkInput.style.left = shareButton.style.left;
+            linkInput.style.top = shareButton.style.bottom + 200;
         });
     }
 </script>
