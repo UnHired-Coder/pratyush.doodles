@@ -21,11 +21,11 @@ body {
 /* Pratyush doodles image and icon style */
 .header-logo {
     display: flex;
-    align-items: flex-end;
+    align-items: first baseline;
 }
 
 .header-logo img {
-    width: 80px;
+    width: auto;
     height: 80px;
 }
 
