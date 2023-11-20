@@ -27,10 +27,14 @@
         </a>
         {% endif %}
 
-        <div class="header-item">
-            <img class="header-logo" src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
-            <h1>pratyush.doodles</h1>
-        </div>
+        <div class="row header-logo">
+            <div class="col-md-3">
+              <img src="{{ url_for('static', filename='images/logo.png') }}"></img>
+            </div>
+            <div class="col-md-3">
+                <div class="d-flex col"><h1 class="header-logo-title">Sticky</h1><h1 style="color: #0097B2;" class="header-logo-title">him</h1></div>
+            </div>
+          </div>
 
         <!-- Cart Button -->
         <span class="row">
