@@ -8,7 +8,23 @@
     <div class="container pt-5 text-center">
         <h4 class="mb-5">About</h4>
 
-        <div class="container-fluid about-page-team">
+        <div class="row">
+            <div class="col-sm d-flex align-items-center">
+                <div class="container">
+                    <p>I wanted to extend my heartfelt thanks <br> to each and every one of you. <br>
+                        <br>
+                        It's been a fantastic journey sharing my art with you, and <br>
+                        your response has been overwhelming. Knowing that my stickers <br>
+                        and comics have brought a smile to your faces :).
+                    </p>
+                </div>
+            </div>
+            <div class="col-sm">
+                <img class="img-fluid ic-200" src="{{ url_for('static', filename='images/about_love.png') }}" alt="">
+            </div>
+        </div>
+
+        <!-- <div class="container-fluid about-page-team">
             <img class="img-fluid ic-200" src="{{ url_for('static', filename='images/about_love.png') }}" alt="">
         </div>
 
@@ -18,10 +34,28 @@
                 It's been a fantastic journey sharing my art with you, and your response has been overwhelming.
                 <br> Knowing that my stickers and comics have brought a smile to your faces :).
             </p>
+        </div> -->
+
+        <div class="row mt-5 mb-5">
+            <div class="col-sm">
+                <img class="img-fluid ic-200" src="{{ url_for('static', filename='images/about_thinking.png') }}"
+                    alt="">
+            </div>
+            <div class="col-sm d-flex align-items-center">
+                <div class="container">
+                    <h4 class="mb-5">How it started?</h4>
+
+                    <p>Well, nothing special 🙄 it all started with <br> randomm doodles on back side of my diary.</p>
+                    <p>I began to doodle simple cartoons, trying to capture
+                        moments <br> of office life, like people hard at work, or
+                        those <br> joyous cake-cutting celebrations. Each doodle
+                        was just <br> a spontaneous, random creation, an escape from
+                        the <br> daily routine.</p>
+                </div>
+            </div>
         </div>
 
-        <h4 class="mt-5">How it started?</h4>
-        <div class="container-fluid about-page-team">
+        <!-- <div class="container-fluid about-page-team">
             <img class="img-fluid ic-200" src="{{ url_for('static', filename='images/about_thinking.png') }}" alt="">
         </div>
         <div class="container-fluid mt-5">
@@ -29,35 +63,51 @@
             <p>I began to doodle simple cartoons, trying to capture moments of office life, like people
                 hard <br> at work, or those joyous cake-cutting celebrations. Each doodle was just a spontaneous, <br>
                 random creation, an escape from the daily routine.</p>
+        </div> -->
+
+        <div class="row mt-5">
+            <div class="col-sm d-flex align-items-center">
+                <div class="container">
+                    <p>The surprising part was how much people around <br> me loved these characters. Their reactions
+                        mirrored <br>
+                        my own feelings.</p>
+                </div>
+            </div>
+            <div class="col-sm">
+                <img class="img-fluid ic-200" src="{{ url_for('static', filename='images/about_love_character.png') }}"
+                    alt="">
+            </div>
         </div>
 
-        <div class="container-fluid about-page-team mt-5">
+        <!-- <div class="container-fluid about-page-team mt-5">
             <img class="img-fluid ic-200" src="{{ url_for('static', filename='images/about_love_character.png') }}" alt="">
         </div>
         <div class="container-fluid mt-5">
             <p>The surprising part was how much people around me loved these characters. Their reactions mirrored <br>
                 my own feelings.</p>
-        </div>
+        </div> -->
 
         <div class="container-fluid about-page-team mt-5">
-            <img class="img-fluid ic-300" src="{{ url_for('static', filename='images/about_i_got_a_plan.png') }}" alt="">
+            <img class="img-fluid ic-300" src="{{ url_for('static', filename='images/about_i_got_a_plan.png') }}"
+                alt="">
         </div>
         <div class="container-fluid mt-5">
-            <p>I couldn't help but think that maybe, just maybe, these lovable characters deserved <br> a
-                place beyond the pages of my diary.</p>
+            <p>I couldn't help but think that maybe, just maybe, these <br>lovable characters deserved a
+                place beyond <br> the pages of my diary.</p>
         </div>
 
         <div class="row mt-5 pt-5 pb-5">
             <div class="col-sm">
                 <div class="col-sm">
-                    <img class="img-fluid ic-500" src="{{ url_for('static', filename='images/about_stickers.png') }}" alt="">
+                    <img class="img-fluid ic-500" src="{{ url_for('static', filename='images/about_stickers.png') }}"
+                        alt="">
                 </div>
                 <div class="container">
                     Buy <a type="button" class="dark-button" href="{{ url_for('shop.shop') }}"><b>Stickers</b></a> now!
                 </div>
             </div>
         </div>
-    
+
     </div>
 </section>
 {% endblock %}
