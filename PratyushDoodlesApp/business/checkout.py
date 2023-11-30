@@ -13,7 +13,7 @@ checkout_bp = Blueprint('checkout', __name__)
 currency = 'INR'
 shipping_charges = 30
 logo_url = "https://example.com/your_logo"
-payment_success_callback = "https://pratyushdoodles.pythonanywhere.com/payment_callback"
+payment_success_callback = "https://stickyshape.pythonanywhere.com/payment_callback"
 
 @checkout_bp.route('/checkout')
 @checkout_bp.route('/checkout/')
