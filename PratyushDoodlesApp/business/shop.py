@@ -100,7 +100,7 @@ def add_afqs():
     faq = Faq(question="What if my stickers arrive damaged?", answer="We take great care in packaging your stickers to ensure they arrive in excellent condition. If, however, your stickers are damaged during transit, please contact us at pratyush.doodles@gmail.com with a photo of the damaged items, and we'll assist you accordingly.")
     db.session.add(faq)
 
-    faq = Faq(question="Can I get a refund for my purchase?", answer="We process refunds in cases of damaged or defective stickers. Please contact us at pratyush.doodles@gmail.com with details and photos, and we'll initiate the refund process.")
+    faq = Faq(question="Can I get a refund for my purchase?", answer="We process refunds in cases of damaged or defective stickers. Please contact us at stickyshapestore@gmail.com with details and photos, and we'll initiate the refund process.")
     db.session.add(faq)
 
     faq = Faq(question="What kind of quality can I expect from your stickers?", answer="Our stickers are crafted with care on high-quality glossy paper. They are designed to be durable, vibrant, and long-lasting.")
