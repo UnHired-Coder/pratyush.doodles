@@ -9,7 +9,7 @@
         {% if data.products_with_categories %}
             {% for category, products in data.products_with_categories.items() %}
                 {% if products and products|length > 0 %}
-                    <h4 class="pb-5 pt-5">{{ category }}</h4>
+                    <h4 class="pb-5 pt-5" id="{{ category }}">{{ category }}</h4>
                     {% for product in products %}
                     <!-- <div style="width: 300px; margin-left: 10px; margin-right: 10px;"> -->
                         {% with product=product %}
