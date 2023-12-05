@@ -51,4 +51,42 @@ def about():
 
     return render_template('about.html', data=data)
 
+@others_bp.route('/privacypolicy', methods=['GET'])
+@others_bp.route('/privacypolicy/', methods=['GET'])
+def privacypolicy():
+    user = get_current_user()
+    data = {
+            'user': user
+    }
+
+    return render_template('policies/privacypolicy.html', data=data)    
+
+
+@others_bp.route('/termsandconditions', methods=['GET'])
+@others_bp.route('/termsandconditions/', methods=['GET'])
+def termsandconditions():
+    user = get_current_user()
+    data = {
+            'user': user
+    }
+
+    return render_template('policies/termsandconditions.html', data=data)    
+
+
+@others_bp.route('/cancellationpolicy', methods=['GET'])
+@others_bp.route('/cancellationpolicy/', methods=['GET'])
+def cancellationpolicy():
+    user = get_current_user()
+    data = {
+            'user': user
+    }
+
+    return render_template('policies/cancellationpolicy.html', data=data)    
+
+
+@others_bp.route('/pricing', methods=['GET'])
+@others_bp.route('/pricing/', methods=['GET'])
+def pricing():
+    return render_template('policies/pricing.html')    
+
 app.register_blueprint(others_bp)
