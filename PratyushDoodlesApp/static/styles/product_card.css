@@ -112,6 +112,7 @@
 .buy-btn:active {
     text-decoration: none;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .wsk-cp-product:hover .icon-button{
