@@ -97,11 +97,11 @@
     display: inline-block;
     color: #fefefe;
     text-align: left;
-    font-size: 12px;
+    font-size: 16px;
     transition: all 0.2s ease-in-out;
     border-color: #141414;
     background: #efb48f;
-    padding: 8px 36px;
+    padding: 5px 36px;
     border-radius: 6px;
     margin: 0px 2px;
     margin-top: 8px;
