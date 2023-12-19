@@ -100,7 +100,7 @@
     font-size: 12px;
     transition: all 0.2s ease-in-out;
     border-color: #141414;
-    background: #94481A;
+    background: #efb48f;
     padding: 8px 36px;
     border-radius: 6px;
     margin: 0px 2px;
@@ -111,7 +111,7 @@
 .buy-btn:focus,
 .buy-btn:active {
     text-decoration: none;
-    color: #dbd9d9;
+    color: #ffffff;
 }
 
 .wsk-cp-product:hover .icon-button{
