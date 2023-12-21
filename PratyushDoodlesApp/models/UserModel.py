@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(255), nullable=False)
     phone_number = db.Column(db.String(15), unique=True, nullable=True)
     email = db.Column(db.String(255), nullable=False)
+    is_authenticated = False
+
 
     # Relationships
     # 1:1
@@ -24,9 +26,10 @@ class User(db.Model, UserMixin):
     # 1:M
     orders = db.relationship('Order', backref='of_user', lazy=True)
 
-    def __init__(self, name, email):
+    def __init__(self, name, email, guest_user=False):
         self.name = name
         self.email = email
+        self.is_authenticated = not guest_user
         self.initialize_cart()
 
     def initialize_cart(self):

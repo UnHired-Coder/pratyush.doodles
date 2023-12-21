@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
         <!--  Login Button -->
-        {% if data.user %}
+        {% if data.user.is_authenticated %}
 
 
         <div class="navbar-item  ml-10 text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasProfile"
@@ -40,7 +40,7 @@
 
         <!-- Cart Button -->
         <span class="row">
-            {% if data.user and (data.user.orders|length > 0) %}
+            {% if data.user.is_authenticated and (data.user.orders|length > 0) %}
             <a href="{{ url_for('home.orders') }}" class="nav-link col text-center mr-5" id="nav-order-button">
                 <img class="ic-40" src="{{ url_for('static', filename='images/ic_orders.svg') }}">
                 <p>
@@ -90,7 +90,7 @@
 
 
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid" style="background-color: #fff5ddc0;">
+    <div class="container-fluid" style="background-color: #fff5dd00;">
 
         <!-- If not enough space this menu will be visible -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

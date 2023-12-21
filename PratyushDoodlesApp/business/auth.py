@@ -42,7 +42,7 @@ def login():
         'user': user
     }
 
-    login_user(user)
+    login_user(user, remember = True)
     return render_template('index.html', data=data)
 
 @auth_bp.route('/logout', methods=['GET'])
