@@ -203,7 +203,7 @@ class Order(db.Model):
         self.order_items = order_items
         self.order_date = datetime.now().date()
         self.amount = amount
-        self.status = "Dispatched"
+        self.status = "Order Placed"
 
     def cancel_order(self):
         pass    
