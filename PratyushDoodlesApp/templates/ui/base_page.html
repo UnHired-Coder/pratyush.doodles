@@ -48,9 +48,11 @@
                 </p>
             </a>
             {% endif %}
-            <div class="col navbar-item text-center mr-10" id="nav-cart-button" data-bs-toggle="offcanvas"
+
+            <div class="col navbar-item text-center mr-10 cart-button" id="nav-cart-button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <img class="ic-40" src="{{ url_for('static', filename='images/ic_cart.svg') }}">
+                <span class="cart-items-count">{{ data.user.count_items_in_cart }}</span>
                 <p>
                     Cart
                 </p>
@@ -227,6 +229,8 @@
             showLoaderOnCart();
         }
 
+        updateCartItemsCount()  
+
         return new Promise((resolve, reject) => {
             fetch('/getCartItems')
                 .then(response => response.text()) // Get the rendered template as HTML
@@ -246,6 +250,23 @@
                     showError(error);
                 });
         });
+    }
+
+    function updateCartItemsCount() {
+            return new Promise((resolve, reject) => {
+                fetch('/getCartItemsCount')
+                    .then(response => response.text()) // Get the rendered template as HTML
+                    .then(data => {
+                        var cartItemsCount = document.getElementsByClassName('cart-items-count');
+                        for (let i = 0; i < cartItemsCount.length; i++) {
+                            cartItemsCount[i].innerText = data;
+                            cartItemsCount[i].innerHTML = data;
+                        }
+                    })
+                    .catch(error => {
+                        showError(error);
+                    });
+            });
     }
 
     document.addEventListener("DOMContentLoaded", function (event) {

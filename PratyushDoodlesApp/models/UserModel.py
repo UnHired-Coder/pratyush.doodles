@@ -100,6 +100,13 @@ class User(db.Model, UserMixin):
         pass    
 
     @property
+    def count_items_in_cart(self):
+        count = 0
+        for item in self.cart.cart_items:
+            count += item.quantity
+        return count
+
+    @property
     def is_authenticated(self):
         # Return True if the user is authenticated, False otherwise
         if(self.email == 'guest@guest.com'):

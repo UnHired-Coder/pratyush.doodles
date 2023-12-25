@@ -38,6 +38,11 @@ def removeItemFromCart():
 
     return {}
 
+@cart_bp.route('/getCartItemsCount')
+def getCartItemsCount():
+    data = getCartData()
+    return str(data['items_count'])
+
 @cart_bp.route('/getCartItems')
 def getCartItems():
     data = getCartData()
