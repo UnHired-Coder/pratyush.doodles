@@ -5,7 +5,7 @@
     <div class="container-fluid">
 
         <!--  Login Button -->
-        {% if data.user.is_authenticated %}
+        {% if  current_user.is_authenticated %}
 
 
         <div class="navbar-item  ml-10 text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasProfile"

@@ -13,7 +13,6 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(255), nullable=False)
     phone_number = db.Column(db.String(15), unique=True, nullable=True)
     email = db.Column(db.String(255), nullable=False)
-    is_authenticated = False
 
 
     # Relationships
@@ -29,13 +28,38 @@ class User(db.Model, UserMixin):
     def __init__(self, name, email, guest_user=False):
         self.name = name
         self.email = email
-        self.is_authenticated = not guest_user
         self.initialize_cart()
 
     def initialize_cart(self):
         db.session.add(self)
         db.session.flush()
         self.cart = Cart(self.id)
+        db.session.commit()
+
+    def merge_with_guest_user(self, guest_user):
+
+        if guest_user.phone_number:
+            self.phone_number = guest_user.phone_number
+            guest_user.phone_number = -1 * guest_user.phone_number
+
+        #Guest user address is now my address
+        if guest_user.address:
+            guest_user.address.user_id = self.id
+
+        #Guest user cart is now my cart
+        if guest_user.cart:
+            for cart_item in guest_user.cart.cart_items:
+                cart_item.cart_id = self.cart.id
+            # Remove Guest User's cart
+            Cart.query.filter_by(id=guest_user.cart.id).delete()    
+
+        # Remove Guest User
+        User.query.filter_by(id=guest_user.id).delete()    
+
+        #Guest user orders are now my orders
+        for order in guest_user.orders:
+            order.user_id = self.id
+
         db.session.commit()
 
     def add_or_update_address(self, recipient_name, addressLine1, city, state, country, pincode, phone_number, order_id=None, addressLine2=None):
@@ -57,6 +81,7 @@ class User(db.Model, UserMixin):
             db.session.add(updated_address)
 
         self.address = updated_address
+        self.phone_number = updated_address.phone_number
         db.session.commit()
 
     def place_order(self):
@@ -73,6 +98,30 @@ class User(db.Model, UserMixin):
 
     def logout(self):
         pass    
+
+    @property
+    def is_authenticated(self):
+        # Return True if the user is authenticated, False otherwise
+        if(self.email == 'guest@guest.com'):
+            return False
+        return True  # You can implement your own logic here
+
+    @property
+    def is_active(self):
+        # Return True if the user is active, False otherwise
+        return True  # You can implement your own logic here
+
+    @property
+    def is_anonymous(self):
+        # Return True if the user is anonymous, False otherwise
+        if(self.email == None):
+            return True
+        return False
+
+    def get_id(self):
+        # Return a unique identifier for the user
+        return str(self.id)
+
 
     def __repr__(self):
         return f'<User {self.email}>'

@@ -5,6 +5,8 @@ from .. import app, login_manager
 from .. import db
 from ..models.UserModel import User
 from flask_login import login_user, logout_user
+from .util import *
+from oauthlib.oauth2.rfc6749.errors import InvalidGrantError, TokenExpiredError
 
 
 auth_bp = Blueprint('auth', __name__)
@@ -22,11 +24,12 @@ def load_user(user_id):
 def login():
     if not google.authorized:
         return redirect(url_for('google.login'))
-    resp = google.get('/oauth2/v2/userinfo')
 
-    if not (resp.ok and resp.text):
-        socketio.emit('error', 'Something went wrong, try again.')
-        return render_template('index.html', data={})
+    try:
+        resp = google.get('/oauth2/v2/userinfo')
+        assert resp.ok, resp.text
+    except (InvalidGrantError, TokenExpiredError) as e:  # or maybe any OAuth2Error
+        return redirect(url_for("google.login"))
 
     userdata = resp.json()
     user_email = userdata['email']
@@ -38,12 +41,22 @@ def login():
         db.session.add(user)
         db.session.commit()
 
+    current_user = get_current_user()
+    user.merge_with_guest_user(current_user)
+
+    logout_user()
+    login_user(user)
     data = {
         'user': user
     }
-
-    login_user(user, remember = True)
     return render_template('index.html', data=data)
+
+@login_manager.user_loader
+def load_user(user_id):
+    user = User.query.filter_by(id = int(user_id)).first()
+    if not user:
+        return None
+    return user
 
 @auth_bp.route('/logout', methods=['GET'])
 def logout():
