@@ -101,3 +101,17 @@ input[type=number]::-webkit-outer-spin-button {
     }
   }
 
+
+.note-light {
+    background-color: #fff8de;
+    border: none;
+    color: black;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    margin: 2px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+}
