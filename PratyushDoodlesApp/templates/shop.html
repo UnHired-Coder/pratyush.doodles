@@ -5,7 +5,7 @@
 
 
 <div class="container text-center pb-5">
-    <div class="row">
+    <div class="row  justify-content-center mx-auto">
         {% if data.products_with_categories %}
             {% for category, products in data.products_with_categories.items() %}
                 {% if products and products|length > 0 %}

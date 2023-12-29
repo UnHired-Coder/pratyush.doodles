@@ -9,6 +9,12 @@ body {
     padding: 0;
 }
 
+@media (max-width: 800px) {
+    body {
+        background: white;
+    }
+}
+
 .navbar {
     background-color: transparent;
 }
