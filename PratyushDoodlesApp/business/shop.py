@@ -30,7 +30,8 @@ def shop():
         return render_template('shop_product.html', data = data)
 
 
-    product_categories = ['Stickers', 'Movie Cards']
+    product_categories = ['Stickers']
+    # product_categories = ['Stickers', 'Movie Cards']
 
     products_with_categories = {}
 
