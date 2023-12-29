@@ -48,10 +48,28 @@
                         <hr class="my-4">
                         Total Payable: ₹{{ data.total_amount + 30 }}/-
                     </div>
-                        <button id="rzp-pay-button"  style="display:  {% if data.user.address %} block {% else %} none {% endif %};" class="dark-button">Pay Now</button>
-                    <a style="display: {% if data.user.address %} none {% else %} block {% endif %}; " href="#shipping-address-container">
-                        <button class="dark-button-disabled">Pay Now</button>
-                    </a>
+                        {% if (3 - data.items_count) > 0 %}
+                        <span class="col text-center">
+                            <p class="align-middle note-light">
+                                Add minimum <b>3 items</b> to place order.
+                            </p>
+                        </span>
+                        
+                        <a href="url_for('home.shop')">
+                            <button class="dark-button">Go to Shop</button>
+                        </a>
+
+                        <a style="display: {% if data.user.address %} none {% else %} block {% endif %}; " href="#shipping-address-container">
+                            <button class="dark-button-disabled">Pay Now</button>
+                        </a>
+                        
+                        {% else %}
+                        <button id="rzp-pay-button" style="display:  {% if data.user.address %} block {% else %} none {% endif %};"
+                            class="dark-button">Pay Now</button>
+                        <a style="display: {% if data.user.address %} none {% else %} block {% endif %}; " href="#shipping-address-container">
+                            <button class="dark-button-disabled">Pay Now</button>
+                        </a>
+                        {% endif %}
                 </div>
             </div>
         </div>

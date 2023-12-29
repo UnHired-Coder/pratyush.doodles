@@ -37,13 +37,15 @@
                 </span>
                 <span class="col text-center">
                     <!-- Checkout Button -->
-                    <a class="align-middle" href="{{ url_for('checkout.checkout') }}">
+                    
                         {% if (3 - data.items_count) > 0 %}
-                            <button class="dark-button-disabled">Pay Now</button>
+                            <button class="dark-button-disabled">Place Order</button>
                         {% else %}
-                            <button class="dark-button">Place order</button>
+                        <a class="align-middle" href="{{ url_for('checkout.checkout') }}">
+                            <button class="dark-button">Place Order</button>
+                        </a>
                         {% endif %}
-                    </a>
+                    
                 </span>
             </div>
         </div>
