@@ -11,8 +11,8 @@ def create_app():
 
     app.secret_key = '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'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-    app.config['RAZORPAY_KEY_ID'] = 'rzp_test_pBGz3nCo6Asyiq'
-    app.config['RAZORPAY_KEY_SECRET'] = 'JVVbDNubSXm0gWOF8WP1Hf4d'
+    app.config['RAZORPAY_KEY_ID'] = 'rzp_live_iTOaD3Yk22nsGw'
+    app.config['RAZORPAY_KEY_SECRET'] = 'slVy5AwVnKx7fdDopZCYNsRL'
 
     return app
 
