@@ -47,8 +47,8 @@ def getOrderOptions():
                     "key": app.config['RAZORPAY_KEY_ID'], 
                     "amount": amount_payable_in_paise, 
                     "currency": currency,
-                    "name": "Pratyush Doodles",
-                    "description": "This is sample transaction",
+                    "name": "Sticky Shape",
+                    "description": "Paying StickyShape.com",
                     "image": logo_url,
                     "order_id": order_id, 
                     "callback_url": payment_success_callback,
@@ -58,7 +58,7 @@ def getOrderOptions():
                         "contact": user.phone_number
                     },
                     "notes": {
-                        "address": "This payment is going to Pratyush Doodles"
+                        "address": "This payment is going to StickyShape.com"
                     },
                     "theme": {
                         "color": "#3399cc"
