@@ -47,7 +47,7 @@ def getOrderOptions():
                     "key": app.config['RAZORPAY_KEY_ID'], 
                     "amount": amount_payable_in_paise, 
                     "currency": currency,
-                    "name": "Sticky Shape",
+                    "name": "StickyShape.com",
                     "description": "Paying StickyShape.com",
                     "image": logo_url,
                     "order_id": order_id, 
