@@ -1,4 +1,4 @@
-<div class="wsk-cp-product" style="width: 300px;">
+<div class="wsk-cp-product" style="width: 300px; padding: 0px;">
     <div class="product-images">
         {% for product_image in product.product_images %}
         <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product" />
@@ -6,6 +6,7 @@
         <b class="pill wcf-left"> {{product.product_highlight }} </b>
     </div>
 
+   <div style="padding-left: 6px; padding-right: 6px;">
     <div class="card-header p-1">
         <div class="wcf-left"><span class="product-name">{{ product.name }}</span></div>
         <div class="wcf-right"> <span class="product-price"> Rs. {{ product.price }}/-</span></div>
@@ -33,4 +34,5 @@
                 src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" />
         </div>
     </div>
+   </div>
 </div>
