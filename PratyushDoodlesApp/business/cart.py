@@ -1,6 +1,7 @@
 from flask import render_template
 from flask import Blueprint, request
-from .. import app, socketio
+from .. import app
+# from .. import app, socketio
 from ..models.UserModel import Cart
 from ..models.ProductModel import Product
 from .util import *

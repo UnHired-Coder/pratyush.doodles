@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, Blueprint
-from .. import app, socketio
+from .. import app
+# from .. import app, socketio
 from ..forms.AddItemForm import ProductForm
 from ..models.UserModel import User
 from .util import *

@@ -160,10 +160,16 @@
         })
         .then(response => {
             console.log(response);
-            response.json()
+            return response.json()
         })
         .then(data => {
             hideLoader();
+
+            if(data['error']){
+                showError(data['error'])
+                return
+            }
+
             onAddressUpdated();
             console.log(data); // Process the response (e.g., cart update)
         })

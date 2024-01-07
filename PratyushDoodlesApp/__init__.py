@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from flask_socketio import SocketIO
+# from flask_socketio import SocketIO
 import razorpay
 from flask_login import LoginManager
 
@@ -18,7 +18,7 @@ def create_app():
 
 
 app = create_app()
-socketio = SocketIO(app, async_mode = None)
+# socketio = SocketIO(app, async_mode = None)
 db = SQLAlchemy(app)
 razorpayClient = razorpay.Client(auth = (app.config['RAZORPAY_KEY_ID'], app.config['RAZORPAY_KEY_SECRET']))
 razorpayClient.set_app_details({"title" : "Pratyush Doodles", "version" : "1.0"})

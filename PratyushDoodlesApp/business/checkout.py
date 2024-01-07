@@ -3,7 +3,7 @@ from .. import app, razorpayClient
 from .util import *
 from .cart import getCartData
 from ..forms.ShippingAddressForm import ShippingAddressForm
-from .. import socketio
+# from .. import socketio
 from ..models.UserModel import Address
 from .. import db
 # from flask_wtf import CSRFProtect
@@ -65,7 +65,7 @@ def getOrderOptions():
                     }
                 }
 
-    socketio.emit('error', 'Something went wrong!')
+    # socketio.emit('error', 'Something went wrong!')
     return None
 
 @checkout_bp.route('/payment_callback', methods=['POST'])
@@ -89,34 +89,46 @@ def updateShippingAddress():
     errors = []
     form_data = data.get('formData')
 
-    recipient_name = form_data.get('recipient_name', None)
-    address_line1 = form_data.get('address_line1', None)
-    address_line2 = form_data.get('address_line2', None)
-    city = form_data.get('city', None)
-    state = form_data.get('state', None)
-    postal_code = form_data.get('postal_code', None)
-    country = form_data.get('country', None)
-    phone_number = form_data.get('phone_number', None)
+    recipient_name = form_data.get('recipient_name', "").strip()
+    address_line1 = form_data.get('address_line1', "").strip()
+    address_line2 = form_data.get('address_line2', "").strip()
+    city = form_data.get('city', "").strip()
+    state = form_data.get('state', "").strip()
+    postal_code = form_data.get('postal_code', "").strip()
+    country = form_data.get('country', "").strip()
+    phone_number = form_data.get('phone_number', "").strip()
 
-    if not recipient_name:
+    if recipient_name == "":
         errors.append("Recipient Name is required.")
-    if not address_line1:
+    if address_line1 == "":
         errors.append("Address is required.")
-    if not postal_code:
+    if postal_code == "":
         errors.append("Postal Code is required.")
-    if not city:
+    try:
+        int(postal_code)
+    except ValueError:
+        errors.append("Postal Code takes integer values only!")
+
+    if city == "":
         errors.append("City is required.")
-    if not state:
+    if state == "":
         errors.append("State is required.")
-    if not country:
+    if country == "":
         errors.append("Country is required.")
-    if not phone_number:
-        errors.append("Phone number is required")    
+    if phone_number == "":
+        errors.append("Phone number is required")   
+
+    try:
+        int(phone_number)
+    except ValueError:
+        errors.append("Phone number takes integer values only!")
+
 
     if len(errors) > 0:
         response = {'status': 'error', 'errors': errors}
-        socketio.emit('error', errors[0])
-        return
+        # socketio.emit('error', errors[0])
+        # raise Exception(str(response))
+        return {'error': errors[0]}
 
     user = get_current_user()    
     user.add_or_update_address(recipient_name=recipient_name, addressLine1=address_line1, city=city, state=state, country=country, pincode=postal_code, addressLine2=address_line2, phone_number=phone_number, order_id=None)
