@@ -37,13 +37,23 @@
 <script>
 
     function showError(error) {
-        var errorUi = document.getElementById('error')
+        var errorUi = document.getElementById('toast-error')
         errorUi.innerHTML = error
         errorUi.style.display = 'block'
 
         setTimeout(function () {
             errorUi.style.display = "none"; // Hide the element by setting its display property to "none"
         }, 5000);
+    }
+
+    function showInfo(info) {
+        var errorUi = document.getElementById('toast-info')
+        errorUi.innerHTML = info
+        errorUi.style.display = 'block'
+
+        setTimeout(function () {
+            errorUi.style.display = "none"; // Hide the element by setting its display property to "none"
+        }, 3000);
     }
 
     function showLoader() {

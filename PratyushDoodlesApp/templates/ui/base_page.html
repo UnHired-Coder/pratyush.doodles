@@ -124,7 +124,8 @@
         </div>
 </nav>
 </div>
-<p style="display: none;" class="alert alert-warning" role="alert" id="error"></p>
+<div class="toasts" id="toast-info">Added to cart!</div>
+<p class="toasts" id="error"></p>
 
 <div class="container" style="background-color: rgb(255, 255, 255); 
 min-height: 1000px;  background-repeat: no-repeat; position: relative;">
@@ -211,7 +212,8 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
             response.json()
         })
         .then(data => {
-            updateCart();
+            updateCart({toggleCart : false});
+            showInfo("Item added to Cart!");
             hideLoader();
             console.log(data); // Process the response (e.g., cart update)
         })

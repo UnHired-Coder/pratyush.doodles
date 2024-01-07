@@ -93,13 +93,14 @@ input[type="checkbox"] {
 
 .sticky-card {
     position: sticky;
-    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    bottom: 10px;
+    /* Adjust the distance from the bottom as needed */
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 10px;
 }
 
-.total-payable{
+.total-payable {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -270,4 +271,69 @@ input[type="checkbox"] {
     margin: 4px 4px 4px 4px;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.toasts {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    margin: 0.5rem;
+    border-radius: 20px;
+    animation: wiggle 2s linear infinite;
+}
+
+#toast-info {
+    color: rgb(0, 0, 0);
+    background-color: #ffb700;
+    font-weight: bold;
+    display: none;
+}
+
+#toast-error {
+    color: rgb(255, 255, 255);
+    background-color: #ff0000;
+    font-weight: bold;
+    display: none;
+    animation: none;
+}
+
+
+/* Keyframes */
+@keyframes wiggle {
+
+    0%,
+    7% {
+        transform: translateX(0);
+    }
+
+    15% {
+        transform: translateX(-15px);
+    }
+
+    20% {
+        transform: translateX(10px);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    30% {
+        transform: translateX(6px);
+    }
+
+    35% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    100% {
+        transform: translateX(0);
+    }
 }
