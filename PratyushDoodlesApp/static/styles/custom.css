@@ -275,7 +275,7 @@ input[type="checkbox"] {
 
 .toasts {
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     right: 0;
     z-index: 1;
     display: flex;
@@ -290,7 +290,7 @@ input[type="checkbox"] {
 
 #toast-info {
     color: rgb(0, 0, 0);
-    background-color: #ffb700;
+    background-color: #fff1cd;
     font-weight: bold;
     display: none;
 }
