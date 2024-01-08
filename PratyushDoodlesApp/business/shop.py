@@ -7,6 +7,8 @@ from .util import *
 from ..models.ProductModel import Product, ProductImage
 from ..models.FaqModel import Faq
 from .. import db
+from random import shuffle
+
 
 shop_bp = Blueprint('shop', __name__)
 
@@ -38,6 +40,7 @@ def shop():
 
     for category in product_categories:
         product_in_this_category = Product.query.filter_by(product_category = category).all()
+        shuffle(product_in_this_category)
         products_with_categories[category] = product_in_this_category
 
     data = {
