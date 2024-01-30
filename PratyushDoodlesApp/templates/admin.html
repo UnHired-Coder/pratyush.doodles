@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Shape Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Admin Dashboard</h1>
+
+    <section>
+        <h2>Total Orders</h2>
+        <p>Total number of orders: <span id="totalOrders">{{ data.number_of_orders }}</span></p>
+    </section>
+
+    <section>
+        <h2>Orders</h2>
+        {% for order in data.all_orders.order %}
+            id: {{ order.id }}
+            <br>
+            Date: {{ order.order_date }}
+            <br>
+            Amount: Rs {{ order.amount }}/-
+
+            <br>
+            Address: {{ order.address }}
+            <br>
+            <br>
+
+            <label class="shipping-address-field">
+                <span class="shipping-address-field__label" for="order-status">Status</span>
+                <select  onchange="update_status(event, {{ order.id }})" class="shipping-address-field__input" id="order-status">
+                  <option value="Order Placed" {% if order.status=="Order Placed" %} selected  {% endif %} >Order Placed</option>
+                  <option value="✔ Order Accepted" {% if order.status=="✔ Order Accepted " %} selected  {% endif %} >✔ Order Accepted</option>
+                  <option value="Order Shipped" {% if order.status=="Order Shipped" %} selected  {% endif %} >Order Shipped</option>
+                  <option value="Delivered" {% if order.status=="Delivered" %} selected  {% endif %} >Delivered</option>
+                </select>
+            </label>
+
+
+
+            <br>
+            <br>
+            
+            {% for order_item_details  in order.order_item_details %}
+                Id: {{ order_item_details.product_id }}
+                <br>
+                Name: {{ order_item_details.name }}
+                <br>
+                Pric: Rs {{ order_item_details.price }}/-
+                <br>
+                <br>
+            {% endfor %}
+
+            <img src="{{ order.order_item_details.product_image }}" alt="">
+            <br>
+            <br>
+            <br>
+            <br>
+            
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>New Orders</h2>
+        {% for order in data.new_orders.order %}
+            {{ order.id }}
+            {{ order.order_date }}
+            {{ order.amount }}
+            {{ order.status }}
+            
+            <br>
+            Address: {{ order.address }}
+
+            <br>
+            <br>
+            
+            {% for order_item_details  in order.order_item_details %}
+                Id: {{ order_item_details.product_id }}
+                <br>
+                Name: {{ order_item_details.name }}
+                <br>
+                Pric: Rs {{ order_item_details.price }}/-
+                <br>
+                <br>
+            {% endfor %}
+
+            <img src="{{ order.order_item_details.product_image }}" alt="">
+            <br>
+            <br>
+            <br>
+            <br>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>Users</h2>
+         {{  data.users|length }}
+         <br>
+         {% for user in   data.users %}
+            Name: {{ user.name }}
+            <br>
+            Email: {{ user.email }}
+            <br>
+            address: {{ user.address }}
+            <br>
+            <br>
+         {% endfor %}
+    </section>
+
+
+    <script>
+
+    function update_status(evt, order_id) {
+        // Use the socket variable to interact with the WebSocket connection
+
+        let data = evt.target.value;
+        
+        fetch('/update_status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data: data, order_id: order_id })
+        })
+        .then(response => {
+            console.log(response);
+            return response.json()
+        })
+        .then(data => {
+            console.log(data); // Process the response (e.g., cart update)
+        })
+        .catch(error => {
+
+        });
+    }
+
+    </script>
+
+</body>
+</html>

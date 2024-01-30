@@ -1,6 +1,7 @@
 from flask import render_template
-from flask import Blueprint
+from flask import Blueprint, request
 from .. import app
+from ..models.UserModel import Order
 from ..models.FaqModel import Faq
 from .util import *
 
@@ -88,5 +89,103 @@ def cancellationpolicy():
 @others_bp.route('/pricing/', methods=['GET'])
 def pricing():
     return render_template('policies/pricing.html')    
+
+
+
+@others_bp.route('/admin/3fiMeTqc2v', methods=['GET'])
+@others_bp.route('/admin/3fiMeTqc2v/', methods=['GET'])
+def admin():
+    user = get_current_user()
+    if(user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):
+        return ""
+
+    from ..models.UserModel import User, Order, OrderItem
+    from ..models.ProductModel import Product
+
+    orders =  Order.query.all()
+    number_of_orders = len(orders)
+
+    all_orders = {}
+    all_orders['order'] = []
+    for order in orders:
+        order_details = {}
+        order_details['id'] = order.id
+        order_details['order_date'] = order.order_date
+        order_details['amount'] = order.amount
+        order_details['status'] = order.status
+        order_details['address'] = order.address
+
+        order_details['order_item_details'] = []
+        for order_item in order.order_items:
+            product = Product.query.filter_by(id = order_item.product_id).first()
+            order_item_details = {}
+            order_item_details['product_id'] = product.id 
+            order_item_details['name'] = product.name 
+            order_item_details['price'] = product.price
+            order_item_details['product_image'] = product.product_images[0].picture_url 
+
+            order_details['order_item_details'] += [order_item_details]
+
+        all_orders['order'] +=  [order_details]      
+
+    data = {
+        'number_of_orders' : number_of_orders,
+        'all_orders': all_orders
+    }
+
+
+
+    new_orders = {}
+    new_orders['order'] = []
+    new_orders_ = Order.query.filter_by(status = "Order Placed").all()
+    print(new_orders_)
+
+    for order in new_orders_:
+        order_details = {}
+        order_details['id'] = order.id
+        order_details['order_date'] = order.order_date
+        order_details['amount'] = order.amount
+        order_details['status'] = order.status
+        order_details['address'] = order.address
+
+        order_details['order_item_details'] = []
+        for order_item in order.order_items:
+            product = Product.query.filter_by(id = order_item.product_id).first()
+            order_item_details = {}
+            order_item_details['product_id'] = product.id 
+            order_item_details['name'] = product.name 
+            order_item_details['price'] = product.price
+            order_item_details['product_image'] = product.product_images[0].picture_url 
+
+            order_details['order_item_details'] += [order_item_details]
+
+    new_orders['order'] +=  [order_details] 
+
+    data['new_orders'] = new_orders
+
+    users = User.query.filter(User.email != "guest@guest.com").all()
+    data['users'] = users
+
+    return render_template("admin.html", data= data)
+
+
+
+@others_bp.route('/update_status', methods=['POST'])
+@others_bp.route('/update_status/', methods=['POST'])
+def update_status():
+    import json
+
+    data = request.get_json()
+    status = data.get('data')
+    order_id = data.get('order_id')
+    
+    print(status)
+    print(order_id)
+
+    order = Order.query.filter_by(id = order_id).first()
+    order.status = status
+    db.session.commit()
+    return ""
+
 
 app.register_blueprint(others_bp)
