@@ -9,13 +9,33 @@
         <h6 class="text-muted">{{ order.address }}</h6>
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3">
-        <h6 class="text-muted">{{ order.status }}</h6>
+        {% if order.status not in ("Order Placed", "✔ Order Accepted", "Order Shipped", "Delivered") %}
+        Order Shipped, you can track now.
+        {% endif %}
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3 offset-lg-1">
         <h6 class="mb-2">Amount Paid: ₹{{ order.amount }}</h6>
+
+        {% if order.status not in ("Order Placed", "✔ Order Accepted", "Order Shipped", "Delivered") %}
+        <div class="popup">
+            <div class="link-copy" id="tracking-link-share-{{ order.status }}">
+                <p>Use this Consignment Number to track your <a
+                        style="text-decoration: none; color: blue; font-weight: bold;"
+                        href="https://www.indiapost.gov.in/MBE/Pages/Content/Speed-Post.aspx" target="_blank"> Indian
+                        Post</a> Consignment </p>
+                <input type="text" id="copy-link-{{ order.status }}" class="form-control" value="{{ order.status }}"
+                    readonly>
+                <button class="nutral-button" type="button"
+                    onclick="copyToClipboard('copy-link-{{ order.status }}')">Copy
+                    Consignment Number</button>
+            </div>
+            <button class="dark-button" onclick="showShareLink(this, 'tracking-link-share-{{ order.status }}')">Track Order</h6>
+        </div>
+        {% else %}
         <div class="popup">
             <div class="link-copy" id="tracking-link-share-{{ order.id }}">
-                <p>Use this Consignment Number to track your <a style="text-decoration: none; color: blue; font-weight: bold;"
+                <p>Use this Consignment Number to track your <a
+                        style="text-decoration: none; color: blue; font-weight: bold;"
                         href="https://www.indiapost.gov.in/MBE/Pages/Content/Speed-Post.aspx" target="_blank"> Indian
                         Post</a> Consignment </p>
                 <input type="text" id="copy-link-{{ order.id }}" class="form-control" value="{{ order.id }}" readonly>
@@ -24,6 +44,7 @@
             </div>
             <button class="dark-button" onclick="showShareLink(this, 'tracking-link-share-{{ order.id }}')">Track Order</h6>
         </div>
+        {% endif %}
     </div>
     <hr class="my-4">
 </div>

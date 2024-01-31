@@ -15,6 +15,9 @@ shipping_charges = 30
 logo_url = "https://stickyshape.pythonanywhere.com/static/images/about_stickers.png"
 payment_success_callback = "https://stickyshape.pythonanywhere.com/payment_callback"
 
+# Test Url
+# payment_success_callback = "http://127.0.0.1:5000/payment_callback"
+
 @checkout_bp.route('/checkout')
 @checkout_bp.route('/checkout/')
 def checkout():

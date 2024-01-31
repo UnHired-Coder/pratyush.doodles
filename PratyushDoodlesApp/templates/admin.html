@@ -50,6 +50,8 @@
             <br>
             Address: {{ order.address }}
             <br>
+            Current Order Status: {{ order.status }}
+            <br>
             <br>
 
             <label class="shipping-address-field">
@@ -62,7 +64,13 @@
                 </select>
             </label>
 
-
+            <br>
+        
+            <form>
+                <label for="trackingId"> Add Order Tracking Id :</label><br>
+                <input type="text" id="trackingId-{{ order.id }}" name="trackingId-{{ order.id }}" value=""><br>
+                <input type="submit" value="Submit" onclick="update_tracking_id(this, {{ order.id }})">
+            </form>
 
             <br>
             <br>
@@ -140,7 +148,19 @@
         // Use the socket variable to interact with the WebSocket connection
 
         let data = evt.target.value;
-        
+        update_status_in_db(data, order_id);
+    }
+
+    function update_tracking_id(button, order_id){
+        try {
+            data = document.getElementById("trackingId-"+order_id).value
+            update_status_in_db(data, order_id);
+        } catch(err) {
+            alert(err)
+        }
+    }
+
+    function update_status_in_db(data, order_id) {
         fetch('/update_status', {
             method: 'POST',
             headers: {

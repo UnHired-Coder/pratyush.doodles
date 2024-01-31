@@ -14,6 +14,10 @@ def create_app():
     app.config['RAZORPAY_KEY_ID'] = 'rzp_live_iTOaD3Yk22nsGw'
     app.config['RAZORPAY_KEY_SECRET'] = 'slVy5AwVnKx7fdDopZCYNsRL'
 
+    # Test keys
+    # app.config['RAZORPAY_KEY_ID'] = 'rzp_test_uI5H98x5empoK2'
+    # app.config['RAZORPAY_KEY_SECRET'] = '7wXf3Fya8SdfOUDSexFlaEkE'
+
     return app
 
 
