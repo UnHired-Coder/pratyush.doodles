@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Add Product</h1>
-    <form method="POST" action="{{ url_for('shop.add_product') }}">
+    <form method="POST" action="{{ url_for('others.add_product') }}">
         {{ form.hidden_tag() }}
         <div>
             {{ form.name.label }}<br>

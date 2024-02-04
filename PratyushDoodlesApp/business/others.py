@@ -4,6 +4,8 @@ from .. import app
 from ..models.UserModel import Order
 from ..models.FaqModel import Faq
 from .util import *
+from ..forms.AddItemForm import ProductForm
+from ..models.ProductModel import Product, ProductImage
 
 
 others_bp = Blueprint('others', __name__)
@@ -166,13 +168,57 @@ def admin():
     users = User.query.filter(User.email != "guest@guest.com").all()
     data['users'] = users
 
-    return render_template("admin.html", data= data)
+    return render_template("adminActions/admin.html", data= data)
+
+
+@others_bp.route('/admin/3fiMeTqc2v/add_product', methods=['POST', 'GET'])
+@others_bp.route('/admin/3fiMeTqc2v//add_product/', methods=['POST', 'GET'])
+def add_product():
+    user = get_current_user()
+    if(user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):
+        return ""    
+
+    form = request.form
+
+    if form:
+        product_name = form['name']
+        product_description = form['description']
+        product_price = form['price']
+        product_stock_quantity = form['stock_quantity']
+        discount_percent = form['discount_percent']
+        product_highlight = form['product_highlight']
+        product_category = form['product_category']
+
+        # Get the list of image URLs
+        image_urls = [url for url in form['images'].split(',')]
+
+        # Now you have the product data and the list of image URLs
+
+        # Redirect to a success page or perform further actions
+        product = Product(name = product_name, description = product_description, price = product_price, stock_quantity=product_stock_quantity, discount_percent = discount_percent, product_highlight= product_highlight, product_category = product_category)
+        db.session.add(product)
+        db.session.flush()
+
+        for image_url in image_urls:
+            image = ProductImage(picture_url = image_url, product_id = product.id)
+            db.session.add(image)
+            db.session.flush()
+
+        db.session.commit()    
+
+        print(image_urls) 
+    form = ProductForm()
+    return render_template('adminActions/add_product.html', form=form)
 
 
 
 @others_bp.route('/update_status', methods=['POST'])
 @others_bp.route('/update_status/', methods=['POST'])
 def update_status():
+    user = get_current_user()
+    if(user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):
+        return ""
+
     import json
 
     data = request.get_json()
