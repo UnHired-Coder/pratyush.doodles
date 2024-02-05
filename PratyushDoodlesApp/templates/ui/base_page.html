@@ -127,6 +127,14 @@
 <div class="toasts" id="toast-info">Added to cart!</div>
 <p class="toasts" id="toast-error"></p>
 
+<div id="cartButton" class="align-items-center justify-content-center">
+    <div class="col navbar-item text-center mr-10 cart-button" id="nav-cart-button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <img class="ic-40" style="margin-top: 20px;" src="{{ url_for('static', filename='images/ic_cart.svg') }}">
+        <span class="cart-items-count" style="margin-top: -5px;" >{{ data.user.count_items_in_cart }}</span>
+    </div>
+</div>
+
 <div class="container" style="background-color: rgb(255, 255, 255); 
 min-height: 1000px;  background-repeat: no-repeat; position: relative;">
     {% block content %}
@@ -361,6 +369,20 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
             linkInput.style.top = shareButton.style.bottom + 200;
         });
     }
+
+    const cartButton = document.getElementById('cartButton');
+    // Add an event listener for scrolling
+    window.addEventListener('scroll', function () {
+        // Check the scroll position
+        if (window.scrollY > 200) {
+            // If scrolled more than 100px, show the cart button
+            cartButton.style.opacity = 1;
+        } else {
+            // Otherwise, hide the cart button
+            cartButton.style.opacity = 0;
+        }
+    });
+
 </script>
 {% endblock body %}
 

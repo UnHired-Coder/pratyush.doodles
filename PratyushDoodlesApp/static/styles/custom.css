@@ -293,6 +293,7 @@ input[type="checkbox"] {
     background-color: #fff1cd;
     font-weight: bold;
     display: none;
+    z-index: 100;
 }
 
 #toast-error {
@@ -301,8 +302,22 @@ input[type="checkbox"] {
     font-weight: bold;
     display: none;
     animation: none;
+    z-index: 100;
 }
 
+#cartButton {
+    position:fixed;
+    width:80px;
+    height:80px;
+    bottom:40px;
+    right:40px;
+    background-color:#fff;
+    color:#000;
+    border-radius:50px;
+    text-align:center;
+    box-shadow: 0.5px 0.5px 0.5px #999;
+    z-index:50;
+}
 
 /* Keyframes */
 @keyframes wiggle {
