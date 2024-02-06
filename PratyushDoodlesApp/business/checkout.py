@@ -6,12 +6,12 @@ from ..forms.ShippingAddressForm import ShippingAddressForm
 # from .. import socketio
 from ..models.UserModel import Address
 from .. import db
+from .constants import SHIPPING_CHARGES
 # from flask_wtf import CSRFProtect
 
 checkout_bp = Blueprint('checkout', __name__)
 
 currency = 'INR'
-shipping_charges = 30
 logo_url = "https://stickyshape.pythonanywhere.com/static/images/about_stickers.png"
 payment_success_callback = "https://stickyshape.pythonanywhere.com/payment_callback"
 
@@ -43,7 +43,8 @@ def getOrderOptions():
     if data and data['user']:
         user = data['user']
         amount_payable = data['total_amount']
-        amount_payable_in_paise = (amount_payable + shipping_charges) * 100
+
+        amount_payable_in_paise = (amount_payable + (0 if(data['items_count'] >= 5) else SHIPPING_CHARGES)) * 100
 
         order_id = initiate_payment(amount_payable_in_paise)
         return  {

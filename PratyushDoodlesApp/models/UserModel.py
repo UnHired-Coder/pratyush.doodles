@@ -3,8 +3,7 @@ from .. import db
 from ..models.ProductModel import Product
 from datetime import datetime
 from flask_login import UserMixin, LoginManager
-
-SHIPPING_SHARGES = 30
+from ..business.constants import SHIPPING_CHARGES
 
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
@@ -191,7 +190,7 @@ class Cart(db.Model):
         order_address = self.of_user.address.copy()
         db.session.add(order_address)
         
-        order = Order(user_id = self.user_id, address = order_address, order_items = order_items, amount = total_amount + SHIPPING_SHARGES)
+        order = Order(user_id = self.user_id, address = order_address, order_items = order_items, amount = total_amount +  (0 if(len(order_items) >= 5) else SHIPPING_CHARGES))
         db.session.add(order)
         db.session.flush()
 

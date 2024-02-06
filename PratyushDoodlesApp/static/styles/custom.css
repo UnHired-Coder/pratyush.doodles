@@ -320,7 +320,42 @@ input[type="checkbox"] {
     opacity: 0;
 }
 
+
+.free-shipping {
+   color: #44ab39; 
+   font-size: 20px;
+   font-weight: bolder;
+}
+
+.shakey{
+    animation: pop 2s linear infinite;
+}
+
 /* Keyframes */
+@keyframes pop {
+    0%,
+    7% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(0.9);
+    }
+
+    20% {
+        transform: scale(1.1);
+    }
+
+    30% {
+        transform: scale(0.9);
+    }
+
+    40%,
+    100% {
+        transform: scale(1);
+    }
+}
+
 @keyframes wiggle {
 
     0%,

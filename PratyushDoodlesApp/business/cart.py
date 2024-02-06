@@ -5,6 +5,7 @@ from .. import app
 from ..models.UserModel import Cart
 from ..models.ProductModel import Product
 from .util import *
+from .constants import SHIPPING_CHARGES
 
 cart_bp = Blueprint('cart', __name__)
 
@@ -67,7 +68,9 @@ def getCartData():
         'user' : user,
         'items_count' : items_count,
         'total_amount' : total_amount,
-        'cart_items' : cart_items
+        'cart_items' : cart_items,
+        'shipping_charges' : SHIPPING_CHARGES,
+        'free_shipping': (True if(items_count >= 5) else False)
     }
 
 app.register_blueprint(cart_bp)    
