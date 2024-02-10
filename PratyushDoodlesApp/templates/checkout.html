@@ -16,12 +16,16 @@
                 </ul>
                 <div class="mt-5">
                     {% for cart_item in data.cart_items %}
-                    <div id="cart-item-{{ cart_item.product_id }}">
+                    <div id="cart-item-{{ cart_item.product_id }}" class="summary-item" style="display: none;">
                         {% with cart_item=cart_item, product=cart_item.get_product() %}
                         {% include 'ui/cart_item.html' %}
                         {% endwith %}
                     </div>
                     {% endfor %}
+                    <div class="col  d-flex align-items-center">
+                        <p id="plusMoreItems" class="text-center" style="float: left; margin-right: 10px;">+{{ (data.cart_items|length) - 2 }} more items</p>
+                        <button id="viewAllButton" style="float: left;" class="light-button mb-4">View All</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -212,6 +216,27 @@
         editAddressField.style.display = 'block'
         editAddressFieldFilled.style.display = 'none'
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var items = document.querySelectorAll('.summary-item');
+        var viewAllButton = document.getElementById('viewAllButton');
+        var plusMoreItems = document.getElementById('plusMoreItems');
+
+        // Show the first 3 items initially
+        for (var i = 0; i < 2; i++) {
+            items[i].style.display = 'block';
+        }
+
+        // Toggle visibility of all items when "View All" button is clicked
+        viewAllButton.addEventListener('click', function () {
+            for (var i = 0; i < items.length; i++) {
+                items[i].style.display = 'block';
+            }
+            // Hide the "View All" button after it's clicked
+            viewAllButton.style.display = 'none';
+            plusMoreItems.style.display = 'none';
+        });
+    });
 
 </script>
 {% endblock content %}
