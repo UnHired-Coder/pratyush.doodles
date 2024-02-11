@@ -338,4 +338,4 @@ class Address(db.Model):
         pass    
 
     def __repr__(self):
-        return f'{self.addressLine1}, {self.city}, {self.state}, {self.country}, {self.pincode}, \n Contact: {self.phone_number}'     
+        return f'{self.recipient_name}, {self.addressLine1}, {self.addressLine2}, {self.city}, {self.state}, {self.country}, {self.pincode}, \n Contact: {self.phone_number}'     
