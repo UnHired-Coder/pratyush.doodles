@@ -115,3 +115,14 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     border-radius: 20px;
 }
+
+
+.cart-item-image {
+    position: relative;
+    overflow: hidden;
+}
+
+
+.cart-item-image img {
+  scale: 1.4;
+}
