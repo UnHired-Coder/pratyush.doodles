@@ -6,7 +6,7 @@
 
 <div class="container pt-5 text-center">
     <h4>{{ data.product.product_category }}</h4>
-
+     <div class="mt-5 mb-5 row justify-content-center mx-auto"> 
         {% if data.product %}
             {% with product=data.product %}
                 {% include 'ui/product_card.html' %}
@@ -14,6 +14,7 @@
         {% else %}
             <p>Invalid Link!</p>
         {% endif %}
+    </div>    
     <div class="container-fluid">
         <p>Checkout <a type="button" class="dark-button col mb-2" href="{{ url_for('shop.shop') }}">
                 Shop
