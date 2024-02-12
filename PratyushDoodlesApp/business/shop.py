@@ -76,8 +76,9 @@ def get_products():
 
     try:
         product_in_this_category = Product.query.filter_by(product_category = category).offset(start_id).limit(12).all()  
-        if len(product_in_this_category) != 0:
+        # if len(product_in_this_category) != 0:
             # shuffle(product_in_this_category) 
+            
     except Exception as e:
         product_in_this_category = []
 
