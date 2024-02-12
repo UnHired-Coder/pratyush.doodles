@@ -55,6 +55,7 @@
 
    async function appendDataToContent() {
         await getData(page);
+        setUpAnimation()
         page++;
     }
 
@@ -112,8 +113,5 @@
         });
     }
 
-    
-
-    setUpAnimation()
 </script>
 {% endblock %}
