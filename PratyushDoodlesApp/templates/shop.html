@@ -42,7 +42,7 @@
 
     function handleScroll() {
         // @var int totalPageHeight
-        var totalPageHeight = document.body.scrollHeight;
+        var totalPageHeight = document.body.offsetHeight;
 
         // @var int scrollPoint
         var scrollPoint = window.scrollY + window.innerHeight;
@@ -53,6 +53,9 @@
             appendDataToContent();
         }
     }
+
+    // if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+
 
    // Event listeners for scrolling
    window.addEventListener('scroll', handleScroll);
