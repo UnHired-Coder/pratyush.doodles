@@ -40,7 +40,7 @@ def shop():
 
     for category in product_categories:
         product_in_this_category = Product.query.filter_by(product_category = category).all()
-        shuffle(product_in_this_category)
+        # shuffle(product_in_this_category)
         products_with_categories[category] = product_in_this_category
 
     data = {
