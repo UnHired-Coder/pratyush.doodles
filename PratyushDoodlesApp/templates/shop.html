@@ -33,6 +33,7 @@
                 const itemElement = document.createElement('div');
                 itemElement.innerHTML = data
                 productsListDiv.appendChild(itemElement);
+                setUpAnimation();
             })
             .catch(error => {
                 showError(error)
@@ -55,7 +56,6 @@
 
    async function appendDataToContent() {
         await getData(page);
-        setUpAnimation()
         page++;
     }
 
