@@ -5,19 +5,14 @@
 
 
 <div class="container text-center pb-5">
-    <div class="row  justify-content-center mx-auto">
+    <div class="row justify-content-center mx-auto">
         {% if data.products_with_categories %}
             {% for category, products in data.products_with_categories.items() %}
-                {% if products and products|length > 0 %}
-                    <h4 class="pb-5 pt-5" id="{{ category }}">{{ category }}</h4>
-                    {% for product in products %}
-                    <!-- <div style="width: 300px; margin-left: 10px; margin-right: 10px;"> -->
-                        {% with product=product %}
-                            {% include 'ui/product_card.html' %}
-                        {% endwith %}
-                    <!-- </div> -->
-                    {% endfor %}
-                {% endif %}
+                <div id="products-list" class="row justify-content-center mx-auto">
+                    {% if products and products|length > 0 %}
+                        <h4 class="pb-5 pt-5" id="{{ category }}">{{ category }}</h4>
+                    {% endif %}
+                </div>    
             {% endfor %}
         {% else %}
             <p>No products listed!</p>
@@ -26,6 +21,45 @@
 </div>
 
 <script>
+    // Pagination
+    let page = 1;
+    let category = 'Stickers'
+    const productsListDiv = document.getElementById('products-list');
+
+    function getData(page) {
+        fetch('/get_products/?page='+page+'&category='+category)
+            .then(response => response.text()) // Get the rendered template as HTML
+            .then(data => {
+                const itemElement = document.createElement('div');
+                itemElement.innerHTML = data
+                productsListDiv.appendChild(itemElement);
+            })
+            .catch(error => {
+                showError(error)
+            });
+    }
+
+    window.onscroll = function () {
+
+            // @var int totalPageHeight
+            var totalPageHeight = document.body.scrollHeight;
+
+            // @var int scrollPoint
+            var scrollPoint = window.scrollY + window.innerHeight;
+
+            // check if we hit the bottom of the page
+            if (scrollPoint >= totalPageHeight) {
+                appendDataToContent();
+            }
+        }
+
+   async function appendDataToContent() {
+        await getData(page);
+        page++;
+    }
+
+    appendDataToContent();
+
     function setUpAnimation() {
         const hoverCards = document.querySelectorAll(".wsk-cp-product"); // Replace "hover-card" with the actual ID or class of your card
         hoverCards.forEach(function (hoverCard) {

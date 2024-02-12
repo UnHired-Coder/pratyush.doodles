@@ -13,9 +13,9 @@ from random import shuffle
 shop_bp = Blueprint('shop', __name__)
 
 # Define routes and views for the 'auth' Blueprint
-@shop_bp.route('/')
-@shop_bp.route('/shop')
-@shop_bp.route('/shop/')
+@shop_bp.route('/', methods=['GET'])
+@shop_bp.route('/shop', methods=['GET'])
+@shop_bp.route('/shop/', methods=['GET'])
 def shop():
     user = get_current_user()
     products = Product.query.all()
@@ -49,6 +49,45 @@ def shop():
     }
 
     return render_template('shop.html', data = data)
+
+
+@shop_bp.route('/get_products')
+@shop_bp.route('/get_products/')
+def get_products():
+    user = get_current_user()
+    products = Product.query.all()
+   
+    # If it's a single product to show
+    product_id = request.args.get('product_id')
+    if product_id:
+        product = Product.query.filter_by(id = product_id).first()
+
+        data = {
+            'user': user,
+            'product': product
+        }
+
+        return render_template('shop_product.html', data = data)
+
+    page_no = int(request.args.get('page') or 0)
+    category = request.args.get('category')
+
+    start_id = max(0, page_no-1) * 10
+
+    try:
+        product_in_this_category = Product.query.filter_by(product_category = category).offset(start_id).limit(12).all()  
+        if len(product_in_this_category) != 0:
+            shuffle(product_in_this_category) 
+    except Exception as e:
+        product_in_this_category = []
+
+    data = {
+        'user': user,
+        'products': product_in_this_category
+    }
+
+    return render_template('ui/products_list.html', data = data)
+
 
 #Admin actions
 # @shop_bp.route('/add_product', methods=['GET', 'POST'])
