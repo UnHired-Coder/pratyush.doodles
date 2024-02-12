@@ -13,6 +13,9 @@
                         <h4 class="pb-5 pt-5" id="{{ category }}">{{ category }}</h4>
                     {% endif %}
                 </div>    
+                <div class="col align-items-center">
+                    <button id="viewAllButton" class="light-button"> Show more </button>
+                </div>
             {% endfor %}
         {% else %}
             <p>No products listed!</p>
@@ -32,6 +35,9 @@
             .then(data => {
                 const itemElement = document.createElement('div');
                 itemElement.innerHTML = data
+                if(data != ""){
+                    viewAllButton.style.display = 'block';
+                }
                 productsListDiv.appendChild(itemElement);
                 setUpAnimation();
             })
@@ -49,7 +55,6 @@
 
         // check if we hit the bottom of the page
         if (scrollPoint >= totalPageHeight) {
-            alert('Testing, sorry for inconvenience!')
             appendDataToContent();
         }
     }
@@ -119,6 +124,12 @@
             }
         });
     }
+
+    var viewAllButton = document.getElementById('viewAllButton');
+    viewAllButton.addEventListener('click', function () {
+            appendDataToContent();
+            viewAllButton.style.display = 'none';
+        });
 
 </script>
 {% endblock %}

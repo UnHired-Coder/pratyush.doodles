@@ -1,9 +1,9 @@
-<div id="products-list" class="row  justify-content-center mx-auto">
-    {% if data.products and data.products|length > 0 %}
+{% if data.products and data.products|length > 0 %}
+    <div id="products-list" class="row justify-content-center mx-auto">
         {% for product in data.products %}
             {% with product=product %}
                 {% include 'ui/product_card.html' %}
             {% endwith %}
         {% endfor %}
-    {% endif %}
-</div>
+    </div>
+{% endif %}
