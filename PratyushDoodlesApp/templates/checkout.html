@@ -22,10 +22,12 @@
                         {% endwith %}
                     </div>
                     {% endfor %}
-                    <div class="col  d-flex align-items-center">
-                        <p id="plusMoreItems" class="text-center" style="float: left; margin-right: 10px;">+{{ (data.cart_items|length) - 2 }} more items</p>
-                        <button id="viewAllButton" style="float: left;" class="light-button mb-4">View All</button>
-                    </div>
+                    {% if  ((data.cart_items|length) - 2  > 0) %}
+                        <div class="col  d-flex align-items-center">
+                            <p id="plusMoreItems" class="text-center" style="float: left; margin-right: 10px;">+{{ (data.cart_items|length) - 2 }} more items</p>
+                            <button id="viewAllButton" style="float: left;" class="light-button mb-4">View All</button>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
