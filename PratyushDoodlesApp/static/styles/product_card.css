@@ -23,6 +23,7 @@
 }
 
 .wsk-cp-img {
+    border-radius: 6px;
     height: 300px;
     width: 100%;
     position: absolute;
