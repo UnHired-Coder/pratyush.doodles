@@ -18,6 +18,7 @@
 .product-images {
     height: 300px;
     width: 100%;
+    scale: 1.1px;
     position: relative;
     overflow: hidden;
 }
