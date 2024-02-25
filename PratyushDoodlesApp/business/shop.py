@@ -72,18 +72,13 @@ def get_products():
     page_no = int(request.args.get('page') or 0)
     category = request.args.get('category')
 
-    start_id = max(0, page_no-1) * 12 + 1
+    start_id = max(0, page_no-1) * 12
 
     try:
-        product_in_this_category = Product.query.filter_by(product_category = category).offset(start_id).limit(12).all()  
-        # if len(product_in_this_category) != 0:
-        #     shuffle(product_in_this_category) 
-            
+        product_in_this_category = Product.query.filter_by(product_category = category).order_by(Product.id.desc()).offset(start_id).limit(12).all()  
+        if len(product_in_this_category) != 0:
+            shuffle(product_in_this_category) 
 
-        # product_in_this_category = Product.query.filter_by(product_category = category).order_by(Product.id.desc()).offset(start_id).limit(12).all()  
-        # if len(product_in_this_category) != 0:
-        #     shuffle(product_in_this_category) 
-            
     except Exception as e:
         product_in_this_category = []
 
