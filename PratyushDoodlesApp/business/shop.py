@@ -75,7 +75,7 @@ def get_products():
     start_id = max(0, page_no-1) * 12 + 1
 
     try:
-        product_in_this_category = Product.query.filter_by(product_category = category).offset(start_id).limit(12).all()  
+        product_in_this_category = Product.query.filter_by(product_category = category).order_by(Product.id.desc()).offset(start_id).limit(12).all()  
         if len(product_in_this_category) != 0:
             shuffle(product_in_this_category) 
             
