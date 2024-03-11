@@ -10,7 +10,7 @@
 
         <div class="navbar-item  ml-10 text-center" data-bs-toggle="offcanvas" data-bs-target="#offcanvasProfile"
             aria-controls="offcanvasProfile" aria-label="Toggle navigation">
-            <img class="ic-40" src="{{ url_for('static', filename='images/ic_user.svg') }}">
+            <img class="ic-40" src="{{ url_for('static', filename='images/ic_user.png') }}">
             <p>
                 Profile
             </p>
@@ -19,7 +19,7 @@
         {% else %}
         <a class="nav-link ml-10 text-center " href="{{ url_for('auth.login') }}">
             <div class="navbar-item align-center-horizontal" alt="Logo">
-                <img class="ic-40" src="{{ url_for('static', filename='images/ic_user.svg') }}">
+                <img class="ic-40" src="{{ url_for('static', filename='images/ic_user.png') }}">
                 <p>
                     Log-In
                 </p>
@@ -49,9 +49,9 @@
             </a>
             {% endif %}
 
-            <div class="col navbar-item text-center mr-10 cart-button" id="nav-cart-button" data-bs-toggle="offcanvas"
+            <div class="col navbar-item text-center cart-button" id="nav-cart-button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <img class="ic-40" src="{{ url_for('static', filename='images/ic_cart.svg') }}">
+                <img class="ic-40" src="{{ url_for('static', filename='images/ic_cart.png') }}">
                 <span class="cart-items-count">{{ data.user.count_items_in_cart }}</span>
                 <p>
                     Cart
@@ -94,11 +94,10 @@
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid" style="background-color: #fff5dd00;">
 
-        <!-- If not enough space this menu will be visible -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <!-- If not enough space this menu will be visible -->        
+        <img class="navbar-toggler ic-30" style="padding: 0; border: none;" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+            src="{{ url_for('static', filename='images/ic_menu.png') }}">
 
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -128,10 +127,10 @@
 <p class="toasts" id="toast-error"></p>
 
 <div id="cartButton" class="align-items-center justify-content-center">
-    <div class="col navbar-item text-center mr-10 cart-button" id="nav-cart-button" data-bs-toggle="offcanvas"
+    <div class="col navbar-item text-center cart-button-floating" id="nav-cart-button" data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <img class="ic-30" style="margin-top: 20px;" src="{{ url_for('static', filename='images/ic_cart.svg') }}">
-        <span class="cart-items-count" style="margin-top: -8px;" >{{ data.user.count_items_in_cart }}</span>
+        <img class="ic-30" src="{{ url_for('static', filename='images/ic_cart.svg') }}">
+        <span class="cart-items-count">{{ data.user.count_items_in_cart }}</span>
     </div>
 </div>
 
