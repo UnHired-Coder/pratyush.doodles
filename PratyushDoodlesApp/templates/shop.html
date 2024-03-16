@@ -46,6 +46,8 @@
     // Pagination
     let categoryStickers = 'Stickers'
     let categoryMovieCards= 'Movie Cards'
+    let categoryCupidsCrew= 'Cupid\'s Crew'
+
 
     function getData(page, category, button) {
         var productsListDiv = document.getElementById('products-list-'+category);
@@ -95,8 +97,9 @@
         await getData(page, category, button);
    }
 
-    appendDataToContent(1, categoryStickers, null);
-    appendDataToContent(1, categoryMovieCards, null);
+   appendDataToContent(1, categoryCupidsCrew, null);
+   appendDataToContent(1, categoryStickers, null);
+   appendDataToContent(1, categoryMovieCards, null);
 
     function setUpAnimation() {
         const hoverCards = document.querySelectorAll(".wsk-cp-product"); // Replace "hover-card" with the actual ID or class of your card

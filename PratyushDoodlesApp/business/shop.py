@@ -34,7 +34,7 @@ def shop():
 
 
     # product_categories = ['Stickers']
-    product_categories = ['Stickers', 'Movie Cards']
+    product_categories = ['Cupid\'s Crew','Stickers', 'Movie Cards']
 
     products_with_categories = {}
 
