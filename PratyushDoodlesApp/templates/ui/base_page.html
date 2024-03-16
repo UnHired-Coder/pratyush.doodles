@@ -104,11 +104,21 @@
             <div class="container">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" id="home-link" href="{{ url_for('home.home') }}">New Items</a>
+                        <a class="nav-link" id="home-link" href="{{ url_for('home.home') }}">New Items<span style="color: red; font-size: 16px;">*</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="shop-link" href="{{ url_for('shop.shop') }}">Shop</a>
                     </li>
+                    <div class="nav-item dropdown show">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Categories
+                        </a>
+    
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#Stickers">Stickers</a>
+                          <a class="dropdown-item" href="#Movie Cards">Love Cards</a>
+                        </div>
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link" id="questions-link" href="{{ url_for('others.questions') }}">Questions?</a>
                     </li>

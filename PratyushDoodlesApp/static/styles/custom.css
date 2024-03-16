@@ -331,6 +331,19 @@ input[type="checkbox"] {
     animation: pop 2s linear infinite;
 }
 
+.dropdown:hover {
+    .dropdown-menu{
+        display: block;
+    }
+}
+.dropdown {
+    .dropdown-menu{
+        display: none;
+    }
+}
+
+
+
 /* Keyframes */
 @keyframes pop {
     0%,

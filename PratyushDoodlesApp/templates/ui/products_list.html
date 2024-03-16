@@ -1,5 +1,5 @@
 {% if data.products and data.products|length > 0 %}
-    <div id="products-list" class="row justify-content-center mx-auto">
+    <div id="products-list-{{ data.category }}" class="row justify-content-center mx-auto">
         {% for product in data.products %}
             {% with product=product %}
                 {% include 'ui/product_card.html' %}

@@ -33,8 +33,8 @@ def shop():
         return render_template('shop_product.html', data = data)
 
 
-    product_categories = ['Stickers']
-    # product_categories = ['Stickers', 'Movie Cards']
+    # product_categories = ['Stickers']
+    product_categories = ['Stickers', 'Movie Cards']
 
     products_with_categories = {}
 
@@ -84,7 +84,8 @@ def get_products():
 
     data = {
         'user': user,
-        'products': product_in_this_category
+        'products': product_in_this_category,
+        'category': category
     }
 
     return render_template('ui/products_list.html', data = data)
