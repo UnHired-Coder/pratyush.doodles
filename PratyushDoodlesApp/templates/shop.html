@@ -25,6 +25,7 @@
 
         {% if data.products_with_categories %}
             {% for category, products in data.products_with_categories.items() %}
+                <div id="scroll-head-{{ category }}"></div>
                 <div id="products-list-{{ category }}" class="row justify-content-center mx-auto">
                     {% if products and products|length > 0 %}
                         <h4 class="mb-3 mt-3 p-2 sticky-top" style="z-index: inherit; background-color: white; top: 55px;  box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1);" id="{{ category }}">{{ category }}</h4>
