@@ -138,10 +138,10 @@
     position: absolute;
     left: 0;
     top: 0;
-    animation: animloader 2s linear infinite;
+    animation: animloader 1s linear infinite;
   }
   .loader::after {
-    animation-delay: 1s;
+    animation-delay: 0.3s;
   }
   
   @keyframes animloader {
