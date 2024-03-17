@@ -343,6 +343,10 @@ input[type="checkbox"] {
 }
 
 
+.style-category{
+    border: #ffd146 1px solid;
+    border-radius: 20px;
+}
 
 /* Keyframes */
 @keyframes pop {

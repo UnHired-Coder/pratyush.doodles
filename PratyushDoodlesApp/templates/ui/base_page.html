@@ -1,7 +1,7 @@
 {% extends 'ui/base_layout.html' %}
 {% block body %}
 
-<nav class="navbar">
+<nav class="navbar" style="background-color: white;">
     <div class="container-fluid">
 
         <!--  Login Button -->
@@ -91,8 +91,8 @@
 </nav>
 
 
-<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid" style="background-color: #fff5dd00;">
+<nav class="navbar sticky-top navbar-expand-lg" style="background-color: #f9d0ae;"> 
+    <div class="container-fluid">
 
         <!-- If not enough space this menu will be visible -->        
         <img class="navbar-toggler ic-30" style="padding: 0; border: none;" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -146,7 +146,7 @@
     </div>
 </div>
 
-<div class="container" style="background-color: rgb(255, 255, 255); 
+<div class="container" style="background-color: rgb(255, 250, 243); 
 min-height: 1000px;  background-repeat: no-repeat; position: relative;">
     {% block content %}
 
@@ -399,7 +399,7 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
 
 
 {% block footer %}
-<footer class="bg-light text-dark p-3 mt-5" style="background-color: #ffffff;">
+<footer class="text-dark p-3 Pt-5" style="background-color: #f9d0ae;">
     <p style="text-align:center">
         <a class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover m-1"
             href="{{ url_for('shop.shop') }}">Shop</a>

@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="container text-center mt-5">
+<div class="container text-center pt-5 pb-5">
     <div class="row justify-content-center mx-auto">
             <!-- height: 20%; -->
             <div class="col-xl-5 col-lg-6 col-md-7 col-sm-9">
@@ -28,7 +28,7 @@
                 <div id="scroll-head-{{ category }}"></div>
                 <div id="products-list-{{ category }}" class="row justify-content-center mx-auto">
                     {% if products and products|length > 0 %}
-                        <h4 class="mb-3 mt-3 p-2 sticky-top" style="z-index: 888; background-color: white; top: 55px;  box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1);" id="{{ category }}">{{ category }}</h4>
+                        <h4 class="mb-3 mt-3 p-2 sticky-top style-category" style="z-index: 888; background-color: white; top: 55px;  box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1);" id="{{ category }}">{{ category }}</h4>
                     {% endif %}
                 </div>    
                 <div category="{{ category }}" page="2" class="showMoreButton col-auto">
