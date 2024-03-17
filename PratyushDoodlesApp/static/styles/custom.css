@@ -344,8 +344,10 @@ input[type="checkbox"] {
 
 
 .style-category{
-    border: #ffd146 1px solid;
+    border: #ffd146 0.5px solid;
     border-radius: 20px;
+    background-color: #ffffff;
+    padding: 16px 20px;
 }
 
 /* Keyframes */
