@@ -191,20 +191,20 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
             body: JSON.stringify({ product_id: product_id })
         })
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.json()
         })
         .then(data => {
             hideLoaderOnCart();
             onItemRemoved();
-            console.log(data); // Process the response (e.g., cart update)
+            //console.log(data); // Process the response (e.g., cart update)
         })
         .catch(error => {
             hideLoaderOnCart();
             showError('Error:', error);
         });
 
-        console.log("Event: removeItemFromCart", product_id)
+        //console.log("Event: removeItemFromCart", product_id)
     }
 
     function onItemRemoved() {
@@ -227,21 +227,21 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
             body: JSON.stringify({ product_id: product_id })
         })
         .then(response => {
-            console.log(response);
+            //console.log(response);
             return response.json()
         })
         .then(data => {
             updateCart({toggleCart : false});
             showInfo("Item added to Cart!");
             hideLoader();
-            console.log(data); // Process the response (e.g., cart update)
+            //console.log(data); // Process the response (e.g., cart update)
         })
         .catch(error => {
             hideLoader();
             showError('Error:', error);
         });
 
-        console.log("Event: addItemToCart", product_id)
+        //console.log("Event: addItemToCart", product_id)
     }
 
     function updateCart({ toggleCart = true, hasLoader = true}={}) {
@@ -314,7 +314,7 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
                 return response.json()
             })
             .then(data => {
-                console.log(data); 
+                //console.log(data); 
                 updateCart({toggleCart : false, hasLoader : false});
             })
             .catch(error => {
@@ -344,7 +344,7 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
                 body: JSON.stringify({ product_id: product_id })
             })
             .then(data => {
-                console.log(data); 
+                //console.log(data); 
                 updateCart({toggleCart : false, hasLoader : false});
             })
             .catch(error => {
@@ -372,7 +372,7 @@ min-height: 1000px;  background-repeat: no-repeat; position: relative;">
 
     function showShareLink(shareButton, shareButtonId){
         var linkInput = document.getElementById(shareButtonId);
-        console.log(linkInput);
+        //console.log(linkInput);
         linkInput.style.display = 'block';
         linkInput.addEventListener('mouseleave', function (){
             linkInput.style.display = 'none';
