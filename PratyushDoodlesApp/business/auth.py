@@ -46,10 +46,7 @@ def login():
 
     logout_user()
     login_user(user)
-    data = {
-        'user': user
-    }
-    return redirect(url_for('home.home'))
+    return redirect(url_for('shop.shop'))
 
 @login_manager.user_loader
 def load_user(user_id):
