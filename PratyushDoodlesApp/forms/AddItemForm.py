@@ -11,3 +11,8 @@ class ProductForm(FlaskForm):
     discount_percent = IntegerField('discount_percent', validators=[DataRequired(), NumberRange(min=0)])
     product_highlight = TextAreaField('product_highlight', validators=[Optional()])
     product_category = TextAreaField('product_category', validators=[Optional()])
+    delete = TextAreaField('Delete Product ID:', validators=[Optional()])
+
+
+class DeleteProductForm(FlaskForm):
+    delete_product_id = TextAreaField('Delete Product ID:', validators=[Optional()])    

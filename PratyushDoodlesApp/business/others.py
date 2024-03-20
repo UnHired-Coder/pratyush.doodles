@@ -4,7 +4,7 @@ from .. import app
 from ..models.UserModel import Order
 from ..models.FaqModel import Faq
 from .util import *
-from ..forms.AddItemForm import ProductForm
+from ..forms.AddItemForm import ProductForm, DeleteProductForm
 from ..models.ProductModel import Product, ProductImage
 
 
@@ -210,6 +210,26 @@ def add_product():
     form = ProductForm()
     return render_template('adminActions/add_product.html', form=form)
 
+
+
+
+@others_bp.route('/admin/3fiMeTqc2v/delete_product', methods=['POST', 'GET'])
+@others_bp.route('/admin/3fiMeTqc2v/delete_product/', methods=['POST', 'GET'])
+def delete_product_with_id():
+    user = get_current_user()
+    if(user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):
+        return ""    
+
+    form = request.form
+
+    if form:
+        product_id = form['delete_product_id']
+        if product_id:
+            product = Product.query.filter_by(id = product_id).delete()
+            db.session.commit()
+
+    form = DeleteProductForm()
+    return render_template('adminActions/delete_product.html', form = form)
 
 
 @others_bp.route('/update_status', methods=['POST'])

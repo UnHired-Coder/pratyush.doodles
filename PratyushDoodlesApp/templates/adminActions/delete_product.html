@@ -1,0 +1,23 @@
+<!-- add_product.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Product</title>
+</head>
+<body>
+    <h1>Delete Product</h1>
+    <form method="POST" action="{{ url_for('others.delete_product_with_id') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.delete_product_id.label }}<br>
+            {{ form.delete_product_id() }}
+            {% for error in form.delete_product_id.errors %}
+                <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            <input type="submit" value="Modify Product">
+        </div>
+    </form>    
+</body>
+</html>
