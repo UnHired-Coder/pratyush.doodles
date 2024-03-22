@@ -31,8 +31,9 @@
                         <h4 class="mb-3 mt-3 p-2 sticky-top style-category" style="z-index: 888; top: 60px;  box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1); max-width: 300px;" id="{{ category }}">{{ category }}</h4>
                     {% endif %}
                 </div>    
-                <div category="{{ category }}" page="2" class="showMoreButton col-auto">
-                    <button class="dark-button align-items-center"> Show more </button>
+                <div category="{{ category }}" page="2" class="showMoreButton col-auto pb-5">
+                    <p class="show-more-button align-items-center"> Show more <img class="ic-20" src="{{ url_for('static', filename='images/ic_down.png') }}" alt="">  </p>
+                    
                     <span class="loader" style="display: none;"></span>
                 </div>
             {% endfor %}
