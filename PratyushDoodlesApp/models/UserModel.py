@@ -46,6 +46,9 @@ class User(db.Model, UserMixin):
             guest_user.address.user_id = self.id
 
         #Guest user cart is now my cart
+        if not self.cart:
+            initialize_cart()
+
         if guest_user.cart:
             for cart_item in guest_user.cart.cart_items:
                 cart_item.cart_id = self.cart.id
