@@ -47,7 +47,7 @@ class User(db.Model, UserMixin):
 
         #Guest user cart is now my cart
         if not self.cart:
-            initialize_cart()
+            self.initialize_cart()
 
         if guest_user.cart:
             for cart_item in guest_user.cart.cart_items:
