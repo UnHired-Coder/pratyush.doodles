@@ -9,6 +9,7 @@ def reduce_image_quality(input_path, quality_percentage):
     - input_path: Path to the input image file.
     - quality_percentage: Percentage by which to reduce image quality.
     """
+
     image = Image.open(input_path)
     # Reduce quality by converting the image to JPEG format
     image.save(input_path, quality=quality_percentage)
@@ -42,9 +43,10 @@ def process_directory(directory, quality_percentage, new_size):
             # Check if the file is an image
             if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp')):
                 input_path = os.path.join(root, file)
-                reduce_image_quality(input_path, quality_percentage)
-                resize_image(input_path, new_size)
-                print(f"Processed {input_path}")
+                if (os.stat(input_path).st_size/1000) > 100:
+                    reduce_image_quality(input_path, quality_percentage)
+                    resize_image(input_path, new_size)
+                    print(f"Processed {input_path}")
 
 def main():
     directory = input("Enter the directory path: ")
