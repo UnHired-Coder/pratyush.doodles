@@ -34,7 +34,7 @@ def shop():
 
 
     # product_categories = ['Stickers']
-    product_categories = ['Cupid\'s Crew','Stickers', 'Movie Cards']
+    product_categories = ['Cupid\'s Crew', 'Cat (Lity Fam)', 'Stickers', 'Movie Cards']
 
     products_with_categories = {}
 
@@ -72,10 +72,10 @@ def get_products():
     page_no = int(request.args.get('page') or 0)
     category = request.args.get('category')
 
-    start_id = max(0, page_no-1) * 12
+    start_id = max(0, page_no-1) * 6
 
     try:
-        product_in_this_category = Product.query.filter_by(product_category = category).order_by(Product.id.desc()).offset(start_id).limit(12).all()  
+        product_in_this_category = Product.query.filter_by(product_category = category).order_by(Product.id.desc()).offset(start_id).limit(6).all()
         if len(product_in_this_category) != 0:
             shuffle(product_in_this_category) 
 
