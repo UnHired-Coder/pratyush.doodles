@@ -120,13 +120,14 @@ def admin():
         order_details['order_item_details'] = []
         for order_item in order.order_items:
             product = Product.query.filter_by(id = order_item.product_id).first()
-            order_item_details = {}
-            order_item_details['product_id'] = product.id 
-            order_item_details['name'] = product.name 
-            order_item_details['price'] = product.price
-            order_item_details['product_image'] = product.product_images[0].picture_url 
+            if product is not None:
+                order_item_details = {}
+                order_item_details['product_id'] = product.id
+                order_item_details['name'] = product.name
+                order_item_details['price'] = product.price
+                order_item_details['product_image'] = product.product_images[0].picture_url
 
-            order_details['order_item_details'] += [order_item_details]
+                order_details['order_item_details'] += [order_item_details]
 
         all_orders['order'] +=  [order_details]      
 
