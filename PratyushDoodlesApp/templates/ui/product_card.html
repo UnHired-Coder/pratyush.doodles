@@ -1,7 +1,7 @@
 <div class="wsk-cp-product" style="width: 300px; padding: 0px;">
     <div class="product-images">
         {% for product_image in product.product_images %}
-        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product" />
+        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product"  loading="lazy"/>
         {% endfor %}
         <b class="pill wcf-left"> {{product.product_highlight }} </b>
     </div>
