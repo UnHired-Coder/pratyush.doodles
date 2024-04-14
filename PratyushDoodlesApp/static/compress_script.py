@@ -43,9 +43,10 @@ def process_directory(directory, quality_percentage, new_size):
             # Check if the file is an image
             if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp')):
                 input_path = os.path.join(root, file)
-                if (os.stat(input_path).st_size/1000) > 100:
+                if (os.stat(input_path).st_size/1000) > 40:
                     reduce_image_quality(input_path, quality_percentage)
-                    resize_image(input_path, new_size)
+                    if(new_size != (-1, -1)):
+                        resize_image(input_path, new_size)
                     print(f"Processed {input_path}")
 
 def main():
