@@ -23,8 +23,8 @@
                 </div>
         </div>
 
-        <div id="applied-filters" class="row">
-
+        <div id="applied-filters" class="container justify-content-center" style="float: left;">
+            
         </div>
 
         {% if data.products_with_categories %}
@@ -57,8 +57,30 @@
 
     function updateFilters(appliedFilters){
         let filtersUi = document.getElementById("applied-filters")
-        filtersUi.innerText = appliedFilters
+        let html = ""
+
+        filtersUi.innerHTML = html
+
+        if(appliedFilters == null){
+            let url = new URL(window.location.href);
+            url.searchParams.delete('filter_by');
+            window.location.replace(url)
+            return
+        }
+
+        console.log("appliedFilters")
+        if(appliedFilters!=null && appliedFilters != "" ){
+            for(i in appliedFilters){
+                if(i == 0){
+                    html +=  "<div style = 'float: left; margin-right: 10px;'> Filterd by: </div>"
+                }
+                html +=  "<div class= 'filters-applied' style = 'float: left; margin-right: 10px;'>" + appliedFilters[i] +"</div>"
+            }
+            html += "<img class='ic-30' id='clear-filters' onClick = 'updateFilters(null)' style = 'float: left; margin-right: 10px;' src='{{ url_for('static', filename='images/ic_close.svg') }}'>"
+        }
+        filtersUi.innerHTML = html
     }
+
 
     var filters = []
     function getData(page, category, button) {
@@ -67,18 +89,10 @@
         
 
         let url = '/get_products/?page='+page+'&category='+category
-        let test = new URL(window.location.href)
-        test.searchParams.get('filter_by')
-
-        console.log(test.searchParams.getAll('filter_by'))
-        console.log(typeof test.searchParams.getAll('filter_by'))
-        
-    
+        let test = new URL(window.location.href)    
         let a = test.searchParams.getAll('filter_by')
-        // url.searchParams.append("filter_by",)
 
-        // alert(test.searchParams.get('filter_by'))
-        
+
         for(i in a){
             url+='&filter_by='+a[i]
         }
