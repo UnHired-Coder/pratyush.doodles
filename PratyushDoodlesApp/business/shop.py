@@ -39,7 +39,9 @@ def shop():
     for category in product_categories:
         product_in_this_category = Product.query.filter_by(product_category = category).all()
         shuffle(product_in_this_category)
-        products_with_categories[category] = product_in_this_category
+
+        if(len(product_in_this_category) > 0):
+            products_with_categories[category] = product_in_this_category
 
     data = {
         'user': user,
@@ -100,7 +102,7 @@ def get_products():
         'category': category,
     }
 
-    return  {"products" :render_template('ui/products_list.html', data=data), "filters":filters, "has_more_items":has_more_items}
+    return  {"products" :render_template('ui/products_list.html', data=data), "filters":filters, "has_more_items":has_more_items, "has_items": (len(filtered_list) > 0 or start_id > 0)}
 
 
 #Admin actions

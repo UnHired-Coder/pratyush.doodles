@@ -29,16 +29,18 @@
 
         {% if data.products_with_categories %}
             {% for category, products in data.products_with_categories.items() %}
-                <div id="scroll-head-{{ category }}"></div>
-                <div id="products-list-{{ category }}" class="row justify-content-center mx-auto">
-                    {% if products and products|length > 0 %}
-                        <h4 class="mb-3 mt-3 p-2 sticky-top style-category" style="z-index: 888; top: 60px;  box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1); max-width: 250px;" id="{{ category }}">{{ category }}</h4>
-                    {% endif %}
-                </div>    
-                <div category="{{ category }}" page="2" class="showMoreButton col-auto pb-5">
-                    <p class="show-more-button align-items-center"> Show more <img class="ic-20" src="{{ url_for('static', filename='images/ic_down.png') }}" alt="">  </p>
-                    
-                    <span class="loader" style="display: none;"></span>
+                <div id="category-products-{{ category }}">
+                    <div id="scroll-head-{{ category }}"></div>
+                    <div id="products-list-{{ category }}" class="row justify-content-center mx-auto">
+                        {% if products and products|length > 0 %}
+                            <h4 class="mb-3 mt-3 p-2 sticky-top style-category" style="z-index: 888; top: 60px;  box-shadow: 0 2px 0px -1px rgba(0, 0, 0, 0.1); max-width: 250px;" id="{{ category }}">{{ category }}</h4>
+                        {% endif %}
+                    </div>    
+                    <div category="{{ category }}" page="2" class="showMoreButton col-auto pb-5">
+                        <p class="show-more-button align-items-center"> Show more <img class="ic-20" src="{{ url_for('static', filename='images/ic_down.png') }}" alt="">  </p>
+                        
+                        <span class="loader" style="display: none;"></span>
+                    </div>
                 </div>
             {% endfor %}
         {% else %}
@@ -108,7 +110,12 @@
                 products = _data["products"]
                 appliedFilters = _data["filters"]
                 hasMoreItems = _data["has_more_items"]
+                hasItems = _data["has_items"]
 
+
+                if(!hasItems){
+                    document.getElementById("category-products-"+category).style.display = 'none'
+                }
 
                 // Update products
                 const itemElement = document.createElement('div');
