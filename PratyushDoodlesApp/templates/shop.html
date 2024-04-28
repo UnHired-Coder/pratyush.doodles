@@ -23,6 +23,10 @@
                 </div>
         </div>
 
+        <div id="applied-filters" class="row">
+
+        </div>
+
         {% if data.products_with_categories %}
             {% for category, products in data.products_with_categories.items() %}
                 <div id="scroll-head-{{ category }}"></div>
@@ -45,26 +49,69 @@
 
 <script>
     // Pagination
-    let categoryStickers = 'Stickers'
-    let categoryMovieCards= 'Movie Cards'
-    let categoryCatStickersLityFam= 'Cat (Lity Fam)'
-    let categoryCupidsCrew= 'Cupid\'s Crew'
+    var categoryStickers = 'Stickers'
+    var categoryMovieCards= 'Movie Cards'
+    var categoryCatStickersLityFam= 'Cat (Lity Fam)'
+    var categoryCupidsCrew= 'Cupid\'s Crew'
 
 
+    function updateFilters(appliedFilters){
+        let filtersUi = document.getElementById("applied-filters")
+        filtersUi.innerText = appliedFilters
+    }
+
+    var filters = []
     function getData(page, category, button) {
-        var productsListDiv = document.getElementById('products-list-'+category);
+        let productsListDiv = document.getElementById('products-list-'+category);
         //console.log(productsListDiv);
-        fetch('/get_products/?page='+page+'&category='+category)
+        
+
+        let url = '/get_products/?page='+page+'&category='+category
+        let test = new URL(window.location.href)
+        test.searchParams.get('filter_by')
+
+        console.log(test.searchParams.getAll('filter_by'))
+        console.log(typeof test.searchParams.getAll('filter_by'))
+        
+    
+        let a = test.searchParams.getAll('filter_by')
+        // url.searchParams.append("filter_by",)
+
+        // alert(test.searchParams.get('filter_by'))
+        
+        for(i in a){
+            url+='&filter_by='+a[i]
+        }
+
+        console.log(url)
+
+        fetch(url)
             .then(response => response.text()) // Get the rendered template as HTML
             .then(data => {
-                const itemElement = document.createElement('div');
-                itemElement.innerHTML = data
 
-                if (data != "" && button != null) {
-                    button.children[0].style.display = 'block';
+                _data = JSON.parse(data)
+
+                products = _data["products"]
+                appliedFilters = _data["filters"]
+                hasMoreItems = _data["has_more_items"]
+
+
+                // Update products
+                const itemElement = document.createElement('div');
+                itemElement.innerHTML = products;
+
+                //update filters
+                updateFilters(appliedFilters);
+                
+                if(button != null){
                     button.children[1].style.display = 'none';
-                } else if (button != null) {
-                    button.children[1].style.display = 'none';
+
+                    //update more button
+                    if(hasMoreItems){
+                        button.children[0].style.display = 'block'
+                    } else {
+                        button.children[0].style.display = 'none'
+                    }
                 }
                 
                 productsListDiv.appendChild(itemElement);
@@ -77,10 +124,10 @@
 
     function handleScroll() {
         // @var int totalPageHeight
-        var totalPageHeight = document.body.offsetHeight;
+        let totalPageHeight = document.body.offsetHeight;
 
         // @var int scrollPoint
-        var scrollPoint = window.scrollY + window.innerHeight;
+        let scrollPoint = window.scrollY + window.innerHeight;
 
         // check if we hit the bottom of the page
         if (scrollPoint >= totalPageHeight) {
@@ -169,6 +216,16 @@
             button.children[0].style.display = 'none';
             button.children[1].style.display = 'block';
         });
+    }
+
+    function seletedTagFilter(button){
+        let tagFilter = $(button).attr('product_highlight');
+        console.log(window.location.href)
+        var url = new URL(window.location.href)
+        url.searchParams.append("filter_by", tagFilter)
+        filters.push(tagFilter)
+        console.log(filters)
+        window.location.replace(url)
     }
 
 </script>

@@ -1,12 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, Blueprint
+from flask import render_template, request, Blueprint #, Flask, redirect, url_for, flash
 from .. import app
 # from .. import app, socketio
-from ..forms.AddItemForm import ProductForm
-from ..models.UserModel import User
+# from ..forms.AddItemForm import ProductForm
+# from ..models.UserModel import User
 from .util import *
 from ..models.ProductModel import Product, ProductImage
-from ..models.FaqModel import Faq
-from .. import db
+# from ..models.FaqModel import Faq
+# from .. import db
 from random import shuffle
 
 
@@ -32,8 +32,6 @@ def shop():
 
         return render_template('shop_product.html', data = data)
 
-
-    # product_categories = ['Stickers']
     product_categories = ['Cat (Lity Fam)', 'Stickers', 'Cupid\'s Crew', 'Movie Cards']
 
     products_with_categories = {}
@@ -55,10 +53,13 @@ def shop():
 @shop_bp.route('/get_products/')
 def get_products():
     user = get_current_user()
-    products = Product.query.all()
-   
+
     # If it's a single product to show
     product_id = request.args.get('product_id')
+    filters = request.args.getlist('filter_by')
+
+    print("filter_by: "+str(len(filters)))
+
     if product_id:
         product = Product.query.filter_by(id = product_id).first()
 
@@ -71,24 +72,35 @@ def get_products():
 
     page_no = int(request.args.get('page') or 0)
     category = request.args.get('category')
+    has_more_items = False
 
     start_id = max(0, page_no-1) * 6
 
     try:
-        product_in_this_category = Product.query.filter_by(product_category = category).order_by(Product.id.desc()).offset(start_id).limit(6).all()
-        if len(product_in_this_category) != 0:
-            shuffle(product_in_this_category) 
+        base_query = Product.query.filter_by(product_category=category).order_by(Product.id.desc()).offset(start_id)
+        has_more_items = base_query.count() > 6
+        product_in_this_category = base_query.limit(6).all()
+
+        filtered_list = []
+        if len(filters) == 0:
+            filtered_list = product_in_this_category
+        else:
+            for product in product_in_this_category:
+                if product.product_highlight in filters:
+                    filtered_list.append(product)
+        if len(filtered_list) != 0:
+            shuffle(filtered_list)
 
     except Exception as e:
-        product_in_this_category = []
+        filtered_list = []
 
     data = {
         'user': user,
-        'products': product_in_this_category,
-        'category': category
+        'products': filtered_list,
+        'category': category,
     }
 
-    return render_template('ui/products_list.html', data = data)
+    return  {"products" :render_template('ui/products_list.html', data=data), "filters":filters, "has_more_items":has_more_items}
 
 
 #Admin actions

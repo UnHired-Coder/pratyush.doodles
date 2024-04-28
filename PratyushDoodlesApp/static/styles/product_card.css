@@ -135,7 +135,7 @@
 }
 
 
-.pill {
+.card-tag {
     display: block;
     position: relative;
     top: 90%;
@@ -149,6 +149,7 @@
     box-shadow: 0 1px 6px 0 rgb(171, 171, 171);
     color: rgb(255, 255, 255);
     font-size: 12px;
+    cursor: pointer;
   }
   
 
