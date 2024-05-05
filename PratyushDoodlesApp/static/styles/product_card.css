@@ -15,6 +15,42 @@
     z-index:1 !important;
 }
 
+.wsk-cp-product:hover .wsk-cp-img {
+    backface-visibility: hidden;
+    transform: scale(1.3, 1.3);
+    opacity: 1;
+}
+
+.wsk-cp-product:hover .icon-button{
+    display: flex;
+}
+
+.wsk-cp-product-style-1 {
+    margin: 30px 10px;
+    height: auto;
+    width: 300px;
+    background: #fff;
+    border-radius: 6px;
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
+    transition: transform 0.3s ease-in-out; /* Add a transition for smooth scaling */
+}
+
+.wsk-cp-product-style-1:hover{
+    transform: scale(1.05);
+    z-index:1 !important;
+}
+
+.wsk-cp-product-style-1:hover .wsk-cp-img {
+    backface-visibility: hidden;
+    transform: translateY(-10px);
+    opacity: 1;
+}
+
+.wsk-cp-product-style-1:hover .icon-button{
+    display: flex;
+}
+
+
 .product-images {
     height: 300px;
     width: 100%;
@@ -24,7 +60,6 @@
 
 .wsk-cp-img {
     border-radius: 6px;
-    height: 300px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -34,11 +69,6 @@
     transition: all 0.4s ease-out;
 }
 
-.wsk-cp-product:hover .wsk-cp-img {
-    backface-visibility: hidden;
-    transform: scale(1.3, 1.3);
-    opacity: 1;
-}
 
 
 .card-header {
@@ -114,10 +144,6 @@
     text-decoration: none;
     color: #ffffff;
     cursor: pointer;
-}
-
-.wsk-cp-product:hover .icon-button{
-    display: flex;
 }
 
 .icon-button {
