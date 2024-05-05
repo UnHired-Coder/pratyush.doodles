@@ -1,3 +1,38 @@
+{% if product.product_category == "Cupid's Crew" %}
+
+<!-- Cupid's Crew Card UI -->
+
+<div class="wsk-cp-product" style="width: 250px; padding: 0px;">
+    <div class="product-images">
+        {% for product_image in product.product_images %}
+        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}" alt="Product"  loading="lazy"/>
+        {% endfor %}
+    </div>
+
+    <div style="padding-left: 6px; padding-right: 6px;">
+    <div class="wcf-right"> <span class="product-price"> Rs. {{ product.price }}/-</span></div>
+    <span class="buy-btn m-2" product_id="{{ product.id }}" onclick="addItemToCart(this)">Add to cart</span>
+
+    <div class="popup">
+        <div class="icon-button col p-1">
+            <div class="link-copy text-start" id="product-share-{{ product.id }}" style="width: 200px;">
+                <p>Copy link to share</p>
+                <input type="text" id="copy-link-{{ product.id }}" class="form-control"
+                    value="https://stickyshape.pythonanywhere.com/shop/?product_id={{ product.id }}" readonly>
+                <button class="nutral-button" type="button"
+                    onclick="copyToClipboard('copy-link-{{ product.id }}')">Copy</button>
+            </div>
+            <img class="ic-16 img-responsive" onclick="showShareLink(this, 'product-share-{{ product.id }}')"
+                src="{{ url_for('static', filename='images/ic_share.png') }}" alt="Product" />
+        </div>
+    </div>
+   </div>
+</div>
+
+{% else %}
+
+<!-- Generic product Card UI -->
+
 <div class="wsk-cp-product" style="width: 300px; padding: 0px;">
     <div class="product-images">
         {% for product_image in product.product_images %}
@@ -36,3 +71,5 @@
     </div>
    </div>
 </div>
+
+{% endif %}
