@@ -4,7 +4,7 @@
 <div class="wsk-cp-product-style-1 hover-auto-transition-product" style="width: 300px; padding: 0px;">
     <div class="product-images">
         {% for product_image in product.product_images %}
-        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}?update=1" alt="Product"  loading="lazy"/>
+        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}?update=2" alt="Product"  loading="lazy"/>
         {% endfor %}
     </div>
 
@@ -36,7 +36,7 @@
 <div class="wsk-cp-product hover-auto-transition-product" style="width: 300px; padding: 0px;">
     <div class="product-images">
         {% for product_image in product.product_images %}
-        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}?update=1" alt="Product"  loading="lazy"/>
+        <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}?update=2" alt="Product"  loading="lazy"/>
         {% endfor %}
         <b class="card-tag wcf-left" product_highlight = "{{ product.product_highlight }}" onclick="seletedTagFilter(this)"> {{product.product_highlight }} </b>
     </div>
