@@ -6,7 +6,7 @@
 <div class="container text-center pt-5 pb-5">
     <div class="row justify-content-center mx-auto">
             <!-- height: 20%; -->
-            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
+            <!-- <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel" style="border-radius: 10px;">
                     <div class="carousel-indicators" style="opacity: 0.2; bottom: 0; left: 0;">
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="width: 10px;"></button>
@@ -21,7 +21,7 @@
                     </div>
                     </div>
                 </div>
-        </div>
+            </div> -->
 
         <div id="applied-filters" class="container justify-content-center" style="float: left;">
             
@@ -48,6 +48,49 @@
                     </div>
                 </div>
                 {% endif %}
+
+                {% if category == "Cat (Lity Fam)" %}
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
+                        style="border-radius: 10px;">
+                        <div class="carousel-indicators" style="opacity: 0.2; bottom: 0; left: 0;">
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1" style="width: 10px;"></button>
+                        </div>
+                        <div class="carousel-inner" style="border-radius: 10px;">
+                            <div class="carousel-item active" data-bs-interval="3000" style="border-radius: 10px;">
+                                <img src="{{ url_for('static', filename='images/promos/promo_4.png') }}" class="d-block w-100" alt="..."
+                                    style=" border-radius: 10px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if category == "Stickers" %}
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
+                        style="border-radius: 10px;">
+                        <div class="carousel-indicators" style="opacity: 0.2; bottom: 0; left: 0;">
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1" style="width: 10px;"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"
+                                style="width: 10px;"></button>
+                        </div>
+                        <div class="carousel-inner" style="border-radius: 10px;">
+                            <div class="carousel-item active" data-bs-interval="3000" style="border-radius: 10px;">
+                                <img src="{{ url_for('static', filename='images/promos/promo_1.png') }}" class="d-block w-100" alt="..."
+                                    style=" border-radius: 10px;">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="3000" style="border-radius: 10px;">
+                                <img src="{{ url_for('static', filename='images/promos/promo_2.png') }}" class="d-block w-100"
+                                    alt="...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
 
                 <div id="category-products-{{ category }}">
                     <div id="scroll-head-{{ category }}"></div>
