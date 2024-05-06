@@ -33,7 +33,7 @@
                 <!-- Category promo -->
                 {% if category == "Cupid's Crew" %}
                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
-                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
+                    <div class="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
                         style="border-radius: 10px;">
                         <div class="carousel-indicators" style="opacity: 0.2; bottom: 0; left: 0;">
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -41,7 +41,7 @@
                         </div>
                         <div class="carousel-inner" style="border-radius: 10px;">
                             <div class="carousel-item active" data-bs-interval="3000" style="border-radius: 10px;">
-                                <img src="{{ url_for('static', filename='images/promos/promo_3.png') }}?update=2" class="d-block w-100" alt="..."
+                                <img src="{{ url_for('static', filename='images/promos/promo_3.png') }}?update=3" class="d-block w-100" alt="..."
                                     style=" border-radius: 10px;">
                             </div>
                         </div>
@@ -51,7 +51,7 @@
 
                 {% if category == "Cat (Lity Fam)" %}
                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
-                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
+                    <div class="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
                         style="border-radius: 10px;">
                         <div class="carousel-indicators" style="opacity: 0.2; bottom: 0; left: 0;">
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -59,7 +59,7 @@
                         </div>
                         <div class="carousel-inner" style="border-radius: 10px;">
                             <div class="carousel-item active" data-bs-interval="3000" style="border-radius: 10px;">
-                                <img src="{{ url_for('static', filename='images/promos/promo_4.png') }}?update=2" class="d-block w-100" alt="..."
+                                <img src="{{ url_for('static', filename='images/promos/promo_4.png') }}?update=3" class="d-block w-100" alt="..."
                                     style=" border-radius: 10px;">
                             </div>
                         </div>
@@ -69,7 +69,7 @@
 
                 {% if category == "Stickers" %}
                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 mb-5">
-                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
+                    <div class="carouselExampleDark" class="carousel carousel-dark slide" data-interval="300" data-bs-ride="carousel"
                         style="border-radius: 10px;">
                         <div class="carousel-indicators" style="opacity: 0.2; bottom: 0; left: 0;">
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -79,11 +79,11 @@
                         </div>
                         <div class="carousel-inner" style="border-radius: 10px;">
                             <div class="carousel-item active" data-bs-interval="5000" style="border-radius: 10px;">
-                                <img src="{{ url_for('static', filename='images/promos/promo_1.png') }}?update=2" class="d-block w-100" alt="..."
+                                <img src="{{ url_for('static', filename='images/promos/promo_1.png') }}?update=3" class="d-block w-100" alt="..."
                                     style=" border-radius: 10px;">
                             </div>
                             <div class="carousel-item" data-bs-interval="5000" style="border-radius: 10px;">
-                                <img src="{{ url_for('static', filename='images/promos/promo_2.png') }}?update=2" class="d-block w-100"
+                                <img src="{{ url_for('static', filename='images/promos/promo_2.png') }}?update=3" class="d-block w-100"
                                     alt="...">
                             </div>
                         </div>
@@ -111,6 +111,39 @@
         {% endif %}
     </div>
 </div>
+
+
+<div class="container text-center pt-2 pb-5">
+    <div class="row pt-3">
+        <div class="d-flex">
+            <div class="container-sm">
+                <h2>
+                    Comics!
+                </h2>
+                <div class="col-sm">
+                    <p class="pt-4">If you're in the mood for a good laugh or a touch of boredom (hey, sometimes that's
+                        fun too!), you're in the right place. <br> <b>StickyShape's crafts</b> is your dose
+                        of humor, witty insights, and a dash of randomness through our comics.</p>
+
+                    <p>Keep doodling, keep smiling!</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm">
+            <img class="img-fluid" style="width: 600px;"
+                 src="{{ url_for('static', filename='images/about_commics.png') }}" alt="">
+        </div>
+        <p class="mt-5">
+            Follow us on <a class="mb-5 mt-5" href="https://www.instagram.com/stickyshape/" target="_blank"><img
+                style="width: 200px;" src="{{ url_for('static', filename='images/ic_instagram.png') }}"
+                alt=""></a> to stay updated :)
+        </p>
+    </div>
+</div>
+
 
 <script>
     // Pagination
