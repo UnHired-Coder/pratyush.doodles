@@ -8,7 +8,7 @@ from .util import *
 
 home_bp = Blueprint('home', __name__)
 
-@home_bp.route('/home', methods=['GET'])
+'''@home_bp.route('/home', methods=['GET'])
 @home_bp.route('/home/', methods=['GET'])
 def home():
     user = get_current_user()
@@ -16,7 +16,7 @@ def home():
         'user': user
     }
 
-    return render_template('index.html', data = data)
+    return render_template('index.html', data = data)'''
 
 @home_bp.route('/orders', methods=['GET'])
 @home_bp.route('/orders/', methods=['GET'])
