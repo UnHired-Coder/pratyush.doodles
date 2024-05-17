@@ -6,7 +6,7 @@
 
 <div class="container pt-5 text-center">
     <h4>{{ data.product.product_category }}</h4>
-     <div class="mt-5 mb-5 row justify-content-center mx-auto"> 
+     <div class="mt-5 mb-5 row justify-content-center mx-auto pb-5 pt-5" style="background-color: #fceadc42;"> 
         {% if data.product %}
             {% with product=data.product %}
                 {% include 'ui/product_details.html' %}
@@ -15,10 +15,19 @@
             <p>Invalid Link!</p>
         {% endif %}
     </div>    
-    <div class="container-fluid">
-        <p>Checkout <a type="button" class="dark-button col mb-2" href="{{ url_for('shop.shop') }}">
-                Shop
-            </a>for other stickers</p>
+
+    <div class="mt-5 row justify-content-center mx-auto">
+        {% for product in data.suggested_products %}
+            {% with product=product %}
+                {% include 'ui/product_card.html' %}
+            {% endwith %}
+        {% endfor %}
+    </div>
+
+    <div class="container-fluid p-5">
+        <a href="{{ url_for('shop.shop') }}">
+            <p class="show-more-button align-items-center secondary-button"> Show more <img class="ic-20" src="{{ url_for('static', filename='images/ic_down.png') }}" alt="">  </p>
+        </a>
     </div>
 </div>
 
@@ -75,5 +84,13 @@
         });
     }    
     setUpAnimation()
+
+
+    function openProductForPreview(button, product_id){
+        var url = new URL(window.location.href)
+        url.searchParams.set("product_id", product_id)
+        window.location.href = url;
+    }
+
 </script>
 {% endblock %}

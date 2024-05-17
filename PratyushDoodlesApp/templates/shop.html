@@ -348,7 +348,7 @@
     
     function openProductForPreview(button, product_id){
         var url = new URL(window.location.href)
-        url.searchParams.append("product_id", product_id)
+        url.searchParams.set("product_id", product_id)
         window.location.href = url;
     }
 

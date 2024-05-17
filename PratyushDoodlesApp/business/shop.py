@@ -24,10 +24,15 @@ def shop():
     product_id = request.args.get('product_id')
     if product_id:
         product = Product.query.filter_by(id = product_id).first()
+        suggested_products = Product.query.limit(20).all()
+
+        shuffle(suggested_products)
+        suggested_products = suggested_products[:6]
 
         data = {
             'user': user,
-            'product': product
+            'product': product,
+            'suggested_products': suggested_products
         }
 
         return render_template('shop_product.html', data = data)
