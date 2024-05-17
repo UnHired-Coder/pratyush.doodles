@@ -101,7 +101,7 @@
 }
 
 .product-price {
-    font-size: 12px;
+    font-size: 25px;
     color: black;
     font-weight: bold;
 }
@@ -118,7 +118,7 @@
 
 .card-description {
     margin: 1px;
-    font-size: 12px;
+    font-size: 20px;
     width: 70%;
     color: rgb(109, 109, 109);
 }

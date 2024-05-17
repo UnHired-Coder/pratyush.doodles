@@ -9,7 +9,7 @@
      <div class="mt-5 mb-5 row justify-content-center mx-auto"> 
         {% if data.product %}
             {% with product=data.product %}
-                {% include 'ui/product_card.html' %}
+                {% include 'ui/product_details.html' %}
             {% endwith %}
         {% else %}
             <p>Invalid Link!</p>
