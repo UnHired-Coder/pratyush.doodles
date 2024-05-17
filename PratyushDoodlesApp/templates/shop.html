@@ -345,6 +345,12 @@
         console.log(filters)
         window.location.replace(url)
     }
+    
+    function openProductForPreview(button, product_id){
+        var url = new URL(window.location.href)
+        url.searchParams.append("product_id", product_id)
+        window.location.href = url;
+    }
 
 </script>
 {% endblock %}

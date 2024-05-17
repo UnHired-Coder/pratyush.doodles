@@ -1,7 +1,7 @@
 {% if product.product_category == "Cupid's Crew" or product.product_category == "Cat (Lity Fam)" or product.product_category == "Stickers" %}
 <!-- Cupid's Crew Card UI -->
 
-<div class="wsk-cp-product-style-1 hover-auto-transition-product" style="width: 300px; padding: 0px;">
+<div class="wsk-cp-product-style-1 hover-auto-transition-product" style="width: 300px; padding: 0px;" onclick="openProductForPreview(this, '{{ product.id }}')">
     <div class="product-images">
         {% for product_image in product.product_images %}
         <img class="wsk-cp-img img-responsive" src="{{ product_image.picture_url }}?update=4" alt="Product"  loading="lazy"/>
