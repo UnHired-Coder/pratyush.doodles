@@ -1,7 +1,7 @@
 <!-- Detailed product Card UI -->
 <div class="row">
-    <div class="col-sm d-flex align-items-end justify-content-end">
-        <div class="product-images hover-auto-transition-product" style="width: 300px;">
+    <div class="col-sm d-flex align-items-end justify-content-end" style="">
+        <div class="product-images hover-auto-transition-product m-4" style="width: 300px;">
             {% for product_image in product.product_images %}
             <img class="wsk-cp-img img-responsive"  src="{{ product_image.picture_url }}?update=4" alt="Product" loading="lazy" />
             {% endfor %}
