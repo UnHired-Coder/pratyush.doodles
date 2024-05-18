@@ -1,5 +1,5 @@
 <!-- Detailed product Card UI -->
-<div class="row">
+<div class="row align-items-center justify-content-center ">
     <div class="col-sm d-flex align-items-end justify-content-end" style="">
         <div class="row">
             <div class="product-images" style="width: 300px;">
@@ -10,14 +10,14 @@
                 {% endfor %}
             </div>
 
-            <div class="flex-row mt-4 mb-4 d-flex flex-sm-row">
+            <div class="flex-row mt-2 d-flex flex-sm-row">
                 {% for product_image in product.product_images %}
                     <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=4"  alt="Product" loading="lazy" onclick="setThisImageForPreview(this, `{{ product_image.picture_url }}?update=4`)"/>
                 {% endfor %}
             </div>
         </div>
     </div>
-    <div class="col-md-auto align-items-center justify-content-center m-5">
+    <div class="col-md-auto align-items-center justify-content-center mt-4 mb-4">
         <h1 class="row text-start"> {{ product.name }} </h1> 
         <h3 class="row text-start card-description mt-3 ">{{ product.description }}</h3>
         
