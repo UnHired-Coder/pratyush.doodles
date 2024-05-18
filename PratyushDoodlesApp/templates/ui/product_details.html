@@ -4,14 +4,16 @@
         <div class="row">
             <div class="col mt-4 mb-4">
             {% for product_image in product.product_images %}
-                     <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=4"  alt="Product" loading="lazy"/>
+                     <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=4"  alt="Product" loading="lazy" onclick="setThisImageForPreview(this, `{{ product_image.picture_url }}?update=4`)"/>
                      <br>
             {% endfor %}
             </div>
 
             <div class="product-images hover-auto-transition-product mr-4 mt-4 mb-4" style="width: 300px;">
                 {% for product_image in product.product_images %}
-                <img class="wsk-cp-img img-responsive"  src="{{ product_image.picture_url }}?update=4" alt="Product" loading="lazy" />
+                    {% if loop.first %}
+                      <img class="wsk-cp-img img-responsive" id="image-product-preview"  src="{{ product_image.picture_url }}?update=4" alt="Product" loading="lazy" />
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
