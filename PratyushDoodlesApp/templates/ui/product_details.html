@@ -10,7 +10,7 @@
                 {% endfor %}
             </div>
 
-            <div class="flex-column mt-4 mb-4 d-flex flex-sm-row">
+            <div class="flex-row mt-4 mb-4 d-flex flex-sm-row">
                 {% for product_image in product.product_images %}
                     <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=4"  alt="Product" loading="lazy" onclick="setThisImageForPreview(this, `{{ product_image.picture_url }}?update=4`)"/>
                 {% endfor %}
