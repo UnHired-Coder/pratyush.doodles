@@ -16,6 +16,9 @@
         {% endif %}
     </div>    
 
+    <span> 
+        SHOP MORE
+    </span>
     <div class="mt-5 row justify-content-center mx-auto">
         {% for product in data.suggested_products %}
             {% with product=product %}
@@ -83,7 +86,7 @@
             }
         });
     }
-    
+
     setUpAnimation()
 
     function openProductForPreview(button, product_id){
