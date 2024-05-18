@@ -70,6 +70,22 @@
 }
 
 
+.product-images-thumbnails{
+    height: 50px;
+    width: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+    margin: 4px;
+    border: 2px solid #fceadc;
+    scale: 1;
+}
+
+.product-images-thumbnails:hover{
+    border: 2px solid #cf8043;
+    scale: 1.2;
+}
+
 
 .card-header {
     margin: 1px;

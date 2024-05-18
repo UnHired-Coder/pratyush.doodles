@@ -1,12 +1,19 @@
 <!-- Detailed product Card UI -->
 <div class="row">
     <div class="col-sm d-flex align-items-end justify-content-end" style="">
-        <div class="product-images hover-auto-transition-product m-4" style="width: 300px;">
+        <div class="row">
+            <div class="col mt-4 mb-4">
             {% for product_image in product.product_images %}
-            <img class="wsk-cp-img img-responsive"  src="{{ product_image.picture_url }}?update=4" alt="Product" loading="lazy" />
+                     <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=4"  alt="Product" loading="lazy"/>
+                     <br>
             {% endfor %}
-            <!-- <b class="card-tag wcf-left" product_highlight="{{ product.product_highlight }}"
-                onclick="seletedTagFilter(this)"> {{product.product_highlight }} </b> -->
+            </div>
+
+            <div class="product-images hover-auto-transition-product mr-4 mt-4 mb-4" style="width: 300px;">
+                {% for product_image in product.product_images %}
+                <img class="wsk-cp-img img-responsive"  src="{{ product_image.picture_url }}?update=4" alt="Product" loading="lazy" />
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="col-md-auto align-items-center justify-content-center m-5">
