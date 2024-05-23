@@ -215,6 +215,7 @@ def add_product():
 @others_bp.route('/admin/3fiMeTqc2v/product/<int:id>', methods=['GET', 'POST'])
 @others_bp.route('/admin/3fiMeTqc2v/product/<int:id>/', methods=['GET', 'POST'])
 def update_product(id):
+    image_urls = []
     user = get_current_user()
     if (user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):
         return ""
@@ -235,13 +236,12 @@ def update_product(id):
         product.product_highlight = form.product_highlight.data
         product.product_category = form.product_category.data
 
-        image_urls = [url.strip() for url in  form.images.data.split(',')]
+        image_urls = [url.strip() for url in  form.images.data.split(',') if url.strip()!=""]
 
         ProductImage.query.filter_by(product_id=product.id).delete()
 
         for image_url in image_urls:
             if image_url != "":
-                print("Image: "+image_url)
                 image = ProductImage(picture_url=image_url, product_id=product.id)
                 db.session.add(image)
                 db.session.flush()
@@ -254,7 +254,7 @@ def update_product(id):
     print("Form Update failed!")
     print(form.errors)    
 
-    return render_template('adminActions/update_product.html', form=form, product=product)
+    return render_template('adminActions/update_product.html', form=form, product=product, product_images = image_urls)
 
 
 @others_bp.route('/admin/3fiMeTqc2v/delete_product', methods=['POST', 'GET'])
