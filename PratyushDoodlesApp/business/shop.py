@@ -24,7 +24,7 @@ def shop():
     product_id = request.args.get('product_id')
     if product_id:
         is_admin = False
-        if(user.email == "pratyushfree@gmail.com"):
+        if(user.email == "pratyushfree@gmail.com" and user.name == "Pratyush Tiwari"):
             is_admin = True
 
         product = Product.query.filter_by(id = product_id).first()
@@ -76,7 +76,7 @@ def get_products():
 
     if product_id:
         is_admin = False
-        if(user.email == "pratyushfree@gmail.com"):
+        if(user.email == "pratyushfree@gmail.com" and user.name == "Pratyush Tiwari"):
             is_admin = True
         product = Product.query.filter_by(id = product_id).first()
 
