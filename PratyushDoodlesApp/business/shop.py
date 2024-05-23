@@ -23,6 +23,10 @@ def shop():
     # If it's a single product to show
     product_id = request.args.get('product_id')
     if product_id:
+        is_admin = False
+        if(user.email == "pratyushfree@gmail.com" and user.name == "Pratyush Tiwari"):
+            is_admin = True
+
         product = Product.query.filter_by(id = product_id).first()
         suggested_products = Product.query.filter(Product.id != product_id and Product.product_category == product.product_category).limit(20).all()
 
@@ -32,7 +36,8 @@ def shop():
         data = {
             'user': user,
             'product': product,
-            'suggested_products': suggested_products
+            'suggested_products': suggested_products,
+            'is_admin': is_admin
         }
 
         return render_template('shop_product.html', data = data)
@@ -70,11 +75,15 @@ def get_products():
     print("filter_by: "+str(len(filters)))
 
     if product_id:
+        is_admin = False
+        if(user.email == "pratyushfree@gmail.com" and user.name == "Pratyush Tiwari"):
+            is_admin = True
         product = Product.query.filter_by(id = product_id).first()
 
         data = {
             'user': user,
-            'product': product
+            'product': product,
+            'is_admin': is_admin
         }
 
         return render_template('shop_product.html', data = data)

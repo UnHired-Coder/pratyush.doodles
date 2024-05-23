@@ -212,8 +212,8 @@ def add_product():
     return render_template('adminActions/add_product.html', form=form)
 
 
-@app.route('/admin/3fiMeTqc2v/product/<int:id>', methods=['GET', 'POST'])
-@app.route('/admin/3fiMeTqc2v/product/<int:id>/', methods=['GET', 'POST'])
+@others_bp.route('/admin/3fiMeTqc2v/product/<int:id>', methods=['GET', 'POST'])
+@others_bp.route('/admin/3fiMeTqc2v/product/<int:id>/', methods=['GET', 'POST'])
 def update_product(id):
     user = get_current_user()
     if (user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):

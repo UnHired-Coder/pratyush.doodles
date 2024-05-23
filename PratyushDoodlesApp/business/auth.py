@@ -58,7 +58,7 @@ def load_user(user_id):
 @auth_bp.route('/logout', methods=['GET'])
 def logout():
     logout_user()
-    return redirect(url_for('home.home'))
+    return redirect(url_for('shop.shop'))
 
 
 app.register_blueprint(auth_bp, url_prefix='/auth')
