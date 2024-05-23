@@ -58,8 +58,8 @@ def shop():
     return render_template('shop.html', data = data)
 
 
-@shop_bp.route('/get_products')
-@shop_bp.route('/get_products/')
+@shop_bp.route('/get_products', methods=['GET'])
+@shop_bp.route('/get_products/', methods=['GET'])
 def get_products():
     user = get_current_user()
 

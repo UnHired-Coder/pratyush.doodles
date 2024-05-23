@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, redirect, url_for
 from flask import Blueprint, request
 from .. import app
 from ..models.UserModel import Order
@@ -212,6 +212,49 @@ def add_product():
     return render_template('adminActions/add_product.html', form=form)
 
 
+@app.route('/admin/3fiMeTqc2v/product/<int:id>', methods=['GET', 'POST'])
+@app.route('/admin/3fiMeTqc2v/product/<int:id>/', methods=['GET', 'POST'])
+def update_product(id):
+    user = get_current_user()
+    if (user.email != "pratyushfree@gmail.com" or user.name != "Pratyush Tiwari"):
+        return ""
+
+    product = Product.query.get_or_404(id)
+    
+    if request.method == 'GET':
+        form = ProductForm(obj=product)
+    else: 
+        form = ProductForm(form = request.form) 
+
+    if form.validate_on_submit() and product is not None:
+        product.name = form.name.data
+        product.description = form.description.data
+        product.price = form.price.data
+        product.stock_quantity = form.stock_quantity.data
+        product.discount_percent = form.discount_percent.data
+        product.product_highlight = form.product_highlight.data
+        product.product_category = form.product_category.data
+
+        image_urls = [url.strip() for url in  form.images.data.split(',')]
+
+        ProductImage.query.filter_by(product_id=product.id).delete()
+
+        for image_url in image_urls:
+            if image_url != "":
+                print("Image: "+image_url)
+                image = ProductImage(picture_url=image_url, product_id=product.id)
+                db.session.add(image)
+                db.session.flush()
+                db.session.commit()
+
+        db.session.flush()
+        db.session.commit()
+        print("Form Updated!")
+
+    print("Form Update failed!")
+    print(form.errors)    
+
+    return render_template('adminActions/update_product.html', form=form, product=product)
 
 
 @others_bp.route('/admin/3fiMeTqc2v/delete_product', methods=['POST', 'GET'])
@@ -226,7 +269,7 @@ def delete_product_with_id():
     if form:
         product_id = form['delete_product_id']
         if product_id:
-            product = Product.query.filter_by(id = product_id).delete()
+            Product.query.filter_by(id = product_id).delete()
             db.session.commit()
 
     form = DeleteProductForm()
