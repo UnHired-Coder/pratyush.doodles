@@ -5,14 +5,14 @@
             <div class="product-images" style="width: 300px;">
                 {% for product_image in product.product_images %}
                     {% if loop.first %}
-                      <img class="img-responsive" id="image-product-preview"  src="{{ product_image.picture_url }}?update=4" alt="Product" loading="lazy" />
+                      <img class="img-responsive" id="image-product-preview"  src="{{ product_image.picture_url }}?update=5" alt="Product" loading="lazy" />
                     {% endif %}
                 {% endfor %}
             </div>
 
             <div class="flex-row mt-2 d-flex flex-sm-row">
                 {% for product_image in product.product_images %}
-                    <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=4"  alt="Product" loading="lazy" onclick="setThisImageForPreview(this, `{{ product_image.picture_url }}?update=4`)"/>
+                    <img class="product-images-thumbnails img-responsive"  src="{{ product_image.picture_url }}?update=5"  alt="Product" loading="lazy" onclick="setThisImageForPreview(this, `{{ product_image.picture_url }}?update=5`)"/>
                 {% endfor %}
             </div>
         </div>
